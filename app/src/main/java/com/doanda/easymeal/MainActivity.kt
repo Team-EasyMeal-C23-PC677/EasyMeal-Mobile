@@ -1,5 +1,6 @@
 package com.doanda.easymeal
 
+import android.content.Intent
 import com.doanda.easymeal.databinding.ActivityMainBinding
 
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.doanda.easymeal.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,5 +34,8 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+        startActivity(intent)
     }
 }
