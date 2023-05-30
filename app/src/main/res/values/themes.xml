@@ -9,16 +9,31 @@
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorSecondaryVariant">@color/secondary_darker</item>
         <item name="colorOnSecondary">@color/black</item>
+        <!-- Surface color. -->
+        <item name="colorSurface">@color/grey_lighter_theme</item>
+        <item name="colorOnSurface">@color/grey_theme</item>
+        <item name="colorOnSurfaceVariant">@color/grey_theme</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
 
     </style>
 
+<!--    THEME-->
+    <style name="Layout">
+        <item name="backgroundTint">@color/white_theme</item>
+    </style>
+
 <!--    ACTION BAR-->
     <style name="ActionBar" parent="Widget.Material3.Light.ActionBar.Solid">
         <item name="background">@color/white</item>
     </style>
+    
+<!--    SEARCH BAR-->
+    <style name="SearchBar" parent="Widget.Material3.SearchBar">
+
+    </style>
+    
 
     <!--    TEXT FIELD-->
     <style name="TextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -90,7 +105,13 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+<!--    TODO complete typography-->
     <style name="Text.Body">
+    </style>
+
+<!--    SHAPEABLE IMAGE VIEW-->
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
     </style>
 
 </resources>
