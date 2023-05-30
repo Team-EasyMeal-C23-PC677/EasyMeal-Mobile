@@ -49,6 +49,8 @@ dependencies {
 //    MATERIAL 3
     implementation 'androidx.compose.material3:material3-window-size-class:1.1.0'
     implementation 'androidx.compose.material3:material3:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
 
 //    TEST
     testImplementation 'junit:junit:4.13.2'

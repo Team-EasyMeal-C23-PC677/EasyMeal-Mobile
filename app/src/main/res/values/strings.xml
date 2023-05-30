@@ -12,4 +12,8 @@
     <string name="register">Buat Akun</string>
     <string name="to_register">Buat Akun</string>
     <string name="to_login">Masuk dengan Email</string>
+    <string name="title_recipe">Recipe</string>
+    <string name="title_pantry">Pantry</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_shopping_list">Shopping List</string>
 </resources>
