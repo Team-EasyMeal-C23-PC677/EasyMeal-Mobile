@@ -12,13 +12,13 @@
     <color name="primary">#30DD75</color>
     <color name="primary_lighter">#82FFB1</color>
     <color name="primary_slightly_darker">#24CC1F</color>
-    <color name="primary_darker">#FC07B610</color>
+    <color name="primary_darker">#FC019109</color>
     <color name="secondary">#FFBA1A</color>
     <color name="secondary_lighter">#FFD679</color>
     <color name="secondary_darker">#C68006</color>
     <color name="red_theme">#ed3333</color>
-    <color name="grey_theme">#656565</color>
-    <color name="grey_lighter_theme">#BFBFBF</color>
+    <color name="grey_theme">#8C8C8C</color>
+    <color name="grey_lighter_theme">#DBDBDB</color>
 
 
 </resources>
