@@ -11,4 +11,5 @@
     <string name="name">Nama</string>
     <string name="register">Buat Akun</string>
     <string name="to_register">Buat Akun</string>
+    <string name="to_login">Masuk dengan Email</string>
 </resources>
