@@ -19,6 +19,7 @@
     <color name="red_theme">#ed3333</color>
     <color name="grey_theme">#8C8C8C</color>
     <color name="grey_lighter_theme">#DBDBDB</color>
+    <color name="white_transparent">#BBFFFFFF</color>
 
 
 </resources>
