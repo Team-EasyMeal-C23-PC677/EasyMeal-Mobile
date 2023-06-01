@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.doanda.easymeal.R
 
 class RecipeFragment : Fragment() {
@@ -14,7 +15,7 @@ class RecipeFragment : Fragment() {
         fun newInstance() = RecipeFragment()
     }
 
-    private lateinit var viewModel: RecipeViewModel
+    private val viewModel by viewModels<RecipeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +26,7 @@ class RecipeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
+//        viewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
