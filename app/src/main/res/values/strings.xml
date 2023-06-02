@@ -24,4 +24,10 @@
     <string name="hour_format">%1$d j </string>
     <string name="minute_format">%1$d m</string>
     <string name="serving_format">%1$d porsi</string>
+    <string name="placeholder_time">1 j 30 m</string>
+    <string name="placeholder_serving">1 porsi</string>
+    <string name="placeholder_warning">Ayam +3</string>
+    <string name="cd_favorite_button">Favorite button</string>
+    <string name="placeholder_title">Soto Ayam Surabaya</string>
+    <string name="placeholder_description">Soto Surabaya kuah koya bisa menjadi alternatif hidangan lezat untuk keluarga. Gurih dan penuh rempah Nusantara, yuk, simak resepnya di sini!</string>
 </resources>
