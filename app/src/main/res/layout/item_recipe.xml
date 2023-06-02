@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:text="1 j 30 m"
+            android:text="@string/placeholder_time"
             app:drawableLeftCompat="@drawable/recipe_time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_recipe_image" />
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            android:text="1 porsi"
+            android:text="@string/placeholder_serving"
             app:drawableLeftCompat="@drawable/recipe_portion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_recipe_image" />
@@ -61,51 +61,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
-            android:text="Ayam &amp; 3 lainnya"
+            android:text="@string/placeholder_warning"
             app:drawableLeftCompat="@drawable/recipe_warning"
             app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image"
             app:layout_constraintStart_toStartOf="parent" />
-
-<!--        <Button-->
-<!--            android:layout_width="32dp"-->
-<!--            android:layout_height="32dp"-->
-<!--            android:background="@drawable/circle_transparent_button_background"-->
-<!--            android:drawableTint="@color/black"-->
-<!--            app:backgroundTint="@color/white_transparent"-->
-<!--            android:drawableStart="@drawable/ic_round_favorite"-->
-<!--            android:drawablePadding="1dp"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="18sp"-->
-<!--            android:text=" "-->
-<!--            android:contentDescription="Favorite button"-->
-<!--            android:layout_marginEnd="4dp"-->
-<!--            android:layout_marginBottom="4dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image" />-->
-
-
-
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/fab_recipe"-->
-<!--            android:layout_width="40dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_marginEnd="4dp"-->
-<!--            android:layout_marginBottom="4dp"-->
-<!--            android:clickable="true"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:srcCompat="@drawable/ic_round_favorite" />-->
-
-<!--        <Button-->
-<!--            android:layout_width="32dp"-->
-<!--            android:layout_height="32dp"-->
-<!--            style="@style/Widget.MaterialComponents.Button.Icon"-->
-<!--            app:icon="@drawable/ic_round_favorite"-->
-<!--            android:layout_marginEnd="4dp"-->
-<!--            android:layout_marginBottom="4dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image" />-->
 
         <ImageButton
             android:id="@+id/btn_recipe_favorite"
@@ -115,7 +74,7 @@
             android:background="@drawable/circle_transparent_button_background"
             android:src="@drawable/ic_round_favorite"
             android:gravity="center"
-            android:contentDescription="Favorite button"
+            android:contentDescription="@string/cd_favorite_button"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -131,15 +90,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:maxLines="2"
-            android:text="Soto Ayam Surabaya"
+            android:text="@string/placeholder_title"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_recipe_image" />
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
