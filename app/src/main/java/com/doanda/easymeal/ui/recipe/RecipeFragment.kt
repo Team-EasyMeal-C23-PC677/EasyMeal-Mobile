@@ -12,7 +12,7 @@ import com.doanda.easymeal.R
 import com.doanda.easymeal.data.response.ListRecipeItem
 import com.doanda.easymeal.data.response.ListRecipeResponse
 import com.doanda.easymeal.databinding.FragmentRecipeBinding
-import com.doanda.easymeal.utils.getJsonDataFromResource
+import com.doanda.easymeal.utils.getJsonStringFromResource
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -36,7 +36,6 @@ class RecipeFragment : Fragment() {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -53,7 +52,7 @@ class RecipeFragment : Fragment() {
         // in Result.Success
         val listRecipe: List<ListRecipeItem> = data.listRecipe as List<ListRecipeItem>
         binding.rvRecipe.apply {
-            adapter = ListRecipeAdapter(listRecipe)
+            adapter = RecipeAdapter(listRecipe)
             layoutManager = GridLayoutManager(
                 requireContext(),
                 2,
@@ -64,7 +63,7 @@ class RecipeFragment : Fragment() {
     }
 
     private fun loadDataFromJson(): ListRecipeResponse {
-        val jsonFileString = getJsonDataFromResource(requireContext(), R.raw.all_recipe_response)
+        val jsonFileString = getJsonStringFromResource(requireContext(), R.raw.all_recipe_response)
         if (jsonFileString != null) {
             Log.i("JSON", jsonFileString)
         } else {
