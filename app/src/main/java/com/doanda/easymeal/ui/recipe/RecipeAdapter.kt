@@ -9,12 +9,12 @@ import com.bumptech.glide.Glide
 import com.doanda.easymeal.R
 import com.doanda.easymeal.data.response.ListRecipeItem
 import com.doanda.easymeal.databinding.ItemRecipeBinding
-import com.doanda.easymeal.ui.favorite.recipedetail.RecipeDetailActivity
+import com.doanda.easymeal.ui.recipedetail.RecipeDetailActivity
 import formatRecipeTime
 import formatRecipeWarning
 
-class ListRecipeAdapter(private val listRecipe: List<ListRecipeItem>)
-    : RecyclerView.Adapter<ListRecipeAdapter.ViewHolder>()
+class RecipeAdapter(private val listRecipe: List<ListRecipeItem>)
+    : RecyclerView.Adapter<RecipeAdapter.ViewHolder>()
 {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
