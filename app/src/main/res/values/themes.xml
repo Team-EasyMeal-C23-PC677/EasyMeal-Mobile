@@ -11,7 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Surface color. -->
         <item name="colorSurface">@color/grey_lighter_theme</item>
-        <item name="colorOnSurface">@color/grey_theme</item>
+        <item name="colorOnSurface">@color/black</item>
         <item name="colorOnSurfaceVariant">@color/grey_theme</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
@@ -19,21 +19,21 @@
 
     </style>
 
-<!--    THEME-->
+    <!--    THEME-->
     <style name="Layout">
-        <item name="backgroundTint">@color/white_theme</item>
+        <item name="android:backgroundTint">@color/white_theme</item>
     </style>
 
-<!--    ACTION BAR-->
-    <style name="ActionBar" parent="Widget.Material3.Light.ActionBar.Solid">
-        <item name="background">@color/white</item>
-    </style>
-    
-<!--    SEARCH BAR-->
+    <!--    ACTION BAR-->
+<!--    <style name="ActionBar" parent="Widget.Material3.Light.ActionBar.Solid">-->
+<!--        <item name="background">@color/white</item>-->
+<!--    </style>-->
+
+    <!--    SEARCH BAR-->
     <style name="SearchBar" parent="Widget.Material3.SearchBar">
 
     </style>
-    
+
 
     <!--    TEXT FIELD-->
     <style name="TextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -65,53 +65,108 @@
     <style name="ProgressBar">
         <item name="android:visibility">invisible</item>
     </style>
-    
-<!--    BUTTON-->
+
+    <!--    BUTTON-->
     <style name="Button">
         <item name="android:textAllCaps">false</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
-<!--        <item name="boxCornerRadiusBottomStart">24dp</item>-->
-<!--        <item name="boxCornerRadiusBottomEnd">24dp</item>-->
-<!--        <item name="boxCornerRadiusTopStart">24dp</item>-->
-<!--        <item name="boxCornerRadiusTopEnd">24dp</item>-->
+        <!--        <item name="boxCornerRadiusBottomStart">24dp</item>-->
+        <!--        <item name="boxCornerRadiusBottomEnd">24dp</item>-->
+        <!--        <item name="boxCornerRadiusTopStart">24dp</item>-->
+        <!--        <item name="boxCornerRadiusTopEnd">24dp</item>-->
         <!--        <item name="android:topLeftRadius">8dp</item>-->
-<!--        <item name="android:topRightRadius">8dp</item>-->
-<!--        <item name="android:bottomLeftRadius">8dp</item>-->
-<!--        <item name="android:bottomRightRadius">8dp</item>-->
+        <!--        <item name="android:topRightRadius">8dp</item>-->
+        <!--        <item name="android:bottomLeftRadius">8dp</item>-->
+        <!--        <item name="android:bottomRightRadius">8dp</item>-->
     </style>
 
     <style name="Button.Secondary">
         <item name="backgroundTint">@color/secondary</item>
-<!--        <item name="android:textColor">@color/black</item>-->
-<!--        <item name="android:padding">8dp</item>-->
+        <!--        <item name="android:textColor">@color/black</item>-->
+        <!--        <item name="android:padding">8dp</item>-->
     </style>
 
     <style name="Button.Secondary.Inactive">
         <item name="backgroundTint">@color/secondary_lighter</item>
-<!--        <item name="android:textColor">@color/grey_theme</item>-->
-<!--        <item name="android:padding">8dp</item>-->
+        <!--        <item name="android:textColor">@color/grey_theme</item>-->
+        <!--        <item name="android:padding">8dp</item>-->
     </style>
 
     <style name="Button.Primary">
         <item name="backgroundTint">@color/primary</item>
-<!--        <item name="android:textColor">@color/black</item>-->
-<!--        <item name="android:padding">8dp</item>-->
+        <!--        <item name="android:textColor">@color/black</item>-->
+        <!--        <item name="android:padding">8dp</item>-->
     </style>
 
-<!--    TYPOGRAPHY-->
+    <!--    IMAGEVIEW-->
+    <style name="ImageView.Corner" parent="">
+        <!--        <item name="cornerSizeTopRight">8dp</item>-->
+        <!--        <item name="cornerSizeTopLeft">8dp</item>-->
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <!--    CARD RECIPE-->
+    <style name="TextViewRecipe">
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/rounded_transparent_background</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="TextViewRecipe.Warning">
+        <item name="android:textColor">@color/red_theme</item>
+        <item name="android:drawableTint">@color/red_theme</item>
+    </style>
+
+    <style name="TextViewRecipe.Favorite">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextViewRecipe.Warning.Favorite">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ButtonRecipe">
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="RoundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+<!--        <item name="cornerSizeTopRight">8dp</item>-->
+    </style>
+    <!--    TYPOGRAPHY-->
     <style name="Text">
         <item name="android:textColor">@color/black</item>
     </style>
 
-<!--    TODO complete typography-->
-    <style name="Text.Body">
-    </style>
+    <!--    TODO complete typography-->
+    <style name="Text.Body"></style>
 
-<!--    SHAPEABLE IMAGE VIEW-->
+    <!--    SHAPEABLE IMAGE VIEW-->
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="Theme.EasyMeal.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.EasyMeal.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.EasyMeal.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

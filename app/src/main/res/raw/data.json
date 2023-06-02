@@ -1,0 +1,167 @@
+{
+  "get_all_recipe_response" : {
+    "error" : false,
+    "message" : "success",
+    "listRecipe" : [
+      {
+        "id": 1,
+        "title": "Title Lorem",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 90,
+        "serving": 2,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+          "ayam", "ikan", "terong"
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Title Lorem ipsum dolor sit amet consectetur adipiscing",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 45,
+        "serving": 2,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Title Lorem ipsum dolor",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 120,
+        "serving": 1,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+          "ayam", "ikan", "terong"
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Title Lorem",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 90,
+        "serving": 2,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+          "ikan"
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Title Lorem ipsum dolor sit amet consectetur adipiscing",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 45,
+        "serving": 1,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Title Lorem ipsum dolor",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 120,
+        "serving": 2,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+          "ayam", "ikan", "terong"
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Title Lorem",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 90,
+        "serving": 1,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+          "ikan"
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Title Lorem ipsum dolor sit amet consectetur adipiscing",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 45,
+        "serving": 2,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Title Lorem ipsum dolor",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 120,
+        "serving": 1,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+          "ayam", "ikan", "terong"
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Title Lorem ipsum dolor sit amet consectetur adipiscing",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 90,
+        "serving": 2,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+          "ikan"
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Title Lorem",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 45,
+        "serving": 1,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Title Lorem ipsum dolor",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 120,
+        "serving": 2,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+          "ayam", "ikan", "terong"
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Title Lorem",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 90,
+        "serving": 1,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+          "ikan"
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Title Lorem",
+        "description": "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "total_time": 45,
+        "serving": 2,
+        "img_url": "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
+        "missing": [
+
+        ]
+      }
+    ]
+  },
+  "lorem": {
+    "short": "Lorem ipsum dolor sit amet",
+    "medium": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "long": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  }
+}

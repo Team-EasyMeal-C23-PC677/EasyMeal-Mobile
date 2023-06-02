@@ -12,6 +12,10 @@
         android:title="@string/title_pantry" />
 
     <item
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
         android:id="@+id/navigation_favorite"
         android:icon="@drawable/ic_round_favorite"
         android:title="@string/title_favorite" />

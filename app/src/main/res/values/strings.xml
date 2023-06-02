@@ -17,4 +17,11 @@
     <string name="title_favorite">Favorite</string>
     <string name="title_shopping_list">Shopping List</string>
     <string name="search_hint">Cari %1s</string>
+    <string name="cd_recipe_image">Recipe image</string>
+    <string name="title_activity_recipe_detail">RecipeDetailActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="hour_format">%1$d j </string>
+    <string name="minute_format">%1$d m</string>
+    <string name="serving_format">%1$d porsi</string>
 </resources>
