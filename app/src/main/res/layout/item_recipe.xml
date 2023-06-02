@@ -6,7 +6,7 @@
     style="@style/ImageView.Corner"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
+    android:layout_gravity="top|center"
     android:layout_marginStart="4dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="4dp"
@@ -17,7 +17,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <!--        TODO change to height wrapcontent-->
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_recipe_image"
@@ -26,11 +25,10 @@
             android:contentDescription="@string/cd_recipe_image"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/RoundedImageView"
             tools:srcCompat="@drawable/photo_sotoayam" />
-        <!--        TODO round bottom corners-->
 
         <TextView
             android:id="@+id/tv_recipe_time"
@@ -41,7 +39,7 @@
             android:layout_marginTop="4dp"
             android:text="1 j 30 m"
             app:drawableLeftCompat="@drawable/recipe_time"
-            app:layout_constraintStart_toStartOf="@+id/iv_recipe_image"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_recipe_image" />
 
         <TextView
@@ -53,7 +51,7 @@
             android:layout_marginEnd="4dp"
             android:text="1 porsi"
             app:drawableLeftCompat="@drawable/recipe_portion"
-            app:layout_constraintEnd_toEndOf="@+id/iv_recipe_image"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_recipe_image" />
 
         <TextView
@@ -66,7 +64,7 @@
             android:text="Ayam &amp; 3 lainnya"
             app:drawableLeftCompat="@drawable/recipe_warning"
             app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image"
-            app:layout_constraintStart_toStartOf="@+id/iv_recipe_image" />
+            app:layout_constraintStart_toStartOf="parent" />
 
 <!--        <Button-->
 <!--            android:layout_width="32dp"-->
@@ -83,7 +81,7 @@
 <!--            android:contentDescription="Favorite button"-->
 <!--            android:layout_marginEnd="4dp"-->
 <!--            android:layout_marginBottom="4dp"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/iv_recipe_image"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
 <!--            app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image" />-->
 
 
@@ -96,7 +94,7 @@
 <!--            android:layout_marginBottom="4dp"-->
 <!--            android:clickable="true"-->
 <!--            app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/iv_recipe_image"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
 <!--            app:srcCompat="@drawable/ic_round_favorite" />-->
 
 <!--        <Button-->
@@ -106,7 +104,7 @@
 <!--            app:icon="@drawable/ic_round_favorite"-->
 <!--            android:layout_marginEnd="4dp"-->
 <!--            android:layout_marginBottom="4dp"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/iv_recipe_image"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
 <!--            app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image" />-->
 
         <ImageButton
@@ -120,7 +118,7 @@
             android:contentDescription="Favorite button"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/iv_recipe_image"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image"
             app:tint="@color/white" />
 
