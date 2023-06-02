@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.EasyMeal" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.EasyMeal" parent="Theme.Material3.Light">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_darker</item>
@@ -25,9 +25,9 @@
     </style>
 
     <!--    ACTION BAR-->
-    <style name="ActionBar" parent="Widget.Material3.Light.ActionBar.Solid">
-        <item name="background">@color/white</item>
-    </style>
+<!--    <style name="ActionBar" parent="Widget.Material3.Light.ActionBar.Solid">-->
+<!--        <item name="background">@color/white</item>-->
+<!--    </style>-->
 
     <!--    SEARCH BAR-->
     <style name="SearchBar" parent="Widget.Material3.SearchBar">

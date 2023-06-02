@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
+    android:id="@+id/card_recipe"
     style="@style/ImageView.Corner"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="@+id/iv_recipe_image" />
 
         <TextView
-            android:id="@+id/tv_recipe_portion"
+            android:id="@+id/tv_recipe_serving"
             style="@style/TextViewRecipe"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
