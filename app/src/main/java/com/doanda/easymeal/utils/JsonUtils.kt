@@ -22,7 +22,7 @@ fun getJsonStringFromResource(context: Context, resource: Int): String? {
 fun loadFromJsonListRecipeResponse(
     context: Context,
 ): ListRecipeResponse {
-    val jsonFileString = getJsonStringFromResource(context, R.raw.all_recipe_response)
+    val jsonFileString = getJsonStringFromResource(context, R.raw.recipe_response)
     if (jsonFileString != null) {
         Log.i("JSON", jsonFileString)
     } else {

@@ -1,0 +1,141 @@
+{
+  "error": "false",
+  "message": "success",
+  "listIngredient": [
+    {
+      "ingId": "1",
+      "categoryName": "Rempah-rempah",
+      "ingName": "Bawang putih"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Rempah-rempah",
+      "ingName": "Lengkuas"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Rempah-rempah",
+      "ingName": "Jahe"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Rempah-rempah",
+      "ingName": "Kunyit"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Rempah-rempah",
+      "ingName": "Bawang merah"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Rempah-rempah",
+      "ingName": "Cabe Hijau"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Rempah-rempah",
+      "ingName": "Pala"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Rempah-rempah",
+      "ingName": "Ketumbar"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Rempah-rempah",
+      "ingName": "Bawang bombay"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Sayuran",
+      "ingName": "Sawi"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Sayuran",
+      "ingName": "Bayam"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Sayuran",
+      "ingName": "Kubis"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Sayuran",
+      "ingName": "Kol"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Sayuran",
+      "ingName": "Wortel"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Daging & Ayam",
+      "ingName": ""
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Daging & Ayam",
+      "ingName": "Daging sapi"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Daging & Ayam",
+      "ingName": "Daging ayam"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Daging & Ayam",
+      "ingName": "Daging kambing"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Buah-buahan",
+      "ingName": "Tomat"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Buah-buahan",
+      "ingName": "Jeruk nipis"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Buah-buahan",
+      "ingName": "Belimbing wuluh"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Buah-buahan",
+      "ingName": "Nangka muda"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Biji & kacang",
+      "ingName": "Beras"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Biji & kacang",
+      "ingName": "Jagung"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Biji & kacang",
+      "ingName": "Kacang hijau"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Biji & kacang",
+      "ingName": "Kacang tanah"
+    },
+    {
+      "ingId": "1",
+      "categoryName": "Biji & kacang",
+      "ingName": "Wijen"
+    }
+  ]
+}
