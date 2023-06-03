@@ -56,17 +56,17 @@
             app:layout_constraintEnd_toEndOf="@+id/iv_favorite_image"
             app:layout_constraintTop_toTopOf="@+id/iv_favorite_image" />
 
-        <TextView
-            android:id="@+id/tv_favorite_warning"
-            style="@style/TextViewRecipe.Warning.Favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="@string/placeholder_warning"
-            app:drawableLeftCompat="@drawable/recipe_warning"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_favorite_image"
-            app:layout_constraintStart_toStartOf="@+id/iv_favorite_image" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_favorite_warning"-->
+<!--            style="@style/TextViewRecipe.Warning.Favorite"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            android:text="@string/placeholder_warning"-->
+<!--            app:drawableLeftCompat="@drawable/recipe_warning"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/iv_favorite_image"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/iv_favorite_image" />-->
 
         <ImageButton
             android:id="@+id/btn_favorite_favorite"

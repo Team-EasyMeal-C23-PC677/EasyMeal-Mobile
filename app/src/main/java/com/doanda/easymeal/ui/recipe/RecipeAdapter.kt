@@ -19,6 +19,7 @@ class RecipeAdapter(private val listRecipe: List<ListRecipeItem>)
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
+        fun onFavoriteClicked(data: ListRecipeItem)
         fun onItemClicked(data: ListRecipeItem)
     }
 
@@ -46,11 +47,11 @@ class RecipeAdapter(private val listRecipe: List<ListRecipeItem>)
                     tvRecipeServing.text =
                         itemView.context.getString(R.string.serving_format).format(recipe?.serving)
 
-                    if (recipe?.missing?.isEmpty() == true) {
-                        tvRecipeWarning.visibility = View.GONE
-                    } else {
-                        tvRecipeWarning.text = formatRecipeWarning(recipe?.missing)
-                    }
+//                    if (recipe?.missing?.isEmpty() == true) {
+//                        tvRecipeWarning.visibility = View.GONE
+//                    } else {
+//                        tvRecipeWarning.text = formatRecipeWarning(recipe?.missing)
+//                    }
 
                     Glide.with(itemView.context)
                         .load(recipe?.imgUrl)
@@ -72,15 +73,12 @@ class RecipeAdapter(private val listRecipe: List<ListRecipeItem>)
         holder.bind(recipe)
 
         holder.binding.cardRecipe.setOnClickListener {
-            val intent = Intent(holder.itemView.context, RecipeDetailActivity::class.java)
-            intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.id)
-            holder.itemView.context.startActivity(intent)
+            onItemClickCallback.onItemClicked(listRecipe[holder.bindingAdapterPosition])
         }
 
         holder.binding.btnRecipeFavorite.setOnClickListener {
-
+            onItemClickCallback.onFavoriteClicked(listRecipe[holder.bindingAdapterPosition])
         }
-
     }
 
 }

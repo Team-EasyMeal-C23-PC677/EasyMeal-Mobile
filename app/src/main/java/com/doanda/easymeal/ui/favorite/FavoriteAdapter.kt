@@ -1,17 +1,13 @@
 package com.doanda.easymeal.ui.favorite
 
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.doanda.easymeal.R
 import com.doanda.easymeal.data.response.ListRecipeItem
 import com.doanda.easymeal.databinding.ItemFavoriteBinding
-import com.doanda.easymeal.ui.recipedetail.RecipeDetailActivity
 import formatRecipeTime
-import formatRecipeWarning
 
 class FavoriteAdapter(private val listRecipe: List<ListRecipeItem>)
     : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>()
@@ -19,7 +15,8 @@ class FavoriteAdapter(private val listRecipe: List<ListRecipeItem>)
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: ListRecipeItem)
+        fun onItemClicked(recipe: ListRecipeItem)
+        fun onFavoriteClicked(recipe: ListRecipeItem)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -46,11 +43,11 @@ class FavoriteAdapter(private val listRecipe: List<ListRecipeItem>)
                     tvFavoriteServing.text =
                         itemView.context.getString(R.string.serving_format).format(recipe?.serving)
 
-                    if (recipe?.missing?.isEmpty() == true) {
-                        tvFavoriteWarning.visibility = View.GONE
-                    } else {
-                        tvFavoriteWarning.text = formatRecipeWarning(recipe?.missing)
-                    }
+//                    if (recipe?.missing?.isEmpty() == true) {
+//                        tvFavoriteWarning.visibility = View.GONE
+//                    } else {
+//                        tvFavoriteWarning.text = formatRecipeWarning(recipe?.missing)
+//                    }
 
                     Glide.with(itemView.context)
                         .load(recipe?.imgUrl)
@@ -72,13 +69,11 @@ class FavoriteAdapter(private val listRecipe: List<ListRecipeItem>)
         holder.bind(recipe)
 
         holder.binding.cardFavorite.setOnClickListener {
-            val intent = Intent(holder.itemView.context, RecipeDetailActivity::class.java)
-            intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.id)
-            holder.itemView.context.startActivity(intent)
+            onItemClickCallback.onItemClicked(listRecipe[holder.bindingAdapterPosition])
         }
 
         holder.binding.btnFavoriteFavorite.setOnClickListener {
-
+            onItemClickCallback.onFavoriteClicked(listRecipe[holder.bindingAdapterPosition])
         }
 
     }

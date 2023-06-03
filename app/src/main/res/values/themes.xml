@@ -115,6 +115,7 @@
         <item name="android:background">@drawable/rounded_transparent_background</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:drawablePadding">2dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
@@ -145,15 +146,15 @@
     <style name="RoundedImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
-<!--        <item name="cornerSizeTopRight">8dp</item>-->
     </style>
+
     <!--    TYPOGRAPHY-->
     <style name="Text">
         <item name="android:textColor">@color/black</item>
     </style>
 
     <!--    TODO complete typography-->
-    <style name="Text.Body"></style>
+<!--    <style name="Text.Body"></style>-->
 
     <!--    SHAPEABLE IMAGE VIEW-->
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
