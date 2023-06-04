@@ -52,6 +52,8 @@ dependencies {
 //    LOCAL DATA PERSISTENT
     implementation 'androidx.datastore:datastore-preferences:1.0.0'
 
+//    VIEWPAGER
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
 //    GSON
 //    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
