@@ -18,17 +18,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            app:layout_constraint_Start_toStartOf="parent"
-            app:layout_constraint_End_toEndOf="parent"
-            app:layout_constraint_Top_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             >
             <ImageView
                 android:id="@+id/ic_category_dropdown"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:background="@color/primary"
-                app:layout_constraint_Start_toStartOf="parent"
-                app:layout_constraint_Top_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@drawable/ic_round_arrow_right"
                 />
 
@@ -48,7 +48,7 @@
                 android:id="@+id/tv_category_counter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_transparent_background"
+                android:background="@drawable/shape_rounded_transparent_background"
                 android:text="6"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -61,7 +61,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_category"
+            android:id="@+id/rv_pantry_ingredient"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginTop="16dp"

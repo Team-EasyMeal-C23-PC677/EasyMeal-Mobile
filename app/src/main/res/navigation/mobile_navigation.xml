@@ -15,7 +15,11 @@
         android:id="@+id/navigation_pantry"
         android:name="com.doanda.easymeal.ui.pantry.PantryFragment"
         android:label="@string/title_pantry"
-        tools:layout="@layout/fragment_pantry" />
+        tools:layout="@layout/fragment_pantry" >
+        <action
+            android:id="@+id/action_navigation_pantry_to_navigation_recipe"
+            app:destination="@id/navigation_recipe" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favorite"

@@ -11,7 +11,7 @@
         layout="@layout/component_searchbar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_category"
+        android:id="@+id/rv_pantry_category"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -54,7 +54,7 @@
         android:text="Lihat Rekomendasi Resep"
         android:textStyle="bold"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/rv_category"
+        app:layout_constraintBottom_toTopOf="@+id/rv_pantry_ingredient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_pantry_have"
