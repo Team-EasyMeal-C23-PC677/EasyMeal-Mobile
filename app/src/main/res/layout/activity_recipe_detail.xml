@@ -32,9 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
+            android:drawableLeft="@drawable/recipe_time"
             android:text="@string/placeholder_time"
             android:textSize="16sp"
-            app:drawabeLeftCompat="@drawable/recipe_time"
             app:layout_constraintBottom_toBottomOf="@+id/iv_detail_image"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_image"
             />
@@ -72,6 +72,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />
+<!--        TODO background circle-->
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fav_detail_favorite"
@@ -98,9 +99,9 @@
         app:tabGravity="fill"
         app:tabIndicatorGravity="stretch"
         app:tabSelectedTextColor="@color/white"
-        app:tabIndicatoriAnimationMode="elastic"
-        app:tabIndicator="@drawable/background_tab_layout"
+        app:tabIndicator="@drawable/shape_background_tab_layout"
         />
+<!--        app:tabIndicatoriAnimationMode="elastic"-->
 <!--        app:tabIndicator=""-->
 
     <androidx.viewpager2.widget.ViewPager2

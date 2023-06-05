@@ -112,7 +112,7 @@
     <!--    CARD RECIPE-->
     <style name="TextViewRecipe">
         <item name="android:layout_weight">1</item>
-        <item name="android:background">@drawable/rounded_transparent_background</item>
+        <item name="android:background">@drawable/shape_rounded_transparent_background</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
@@ -159,6 +159,16 @@
     <!--    SHAPEABLE IMAGE VIEW-->
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
         <item name="cornerSize">50%</item>
+    </style>
+
+    <!--    CHIP-->
+    <style name="ChipDetailPantry">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+    </style>
+    <style name="ChipDetailShopping">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
     </style>
 
     <style name="Theme.EasyMeal.NoActionBar">
