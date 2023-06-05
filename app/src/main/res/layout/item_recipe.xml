@@ -71,7 +71,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_weight="1"
-            android:background="@drawable/circle_transparent_button_background"
+            android:background="@drawable/shape_circle_transparent_button_background"
             android:src="@drawable/ic_round_favorite"
             android:gravity="center"
             android:contentDescription="@string/cd_favorite_button"

@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.doanda.easymeal.R
-import com.doanda.easymeal.data.response.ListRecipeItem
+import com.doanda.easymeal.data.response.recipe.ListRecipeItem
 import com.doanda.easymeal.databinding.ItemFavoriteBinding
-import formatRecipeTime
+import convertMinuteToHourMinute
 
-class FavoriteAdapter(private val listRecipe: List<ListRecipeItem>)
+class FavoriteAdapter(private val listFavorite: List<ListRecipeItem>, private val listRecipe: List<ListRecipeItem>)
     : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>()
 {
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -31,13 +31,13 @@ class FavoriteAdapter(private val listRecipe: List<ListRecipeItem>)
 
                     tvFavoriteTime.text =
                         with(itemView.context) {
-                            val (hours, minutes) = formatRecipeTime(recipe?.totalTime)
-                            var timeText = ""
+                            val (hours, minutes) = convertMinuteToHourMinute(recipe?.totalTime)
+                            val timeText = mutableListOf<String>()
                             if (hours > 0)
-                                timeText += getString(R.string.hour_format).format(hours)
+                                timeText.add(getString(R.string.hour_format).format(hours))
                             if (minutes > 0)
-                                timeText += getString(R.string.minute_format).format(minutes)
-                            timeText
+                                timeText.add(getString(R.string.minute_format).format(minutes))
+                            timeText.joinToString(" ")
                         }
 
                     tvFavoriteServing.text =
@@ -52,6 +52,12 @@ class FavoriteAdapter(private val listRecipe: List<ListRecipeItem>)
                     Glide.with(itemView.context)
                         .load(recipe?.imgUrl)
                         .into(binding.ivFavoriteImage)
+
+                    // TODO if in favorite then red else black
+                    if (recipe in listFavorite)
+                        btnFavoriteFavorite.setColorFilter(R.color.red_theme)
+                    else
+                        btnFavoriteFavorite.setColorFilter(R.color.black)
                 }
             }
         }

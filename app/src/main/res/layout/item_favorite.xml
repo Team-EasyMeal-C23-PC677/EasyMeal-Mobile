@@ -20,17 +20,16 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_favorite_image"
-            android:layout_width="200dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:minHeight="200dp"
             android:contentDescription="@string/cd_recipe_image"
+            android:minHeight="200dp"
             android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:srcCompat="@drawable/photo_sotoayam"
             app:shapeAppearanceOverlay="@style/RoundedImageView"
-            />
+            tools:srcCompat="@drawable/photo_sotoayam" />
 
         <TextView
             android:id="@+id/tv_favorite_time"
@@ -71,18 +70,18 @@
         <ImageButton
             android:id="@+id/btn_favorite_favorite"
             android:padding="4dp"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
             android:layout_weight="1"
-            android:background="@drawable/circle_transparent_button_background"
+            android:background="@drawable/shape_circle_transparent_button_background"
             android:contentDescription="@string/cd_favorite_button"
             android:gravity="center"
             android:src="@drawable/ic_round_favorite"
             app:layout_constraintBottom_toBottomOf="@+id/iv_favorite_image"
             app:layout_constraintEnd_toEndOf="@+id/iv_favorite_image"
-            app:tint="@color/white" />
+            app:tint="@color/black" />
 
         <TextView
             android:id="@+id/tv_favorite_title"
@@ -93,7 +92,7 @@
             android:layout_marginEnd="8dp"
             android:maxLines="3"
             android:text="@string/placeholder_title"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/iv_favorite_image"
             app:layout_constraintStart_toStartOf="parent"

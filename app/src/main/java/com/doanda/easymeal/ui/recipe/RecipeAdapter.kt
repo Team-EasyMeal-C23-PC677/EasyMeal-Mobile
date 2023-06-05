@@ -1,17 +1,13 @@
 package com.doanda.easymeal.ui.recipe
 
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.doanda.easymeal.R
-import com.doanda.easymeal.data.response.ListRecipeItem
+import com.doanda.easymeal.data.response.recipe.ListRecipeItem
 import com.doanda.easymeal.databinding.ItemRecipeBinding
-import com.doanda.easymeal.ui.recipedetail.RecipeDetailActivity
-import formatRecipeTime
-import formatRecipeWarning
+import convertMinuteToHourMinute
 
 class RecipeAdapter(private val listRecipe: List<ListRecipeItem>)
     : RecyclerView.Adapter<RecipeAdapter.ViewHolder>()
@@ -19,8 +15,8 @@ class RecipeAdapter(private val listRecipe: List<ListRecipeItem>)
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onFavoriteClicked(data: ListRecipeItem)
-        fun onItemClicked(data: ListRecipeItem)
+        fun onFavoriteClicked(recipe: ListRecipeItem)
+        fun onItemClicked(recipe: ListRecipeItem)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -35,13 +31,13 @@ class RecipeAdapter(private val listRecipe: List<ListRecipeItem>)
 
                     tvRecipeTime.text =
                         with(itemView.context) {
-                            val (hours, minutes) = formatRecipeTime(recipe?.totalTime)
-                            var timeText = ""
+                            val (hours, minutes) = convertMinuteToHourMinute(recipe?.totalTime)
+                            val timeText = mutableListOf<String>()
                             if (hours > 0)
-                                timeText += getString(R.string.hour_format).format(hours)
+                                timeText.add(getString(R.string.hour_format).format(hours))
                             if (minutes > 0)
-                                timeText += getString(R.string.minute_format).format(minutes)
-                            timeText
+                                timeText.add(getString(R.string.minute_format).format(minutes))
+                            timeText.joinToString(" ")
                         }
 
                     tvRecipeServing.text =

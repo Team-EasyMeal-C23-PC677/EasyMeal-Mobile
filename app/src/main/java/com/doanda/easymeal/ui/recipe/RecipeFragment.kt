@@ -1,20 +1,18 @@
 package com.doanda.easymeal.ui.recipe
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.doanda.easymeal.R
-import com.doanda.easymeal.data.response.ListRecipeItem
-import com.doanda.easymeal.data.response.ListRecipeResponse
+import com.doanda.easymeal.data.response.recipe.ListRecipeItem
 import com.doanda.easymeal.databinding.FragmentRecipeBinding
-import com.doanda.easymeal.utils.getJsonStringFromResource
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.doanda.easymeal.ui.recipedetail.RecipeDetailActivity
+import com.doanda.easymeal.utils.loadFromJsonListRecipeResponse
+
 
 class RecipeFragment : Fragment() {
 
@@ -47,35 +45,30 @@ class RecipeFragment : Fragment() {
     @Suppress("UNCHECKED_CAST")
     private fun setupData() {
 
-        val data = loadDataFromJson()
+        val data = loadFromJsonListRecipeResponse(requireContext())
         // TODO implement retrofit
         // in Result.Success
         val listRecipe: List<ListRecipeItem> = data.listRecipe as List<ListRecipeItem>
         binding.rvRecipe.apply {
-            adapter = RecipeAdapter(listRecipe)
             layoutManager = GridLayoutManager(
                 requireContext(),
                 2,
                 GridLayoutManager.VERTICAL,
                 false,
             )
+            val listAdapter = RecipeAdapter(listRecipe)
+            listAdapter.setOnItemClickCallback(object : RecipeAdapter.OnItemClickCallback {
+                override fun onItemClicked(recipe: ListRecipeItem) {
+                    val intent = Intent(requireContext(), RecipeDetailActivity::class.java)
+                    intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.id)
+                    startActivity(intent)
+                }
+                override fun onFavoriteClicked(recipe: ListRecipeItem) {
+                    // TODO HANDLE FAVORITE
+                }
+            })
+            adapter = listAdapter
         }
-    }
-
-    private fun loadDataFromJson(): ListRecipeResponse {
-        val jsonFileString = getJsonStringFromResource(requireContext(), R.raw.all_recipe_response)
-        if (jsonFileString != null) {
-            Log.i("JSON", jsonFileString)
-        } else {
-            Log.e("JSON", "FAILED TO LOAD JSON")
-        }
-
-        val gson = Gson()
-        val listRecipe = object : TypeToken<ListRecipeResponse>() {}.type
-        val recipes: ListRecipeResponse = gson.fromJson(jsonFileString, listRecipe)
-//        recipes.forEachIndexed { idx, recipe -> Log.i("data", "> Item $idx:\n$recipe") }
-
-        return recipes
     }
 
     private fun setupView() {
