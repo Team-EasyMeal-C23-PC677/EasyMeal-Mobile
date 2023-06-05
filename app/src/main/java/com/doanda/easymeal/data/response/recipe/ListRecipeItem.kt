@@ -1,4 +1,4 @@
-package com.doanda.easymeal.data.response
+package com.doanda.easymeal.data.response.recipe
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,0 +1,11 @@
+{
+  "error": false,
+  "message": "success",
+  "user" : {
+    "userId": 2,
+    "userName": "doandadr",
+    "userEmail": "doandadr@gmail.com",
+    "userPassword": "drdoandadrdoanda",
+    "userPhotoUrl": "https://i.ibb.co/ZK4dxcX/profile-image.jpg"
+  }
+}
