@@ -1,4 +1,4 @@
-package com.doanda.easymeal.model
+package com.doanda.easymeal.data.source.model
 
 
 data class IngredientEntity(

@@ -1,4 +1,4 @@
-package com.doanda.easymeal.model
+package com.doanda.easymeal.data.source.model
 
 import com.doanda.easymeal.data.response.pantry.ListIngredientItem
 

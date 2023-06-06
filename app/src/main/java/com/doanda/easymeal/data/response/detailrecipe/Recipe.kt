@@ -1,14 +1,17 @@
 package com.doanda.easymeal.data.response.detailrecipe
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Recipe(
 
     @field:SerializedName("imgUrl")
 	val imgUrl: String? = null,
 
     @field:SerializedName("totalTime")
-	val totalTime: String? = null,
+	val totalTime: Int? = null,
 
     @field:SerializedName("description")
 	val description: String? = null,
@@ -27,4 +30,4 @@ data class Recipe(
 
     @field:SerializedName("serving")
 	val serving: Int? = null
-)
+) : Parcelable
