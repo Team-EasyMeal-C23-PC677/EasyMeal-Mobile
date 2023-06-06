@@ -5,7 +5,7 @@
     "id" : 101,
     "title" : "Soto Ayam Surabaya",
     "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "totalTime" : "90",
+    "totalTime" : 90,
     "serving" : 3,
     "imgUrl" : "https://i.ibb.co/RHvJ9Cc/sotoayam.png",
     "listIngredient" : [
@@ -17,37 +17,37 @@
       },
       {
         "id" : 1,
-        "ingName" : "Bawang putih",
+        "name" : "Bawang putih",
         "qty" : 2,
         "unit" : "siung"
       },
       {
         "id" : 17,
-        "ingName" : "Daging ayam",
+        "name" : "Daging ayam",
         "qty" : 300,
         "unit" : "gram"
       },
       {
         "id" : 14,
-        "ingName" : "Wortel",
+        "name" : "Wortel",
         "qty" : 2,
         "unit" : "buah"
       },
       {
         "id" : 20,
-        "ingName" : "Jeruk nipis",
+        "name" : "Jeruk nipis",
         "qty" : 2,
         "unit" : "buah"
       },
       {
         "id" : 23,
-        "ingName" : "Beras",
+        "name" : "Beras",
         "qty" : 500,
         "unit" : "gram"
       },
       {
         "id" : 28,
-        "ingName" : "Kecap manis",
+        "name" : "Kecap manis",
         "qty" : 0.75,
         "unit" : "sdm"
       }
