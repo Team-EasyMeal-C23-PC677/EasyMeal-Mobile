@@ -1,13 +1,14 @@
 package com.doanda.easymeal.data.source.remote
 
 import com.doanda.easymeal.data.response.auth.AuthResponse
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import com.doanda.easymeal.data.response.detailrecipe.DetailRecipeResponse
+import com.doanda.easymeal.data.response.pantry.ListIngredientResponse
+import com.doanda.easymeal.data.response.recipe.ListRecipeResponse
+import retrofit2.http.*
 
 interface ApiService {
 
-    @FormUrlEncoded
+    // AUTHORIZATION
     @POST("register")
     suspend fun register(
         @Field("name") name: String,
@@ -22,5 +23,31 @@ interface ApiService {
         @Field("password") password: String
     ): AuthResponse
 
+    @GET("recipe")
+    suspend fun getAllRecipes(): ListRecipeResponse
 
+    @GET("recipe")
+    suspend fun getRecommendedRecipes(
+        @Query("user_id") userId: String,
+    ): ListRecipeResponse
+
+    @GET("favorite_recipe")
+    suspend fun getFavoriteRecipes(
+        @Query("user_id") userId: String,
+    ): ListRecipeResponse
+
+    @GET("ingredient")
+    suspend fun getAllIngredients(): ListIngredientResponse
+
+    @GET("pantry_item")
+    suspend fun getUserIngredients(
+        @Query("userId") userId: String,
+    ): ListIngredientResponse
+
+    @GET("recipe/{id}")
+    suspend fun getDetailRecipeById(
+        @Path("recipeId") recipeId: String,
+    ): DetailRecipeResponse
+
+//    @POST("")
 }
