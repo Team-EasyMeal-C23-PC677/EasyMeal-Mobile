@@ -1,8 +1,8 @@
-package com.doanda.easymeal.data.response.auth
+package com.doanda.easymeal.data.response.login
 
 import com.google.gson.annotations.SerializedName
 
-data class AuthResponse(
+data class LoginResponse(
 
 	@field:SerializedName("error")
 	val error: Boolean? = null,

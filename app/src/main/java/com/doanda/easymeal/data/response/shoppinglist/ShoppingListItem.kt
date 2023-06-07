@@ -8,7 +8,7 @@ data class ShoppingListItem(
 	val unit: String? = null,
 
 	@field:SerializedName("qty")
-	val qty: Any? = null,
+	val qty: Float? = null,
 
 	@field:SerializedName("id")
 	val id: Int? = null,

@@ -1,4 +1,4 @@
-package com.doanda.easymeal.data.response.auth
+package com.doanda.easymeal.data.response.login
 
 import com.google.gson.annotations.SerializedName
 

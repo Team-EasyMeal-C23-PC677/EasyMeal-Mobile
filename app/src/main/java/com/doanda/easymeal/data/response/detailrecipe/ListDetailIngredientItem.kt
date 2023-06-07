@@ -11,7 +11,7 @@ data class ListDetailIngredientItem(
 	val unit: String? = null,
 
 	@field:SerializedName("qty")
-	val qty: Double? = null,
+	val qty: Float? = null,
 
 	@field:SerializedName("id")
 	val id: Int? = null,

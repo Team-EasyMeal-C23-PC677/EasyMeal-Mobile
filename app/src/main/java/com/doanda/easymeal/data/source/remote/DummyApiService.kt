@@ -81,7 +81,7 @@ class DummyApiService(
         return loadFromJsonListIngredientResponse(Application.appContext)
     }
 
-    suspend fun getUserIngredients(
+    suspend fun getPantryIngredients(
         userId: Int,
     ): ListIngredientResponse {
         return loadFromJsonListUserIngredientResponse(Application.appContext)
