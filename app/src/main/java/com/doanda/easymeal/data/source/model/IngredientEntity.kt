@@ -1,8 +1,21 @@
 package com.doanda.easymeal.data.source.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class IngredientEntity(
+@Entity(tableName = "ingredient")
+class IngredientEntity(
+    @field:ColumnInfo(name = "id")
+    @field:PrimaryKey
     val ingId: String,
-    val categoryName: String,
-    val ingName: String
+
+    @field:ColumnInfo(name = "categoryName")
+    val categoryName: String? = null,
+
+    @field:ColumnInfo(name = "ingName")
+    val ingName: String,
+
+    @field:ColumnInfo(name = "isHave")
+    var isHave: Boolean
 )
