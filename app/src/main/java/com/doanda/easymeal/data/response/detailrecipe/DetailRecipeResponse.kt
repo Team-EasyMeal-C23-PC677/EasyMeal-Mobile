@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 data class DetailRecipeResponse(
 
 	@field:SerializedName("recipe")
-	val recipe: Recipe? = null,
+	val recipe: Recipe,
 
 	@field:SerializedName("error")
-	val error: Boolean? = null,
+	val error: Boolean,
 
 	@field:SerializedName("message")
-	val message: String? = null
+	val message: String
 )

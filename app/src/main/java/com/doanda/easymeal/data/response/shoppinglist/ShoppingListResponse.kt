@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 data class ShoppingListResponse(
 
 	@field:SerializedName("shoppingList")
-	val shoppingList: List<ShoppingListItem?>? = null,
+	val shoppingList: List<ShoppingListItem>,
 
 	@field:SerializedName("error")
-	val error: Boolean? = null,
+	val error: Boolean,
 
 	@field:SerializedName("message")
-	val message: String? = null
+	val message: String
 )
