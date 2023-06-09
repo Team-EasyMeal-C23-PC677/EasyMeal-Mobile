@@ -34,6 +34,12 @@ class UserPreferences private constructor(
         }
     }
 
+    suspend fun setUserName(name: String) {
+        dataStore.edit { preferences ->
+            preferences[USER_NAME] = name
+        }
+    }
+
     fun getFirstTimeStatus() : Flow<Boolean> {
         return dataStore.data.map { preferences ->
             preferences[IS_FIRST_TIME] ?: true

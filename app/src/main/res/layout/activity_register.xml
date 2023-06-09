@@ -44,7 +44,7 @@
             android:id="@+id/et_register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,7 +91,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btn_register"
         style="@style/Button.Secondary"
         android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 <!--    app:layout_constraintBottom_toTopOf="@+id/btn_login_google"-->
 
-<!--    <com.google.android.material.button.MaterialButton-->
+<!--    <Button-->
 <!--        android:id="@+id/btn_login_google"-->
 <!--        style="@style/Button.Primary"-->
 <!--        android:layout_width="wrap_content"-->
@@ -130,7 +130,7 @@
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btn_to_login"
         style="@style/Button.Primary"
         android:layout_width="wrap_content"

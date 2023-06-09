@@ -47,6 +47,18 @@ class UserRepository(
         }
     }
 
+
+    fun updateName(userId: Int, userName: String) : LiveData<Result<GeneralResponse>>
+    = liveData {
+        try {
+//            val response = apiService.updateName(userId, userName)
+            val response = dummyApiService.updateName(userId, userName)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
     suspend fun logout() = userPreferences.logout()
 
     fun getUser(): LiveData<UserEntity> {
@@ -64,7 +76,11 @@ class UserRepository(
     suspend fun setFirstTimeStatus(firstTimeStatus: Boolean) {
         userPreferences.setFirstTimeStatus(firstTimeStatus)
     }
-    
+
+    suspend fun setUserName(name: String) {
+        userPreferences.setUserName(name)
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: UserRepository? = null

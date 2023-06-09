@@ -63,6 +63,8 @@
         <item name="startIconDrawable">@drawable/ic_mail_outline</item>
     </style>
 
+
+
 <!--    TODO style progress bar-->
     <!--    PROGRESS BAR-->
     <style name="ProgressBar">
@@ -75,10 +77,10 @@
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
-        <!--        <item name="boxCornerRadiusBottomStart">24dp</item>-->
-        <!--        <item name="boxCornerRadiusBottomEnd">24dp</item>-->
-        <!--        <item name="boxCornerRadiusTopStart">24dp</item>-->
-        <!--        <item name="boxCornerRadiusTopEnd">24dp</item>-->
+                <item name="boxCornerRadiusBottomStart">24dp</item>
+                <item name="boxCornerRadiusBottomEnd">24dp</item>
+                <item name="boxCornerRadiusTopStart">24dp</item>
+                <item name="boxCornerRadiusTopEnd">24dp</item>
         <!--        <item name="android:topLeftRadius">8dp</item>-->
         <!--        <item name="android:topRightRadius">8dp</item>-->
         <!--        <item name="android:bottomLeftRadius">8dp</item>-->
