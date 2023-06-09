@@ -1,0 +1,79 @@
+package com.doanda.easymeal.data.source.local
+
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.*
+import com.doanda.easymeal.data.source.model.UserEntity
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+
+class UserPreferences private constructor(
+    private val dataStore: DataStore<Preferences>
+) {
+
+    fun getUser(): Flow<UserEntity> {
+        return dataStore.data.map  { preferences ->
+            UserEntity(
+                preferences[USER_ID] ?: 1,
+                preferences[USER_NAME] ?: "null",
+                preferences[USER_EMAIL] ?: "null",
+                preferences[USER_PASSWORD] ?: "null",
+                preferences[IS_LOGIN] ?: false,
+                preferences[IS_FIRST_TIME] ?: true,
+            )
+        }
+    }
+
+    suspend fun saveUser(user: UserEntity) {
+        dataStore.edit {  preferences->
+            preferences[USER_ID] = user.userId
+            preferences[USER_NAME] = user.userName
+            preferences[USER_EMAIL] = user.userEmail
+            preferences[USER_PASSWORD] = user.userPassword
+            preferences[IS_LOGIN] = user.isLogin
+            preferences[IS_FIRST_TIME] = user.isFirstTime
+        }
+    }
+
+    suspend fun setUserName(name: String) {
+        dataStore.edit { preferences ->
+            preferences[USER_NAME] = name
+        }
+    }
+
+    fun getFirstTimeStatus() : Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[IS_FIRST_TIME] ?: true
+        }
+    }
+
+    suspend fun setFirstTimeStatus(firstTimeStatus: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[IS_FIRST_TIME] = firstTimeStatus
+        }
+    }
+
+    suspend fun logout() {
+        dataStore.edit { preferences ->
+            preferences.clear()
+        }
+    }
+
+    companion object {
+        private val USER_ID = intPreferencesKey("user_id")
+        private val USER_NAME = stringPreferencesKey("user_name")
+        private val USER_EMAIL = stringPreferencesKey("user_email")
+        private val USER_PASSWORD = stringPreferencesKey("user_password")
+        private val IS_LOGIN = booleanPreferencesKey("is_login")
+        private val IS_FIRST_TIME = booleanPreferencesKey("is_first_time")
+
+        @Volatile
+        private var INSTANCE: UserPreferences? = null
+        fun getInstance(dataStore: DataStore<Preferences>): UserPreferences {
+            return INSTANCE ?: synchronized(this) {
+                val instance = UserPreferences(dataStore)
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+}

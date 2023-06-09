@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_detail_ingredient_qty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="2 siung"
+        android:layout_weight="0.25" />
+    
+    <TextView
+        android:id="@+id/tv_detail_ingredient_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Bawang putih"
+        android:layout_weight="0.45" />
+    
+<!--    <com.google.android.material.chip.ChipGroup-->
+<!--        android:id="@+id/cg_detail_ingredient"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="0.3"-->
+<!--        app:chipSpacingHorizontal="0dp">-->
+
+<!--        TODO handle checked style change-->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/ch_detail_pantry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:shapeAppearanceOverlay="@style/ChipDetailPantry"
+            app:chipIcon="@drawable/ic_round_check_circle_outline"
+            app:chipIconSize="32dp"
+            app:textStartPadding="0dp"
+            app:textEndPadding="0dp"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/ch_detail_shopping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:shapeAppearanceOverlay="@style/ChipDetailShopping"
+            app:chipIcon="@drawable/ic_round_shopping_cart"
+            app:chipIconSize="32dp"
+            app:textStartPadding="0dp"
+            app:textEndPadding="0dp"/>
+
+<!--    </com.google.android.material.chip.ChipGroup>-->
+
+
+</LinearLayout>

@@ -1,8 +1,8 @@
-package com.doanda.easymeal.data.response
+package com.doanda.easymeal.data.response.login
 
 import com.google.gson.annotations.SerializedName
 
-data class ListRecipeResponse(
+data class LoginResponse(
 
 	@field:SerializedName("error")
 	val error: Boolean? = null,
@@ -10,6 +10,6 @@ data class ListRecipeResponse(
 	@field:SerializedName("message")
 	val message: String? = null,
 
-	@field:SerializedName("listRecipe")
-	val listRecipe: List<ListRecipeItem?>? = null
+	@field:SerializedName("user")
+	val user: User? = null
 )

@@ -15,7 +15,7 @@
     <string name="title_recipe">Recipe</string>
     <string name="title_pantry">Pantry</string>
     <string name="title_favorite">Favorite</string>
-    <string name="title_shopping_list">Shopping List</string>
+    <string name="title_shopping_list">Shopping</string>
     <string name="search_hint">Cari %1s</string>
     <string name="cd_recipe_image">Recipe image</string>
     <string name="title_activity_recipe_detail">RecipeDetailActivity</string>
@@ -24,4 +24,35 @@
     <string name="hour_format">%1$d j </string>
     <string name="minute_format">%1$d m</string>
     <string name="serving_format">%1$d porsi</string>
+    <string name="placeholder_time">1 j 30 m</string>
+    <string name="placeholder_serving">1 porsi</string>
+    <string name="placeholder_warning">Ayam +3</string>
+    <string name="cd_favorite_button">Favorite button</string>
+    <string name="placeholder_title">Soto Ayam Surabaya</string>
+    <string name="placeholder_description">Soto Surabaya kuah koya bisa menjadi alternatif hidangan lezat untuk keluarga. Gurih dan penuh rempah Nusantara, yuk, simak resepnya di sini!</string>
+    <string name="tab_ingredients">Bahan-Bahan</string>
+    <string name="tab_steps">Langkah</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail_ingredient_qty">%1$s %2$s</string>
+    <string name="cd_capture">Capture image</string>
+    <string name="cd_rotate">Rotate camera</string>
+    <string name="response_login_credentials_incorrect">Email or password incorrect</string>
+    <string name="response_login_failed">Login failed</string>
+    <string name="response_login_success">Login successful!</string>
+    <string name="confirm">Confirm password</string>
+    <string name="response_register_confirm_fail">Password and confirmation is not the same</string>
+    <string name="response_register_failed">Register failed</string>
+    <string name="response_register_success">Register successful!</string>
+    <string name="open_camera_failed">Could not open camera!</string>
+    <string name="compressing_image">Compressing image</string>
+    <string name="cd_detection_image">Detection image</string>
+    <string name="placeholder_ingredient_name">Bawang putih</string>
+    <string name="cd_recipe_instructions">Recipe instructions</string>
+    <string name="cd_back_button">Back button</string>
+    <string name="update">Update</string>
+    <string name="placeholder_email">ddoanda@gmail.com</string>
+    <string name="setting_change_name">Change name</string>
+    <string name="placeholder_name">Doanda Dresta Rahma</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    tools:context=".ui.recipedetail.DetailIngredientFragment">
+
+
+<!--&lt;!&ndash;        TODO implement portion changing&ndash;&gt;-->
+<!--        <ImageButton-->
+<!--            android:id="@+id/btn_detail_portion_minus"-->
+<!--            android:layout_width="32dp"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:src="@drawable/ic_round_remove"-->
+<!--            android:background="@drawable/shape_circle_outline"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/tv_detail_portion"/>-->
+<!--&lt;!&ndash;            app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_detail_portion"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="2 porsi"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toStartOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+<!--&lt;!&ndash;            app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--            -->
+<!--        <ImageButton-->
+<!--            android:id="@+id/btn_detail_portion_plus"-->
+<!--            android:layout_width="32dp"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:src="@drawable/ic_round_add"-->
+<!--            android:background="@drawable/shape_circle_outline"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/tv_detail_portion"-->
+<!--            />-->
+<!--&lt;!&ndash;            app:layout_constraintEnd_toEndOf="parent" &ndash;&gt;-->
+<!--&lt;!&ndash;            app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_detail_ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_detail_ingredient"
+            />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

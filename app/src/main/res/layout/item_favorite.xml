@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_favorite"
+    style="@style/ImageView.Corner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="4dp"
+    android:elevation="8dp"
+    app:cardCornerRadius="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_favorite_image"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/cd_recipe_image"
+            android:minHeight="200dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"
+            tools:srcCompat="@drawable/photo_sotoayam" />
+
+        <TextView
+            android:id="@+id/tv_favorite_time"
+            style="@style/TextViewRecipe.Favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/placeholder_time"
+            app:drawableLeftCompat="@drawable/recipe_time"
+            app:layout_constraintStart_toStartOf="@+id/iv_favorite_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_favorite_image" />
+
+        <TextView
+            android:id="@+id/tv_favorite_serving"
+            style="@style/TextViewRecipe.Favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:text="@string/placeholder_serving"
+            app:drawableLeftCompat="@drawable/recipe_portion"
+            app:layout_constraintEnd_toEndOf="@+id/iv_favorite_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_favorite_image" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_favorite_warning"-->
+<!--            style="@style/TextViewRecipe.Warning.Favorite"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            android:text="@string/placeholder_warning"-->
+<!--            app:drawableLeftCompat="@drawable/recipe_warning"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/iv_favorite_image"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/iv_favorite_image" />-->
+
+        <ImageButton
+            android:id="@+id/btn_favorite_favorite"
+            android:padding="4dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_circle_transparent_button_background"
+            android:contentDescription="@string/cd_favorite_button"
+            android:gravity="center"
+            android:src="@drawable/ic_round_favorite"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_favorite_image"
+            app:layout_constraintEnd_toEndOf="@+id/iv_favorite_image"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_favorite_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:maxLines="3"
+            android:text="@string/placeholder_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/iv_favorite_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_favorite_description"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:maxLines="8"
+            android:text="@string/placeholder_description"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_favorite_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_favorite_title" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

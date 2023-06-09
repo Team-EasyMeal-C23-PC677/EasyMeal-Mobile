@@ -1,0 +1,10 @@
+{
+  "error": false,
+  "message": "success",
+  "user" : {
+    "userId": 2,
+    "userName": "doandadr",
+    "userEmail": "doandadr@gmail.com",
+    "userPassword": "drdoandadrdoanda"
+  }
+}
