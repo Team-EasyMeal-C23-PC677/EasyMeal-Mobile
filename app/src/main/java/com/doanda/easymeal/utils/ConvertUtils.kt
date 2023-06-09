@@ -30,18 +30,20 @@ fun convertStringListToPreview(missing: List<String?>?): String {
     return result
 }
 
-fun convertDecimalToFraction(decimal: Double) : String {
+fun convertDecimalToFraction(decimal: Float?) : String {
+    if (decimal == null) return "null"
+
     val intVal = floor(decimal)
     val fVal = decimal - intVal
 
-    if (fVal == 0.0) return "$intVal"
+    if (fVal == 0f) return "${intVal.toLong()}"
 
     val pVal = 1000000000L
     val gcdVal = gcd(round(fVal * pVal).toLong(), pVal)
 
     val num = round(fVal * pVal) / gcdVal
     val denom = pVal / gcdVal
-    val nom = intVal * denom + num
+    val nom = (intVal * denom + num).toLong()
 
     return "$nom/$denom"
 

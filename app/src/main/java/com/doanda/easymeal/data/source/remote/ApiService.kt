@@ -24,7 +24,7 @@ interface ApiService {
         @Query("password") password: String
     ): LoginResponse
 
-    @POST("user/{id}")
+    @PUT("user/{id}")
     suspend fun updateName(
         @Path("user_id") userId: Int,
         @Query("user_name") userName: String,
