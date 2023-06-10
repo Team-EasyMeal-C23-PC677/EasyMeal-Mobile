@@ -24,4 +24,7 @@ class RecipeViewModel(
 
     fun deleteFavoriteRecipe(userId: Int, recipeId: Int) =
         recipeRepository.deleteFavoriteRecipe(userId, recipeId)
+
+    fun getRecommendedRecipesLocal() =
+        recipeRepository.getRecommendedRecipesLocal()
 }

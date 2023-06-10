@@ -55,4 +55,7 @@
     <string name="setting_change_name">Change name</string>
     <string name="placeholder_name">Doanda Dresta Rahma</string>
     <string name="logout">Logout</string>
+    <string name="welcome_text">Welcome to EasyMeal</string>
+    <string name="placeholder_percentage">80%</string>
+    <string name="empty_pantry">Add ingredients and we\'ll find the best recipes for you!</string>
 </resources>

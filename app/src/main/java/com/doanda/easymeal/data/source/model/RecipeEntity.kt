@@ -5,27 +5,27 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "recipe")
-class RecipeEntity(
+data class RecipeEntity(
     @field:ColumnInfo(name = "id")
     @field:PrimaryKey
     val id: Int,
 
     @field:ColumnInfo(name = "title")
-    val title: String? = null,
+    val title: String,
 
     @field:ColumnInfo(name = "description")
-    val description: String? = null,
+    val description: String,
 
     @field:ColumnInfo(name = "totalTime")
-    val totalTime: Int? = null,
+    val totalTime: Int,
 
     @field:ColumnInfo(name = "serving")
-    val serving: Int? = null,
+    val serving: Int,
 
     @field:ColumnInfo(name = "imgUrl")
-    val imgUrl: String? = null,
+    val imgUrl: String,
 
-    @field:ColumnInfo(name = "isBookmarked")
+    @field:ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean,
 
     @field:ColumnInfo(name = "isRecommended")

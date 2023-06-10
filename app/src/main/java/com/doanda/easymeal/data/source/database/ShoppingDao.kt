@@ -10,7 +10,7 @@ interface ShoppingDao {
     fun getShoppingList(): LiveData<List<ShoppingItemEntity>>
 
     @Query("SELECT * FROM shoppingItem where isHave = 1")
-    fun getHaveShopingList(): LiveData<List<ShoppingItemEntity>>
+    fun getHaveShoppingList(): LiveData<List<ShoppingItemEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertShoppingList(listShopping: List<ShoppingItemEntity>)
@@ -21,6 +21,6 @@ interface ShoppingDao {
     @Query("DELETE FROM shoppingItem WHERE isHave = 0")
     suspend fun deleteAll()
 
-    @Query("SELECT EXISTS(SELECT * FROM shoppingItem WHERE id = :id AND isHave = 1")
+    @Query("SELECT EXISTS(SELECT * FROM shoppingItem WHERE id = :id AND isHave = 1)")
     suspend fun isHaveShoppingListItem(id: Int): Boolean
 }

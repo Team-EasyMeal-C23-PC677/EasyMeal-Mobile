@@ -11,7 +11,7 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="4dp"
     android:layout_marginBottom="4dp"
-    android:elevation="8dp"
+    android:elevation="16dp"
     app:cardCornerRadius="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
+            android:gravity="center"
             android:text="@string/placeholder_time"
             app:drawableLeftCompat="@drawable/recipe_time"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +51,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:text="@string/placeholder_serving"
-            app:drawableLeftCompat="@drawable/recipe_portion"
+            app:drawableLeftCompat="@drawable/recipe_serving"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_recipe_image" />
 
@@ -72,24 +73,24 @@
             android:layout_height="32dp"
             android:layout_weight="1"
             android:background="@drawable/shape_circle_transparent_button_background"
-            android:src="@drawable/ic_round_favorite"
+            android:src="@drawable/selector_ic_favorite"
             android:gravity="center"
             android:contentDescription="@string/cd_favorite_button"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image"
-            app:tint="@color/white" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image" />
 
         <TextView
             android:id="@+id/tv_recipe_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:maxLines="2"
+            android:ellipsize="end"
             android:text="@string/placeholder_title"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
