@@ -7,9 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.doanda.easymeal.MainActivity
 import com.doanda.easymeal.R
+import com.doanda.easymeal.data.response.login.User
 import com.doanda.easymeal.data.source.model.UserEntity
 import com.doanda.easymeal.databinding.ActivityLoginBinding
 import com.doanda.easymeal.ui.ViewModelFactory
@@ -31,7 +31,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.hide()
 
         setupData()
     }
@@ -69,21 +70,8 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     val userData = result.data.user
-                    val user = UserEntity(
-                        userId = userData.userId,
-//                        userName = userData.userName,
-                        userEmail = userData.userEmail,
-//                        userPassword = userData.userPassword,
-//                        isLogin = true,
-//                        isFirstTime = false
-                    )
-                    viewModel.saveUser(user)
-                    viewModel.setLoginStatus(true)
-                    viewModel.setUserName(userData.userName)
-
                     Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
-
-                    loadUserData(user.userId)
+                    loadUserData(userData)
                 }
                 is Result.Error -> {
                     showLoading(false)
@@ -98,7 +86,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadUserData(userId: Int) {
+    private fun loadUserData(userData: User) {
+        val userId = userData.userId
+
+        if (pantryLoaded && favoriteLoaded && shoppingLoaded) {
+            proceed(userData)
+            return
+        }
 
         viewModel.getPantryIngredients(userId).observe(this) { result ->
             when (result) {
@@ -108,7 +102,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "Pantry Loaded", Toast.LENGTH_SHORT).show()
                         pantryLoaded = true
                     }
-                    proceed()
+                    proceed(userData)
                 }
                 is Result.Loading -> showLoading(true)
                 is Result.Error -> {
@@ -128,7 +122,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "Favorite Loaded", Toast.LENGTH_SHORT).show()
                         favoriteLoaded = true
                     }
-                    proceed()
+                    proceed(userData)
                 }
                 is Result.Loading -> showLoading(true)
                 is Result.Error -> {
@@ -148,7 +142,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "Shopping List Loaded", Toast.LENGTH_SHORT).show()
                         shoppingLoaded = true
                     }
-                    proceed()
+                    proceed(userData)
                 }
                 is Result.Loading -> showLoading(true)
                 is Result.Error -> {
@@ -163,10 +157,23 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun proceed() {
+    private fun proceed(userData: User) {
         if (pantryLoaded && favoriteLoaded && shoppingLoaded) {
             Toast.makeText(this, "All loaded!!!!", Toast.LENGTH_SHORT).show()
-//            goToMain() TODO debug
+            val user = UserEntity(
+                userId = userData.userId,
+//                        userName = userData.userName,
+                userEmail = userData.userEmail,
+//                        userPassword = userData.userPassword,
+//                        isLogin = true,
+//                        isFirstTime = false
+            )
+            viewModel.saveUser(user)
+            viewModel.setLoginStatus(true)
+            viewModel.setUserName(userData.userName)
+
+            Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
+            goToMain()
         }
     }
 

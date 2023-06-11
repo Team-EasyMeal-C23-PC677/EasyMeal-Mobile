@@ -1,7 +1,10 @@
 package com.doanda.easymeal
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -11,11 +14,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.doanda.easymeal.databinding.ActivityMainBinding
 import com.doanda.easymeal.ui.ViewModelFactory
-import com.doanda.easymeal.ui.camera.CameraActivity
 import com.doanda.easymeal.ui.detection.DetectionActivity
-import com.doanda.easymeal.ui.detection.DetectionFragment
 import com.doanda.easymeal.ui.login.LoginActivity
-import com.doanda.easymeal.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import observeOnce
 
@@ -35,28 +35,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-//        viewModel.getUser().removeObservers(this)
+        viewModel.getLoginStatus().removeObservers(this)
     }
 
     private fun setupData() {
-//        viewModel.getUser().observeOnce(this) { user ->
-//            if (user.isFirstTime == true) {
-//                goToWelcome()
-//            } else {
-//                if (user.isLogin) {
-//                    setupView()
-//                } else {
-//                    goToLogin()
-//                }
-//            }
-//        }
-        viewModel.getLoginStatus().observe(this) { isLogin ->
-            if (isLogin) {
-                setupView()
-            } else {
+        viewModel.getLoginStatus().observeOnce(this) { isLogin ->
+            if (!isLogin) {
                 goToLogin()
             }
         }
+        setupView()
     }
 
     private fun goToLogin() {
@@ -68,15 +56,17 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun goToWelcome() {
-        Toast.makeText(this, "Main -> Welcome", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this@MainActivity, WelcomeActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        finish()
-        startActivity(intent)
-    }
+//    private fun goToWelcome() {
+//        Toast.makeText(this, "Main -> Welcome", Toast.LENGTH_SHORT).show()
+//        val intent = Intent(this@MainActivity, WelcomeActivity::class.java)
+//        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//        finish()
+//        startActivity(intent)
+//    }
 
     private fun setupView() {
+        Toast.makeText(this, "Main setup view", Toast.LENGTH_SHORT).show()
+
 
         val navView: BottomNavigationView = binding.navView
         navView.background = null
@@ -103,15 +93,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun hideSystemUI() {
-//        @Suppress("DEPRECATION")
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//            window.insetsController?.hide(WindowInsets.Type.statusBars())
-//        } else {
-//            window.setFlags(
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN
-//            )
-//        }
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
         supportActionBar?.hide()
     }
 

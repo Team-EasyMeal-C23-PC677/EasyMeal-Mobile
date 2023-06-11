@@ -1,18 +1,17 @@
 package com.doanda.easymeal.ui.welcome
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.doanda.easymeal.MainActivity
-import com.doanda.easymeal.utils.Result
+import androidx.appcompat.app.AppCompatActivity
 import com.doanda.easymeal.databinding.ActivityWelcomeBinding
 import com.doanda.easymeal.ui.ViewModelFactory
 import com.doanda.easymeal.ui.login.LoginActivity
 import com.doanda.easymeal.ui.register.RegisterActivity
+import com.doanda.easymeal.utils.Result
 
 class WelcomeActivity : AppCompatActivity() {
 

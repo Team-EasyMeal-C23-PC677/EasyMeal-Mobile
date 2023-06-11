@@ -13,7 +13,7 @@ class UserPreferences private constructor(
     fun getUser(): Flow<UserEntity> {
         return dataStore.data.map  { preferences ->
             UserEntity(
-                preferences[USER_ID] ?: 0,
+                preferences[USER_ID] ?: -1,
 //                preferences[USER_NAME] ?: "null",
                 preferences[USER_EMAIL] ?: "null",
 //                preferences[USER_PASSWORD] ?: "null",
