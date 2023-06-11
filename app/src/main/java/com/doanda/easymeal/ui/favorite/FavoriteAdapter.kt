@@ -9,7 +9,7 @@ import com.doanda.easymeal.data.response.recipe.ListRecipeItem
 import com.doanda.easymeal.databinding.ItemFavoriteBinding
 import convertMinuteToHourMinute
 
-class FavoriteAdapter(private val listFavorite: List<ListRecipeItem>, private val listRecipe: List<ListRecipeItem>)
+class FavoriteAdapter(private val listFavorite: List<ListRecipeItem>)
     : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>()
 {
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -23,15 +23,16 @@ class FavoriteAdapter(private val listFavorite: List<ListRecipeItem>, private va
         this.onItemClickCallback = onItemClickCallback
     }
 
-    inner class ViewHolder(val binding: ItemFavoriteBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: ItemFavoriteBinding)
+        : RecyclerView.ViewHolder(binding.root) {
         fun bind(recipe: ListRecipeItem?) {
             with(binding) {
-                let {
-                    tvFavoriteTitle.text = recipe?.title
+                recipe?.let {
+                    tvFavoriteTitle.text = recipe.title
 
                     tvFavoriteTime.text =
                         with(itemView.context) {
-                            val (hours, minutes) = convertMinuteToHourMinute(recipe?.totalTime)
+                            val (hours, minutes) = convertMinuteToHourMinute(recipe.totalTime)
                             val timeText = mutableListOf<String>()
                             if (hours > 0)
                                 timeText.add(getString(R.string.hour_format).format(hours))
@@ -41,7 +42,7 @@ class FavoriteAdapter(private val listFavorite: List<ListRecipeItem>, private va
                         }
 
                     tvFavoriteServing.text =
-                        itemView.context.getString(R.string.serving_format).format(recipe?.serving)
+                        itemView.context.getString(R.string.serving_format).format(recipe.serving)
 
 //                    if (recipe?.missing?.isEmpty() == true) {
 //                        tvFavoriteWarning.visibility = View.GONE
@@ -50,7 +51,7 @@ class FavoriteAdapter(private val listFavorite: List<ListRecipeItem>, private va
 //                    }
 
                     Glide.with(itemView.context)
-                        .load(recipe?.imgUrl)
+                        .load(recipe.imgUrl)
                         .into(binding.ivFavoriteImage)
 
                     // TODO if in favorite then red else black
@@ -68,18 +69,18 @@ class FavoriteAdapter(private val listFavorite: List<ListRecipeItem>, private va
         return ViewHolder(binding)
     }
 
-    override fun getItemCount() = listRecipe.size
+    override fun getItemCount() = listFavorite.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val recipe = listRecipe[position]
+        val recipe = listFavorite[position]
         holder.bind(recipe)
 
         holder.binding.cardFavorite.setOnClickListener {
-            onItemClickCallback.onItemClicked(listRecipe[holder.bindingAdapterPosition])
+            onItemClickCallback.onItemClicked(listFavorite[holder.bindingAdapterPosition])
         }
 
         holder.binding.btnFavoriteFavorite.setOnClickListener {
-            onItemClickCallback.onFavoriteClicked(listRecipe[holder.bindingAdapterPosition])
+            onItemClickCallback.onFavoriteClicked(listFavorite[holder.bindingAdapterPosition])
         }
 
     }

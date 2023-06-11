@@ -40,11 +40,18 @@ class RecipeFragment : Fragment() {
     }
 
     private fun getUser() {
-        viewModel.getUser().observe(requireActivity()) { user ->
-            if (user.isLogin) {
-                setupData(user.userId)
-            } else {
-                goToLogin()
+//        viewModel.getUser().observe(requireActivity()) { user ->
+//            if (user.isLogin) {
+//                setupData(user.userId)
+//            } else {
+//                goToLogin()
+//            }
+//        }
+        viewModel.getLoginStatus().observe(requireActivity()) { isLogin ->
+            if (isLogin) {
+                viewModel.getUser().observe(requireActivity()) { user ->
+                    setupData(user.userId)
+                }
             }
         }
     }
@@ -52,26 +59,26 @@ class RecipeFragment : Fragment() {
     private fun setupData(userId: Int) {
         loadFavoriteData(userId)
 
-        // TODO if pantry data enough for recommendation (Recommend button clicked)
-        val isRecommendable = true
-        if (isRecommendable) {
-            viewModel.getRecommendedRecipes(userId).observe(requireActivity()) { result ->
-                when (result) {
-                    is Result.Success -> {
-                        showLoading(false)
-                        setupView(userId, result.data)
-                    }
-                    is Result.Loading -> showLoading(true)
-                    is Result.Error -> {
-                        showLoading(false)
-                        val message = "Error loading recommended recipe"
-                        Log.e(TAG, result.error + message)
-                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        viewModel.isPantryNotEmpty().observe(requireActivity()) {pantryNotEmpty ->
+            if (pantryNotEmpty) {
+                viewModel.getRecommendedRecipes(userId).observe(requireActivity()) { result ->
+                    when (result) {
+                        is Result.Success -> {
+                            showLoading(false)
+                            setupView(userId, result.data)
+                        }
+                        is Result.Loading -> showLoading(true)
+                        is Result.Error -> {
+                            showLoading(false)
+                            val message = "Error loading recommended recipe"
+                            Log.e(TAG, result.error + message)
+                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
+            } else {
+                binding.tvEmptyPantry.visibility = View.VISIBLE
             }
-        } else {
-            binding.tvEmptyPantry.visibility = View.VISIBLE
         }
     }
 
@@ -96,7 +103,7 @@ class RecipeFragment : Fragment() {
 
         adapter = RecipeAdapter()
         binding.rvRecipe.apply {
-            adapter = this.adapter
+            adapter = this@RecipeFragment.adapter
             layoutManager = GridLayoutManager(
                 requireContext(),
                 2,
@@ -165,7 +172,6 @@ class RecipeFragment : Fragment() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
-
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE

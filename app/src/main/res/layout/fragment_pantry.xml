@@ -1,63 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.pantry.PantryFragment">
 
-    <include
-        android:id="@+id/recipe_searchbar"
-        layout="@layout/component_searchbar" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_pantry_category"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_pantry_to_recipe"
-        tools:listitem="@layout/item_category" />
-
-    <TextView
-        android:id="@+id/tv_pantry_title"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Apa Isi Kulkasmu?"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_pantry_have"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_searchbar"
-        />
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
-    <Button
-        android:id="@+id/btn_pantry_have"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tampilkan Milik Saya"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_pantry_to_recipe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pantry_title"
-        />
+        <!--    <include-->
+        <!--        android:id="@+id/recipe_searchbar"-->
+        <!--        layout="@layout/component_searchbar" />-->
 
-    <Button
-        android:id="@+id/btn_pantry_to_recipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lihat Rekomendasi Resep"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/rv_pantry_ingredient"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_pantry_have"
-        />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_pantry_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_pantry_to_recipe"
+            tools:listitem="@layout/item_category" />
+        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_pantry_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apa Isi Kulkasmu?"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <!--        app:layout_constraintBottom_toTopOf="@+id/btn_pantry_have"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/recipe_searchbar"-->
+
+        <Button
+            android:id="@+id/btn_pantry_have"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tampilkan Milik Saya"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pantry_title"
+            />
+        <!--        app:layout_constraintBottom_toTopOf="@+id/btn_pantry_to_recipe"-->
+
+        <Button
+            android:id="@+id/btn_pantry_to_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Button.Secondary"
+            android:text="Lihat Rekomendasi Resep"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_pantry_have"
+            />
+        <!--        app:layout_constraintBottom_toTopOf="@+id/rv_pantry_category"-->
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ProgressBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

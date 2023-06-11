@@ -24,4 +24,6 @@ class ShoppingListViewModel(
         ingId: Int,
     ) = shoppingRepository.deleteShoppingListItem(userId, ingId)
 
+    fun getLoginStatus() = userRepository.getLoginStatus()
+
 }

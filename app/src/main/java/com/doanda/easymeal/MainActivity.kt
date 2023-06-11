@@ -2,6 +2,7 @@ package com.doanda.easymeal
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -11,8 +12,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.doanda.easymeal.databinding.ActivityMainBinding
 import com.doanda.easymeal.ui.ViewModelFactory
 import com.doanda.easymeal.ui.camera.CameraActivity
+import com.doanda.easymeal.ui.detection.DetectionActivity
+import com.doanda.easymeal.ui.detection.DetectionFragment
 import com.doanda.easymeal.ui.login.LoginActivity
+import com.doanda.easymeal.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import observeOnce
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,23 +30,50 @@ class MainActivity : AppCompatActivity() {
 
         hideSystemUI()
 
+        setupData()
+    }
 
-//        setupData()
-        setupView()
+    override fun onDestroy() {
+        super.onDestroy()
+//        viewModel.getUser().removeObservers(this)
     }
 
     private fun setupData() {
-        viewModel.getUser().observe(this) { user ->
-            // TODO connect to API
-//            val isLogin = user.isLogin
-            val isLogin = true
-            if (isLogin == false) {
-                val intent = Intent(this@MainActivity, LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                finish()
+//        viewModel.getUser().observeOnce(this) { user ->
+//            if (user.isFirstTime == true) {
+//                goToWelcome()
+//            } else {
+//                if (user.isLogin) {
+//                    setupView()
+//                } else {
+//                    goToLogin()
+//                }
+//            }
+//        }
+        viewModel.getLoginStatus().observe(this) { isLogin ->
+            if (isLogin) {
+                setupView()
+            } else {
+                goToLogin()
             }
         }
+    }
+
+    private fun goToLogin() {
+        Toast.makeText(this, "Main -> Login", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//        intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+        finish()
+        startActivity(intent)
+    }
+
+    private fun goToWelcome() {
+        Toast.makeText(this, "Main -> Welcome", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this@MainActivity, WelcomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        finish()
+        startActivity(intent)
     }
 
     private fun setupView() {
@@ -65,8 +97,8 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         binding.fabCamera.setOnClickListener {
-            val intentToCamera = Intent(this@MainActivity, CameraActivity::class.java)
-            startActivity(intentToCamera)
+            val intentToDetection = Intent(this@MainActivity, DetectionActivity::class.java)
+            startActivity(intentToDetection)
         }
     }
 

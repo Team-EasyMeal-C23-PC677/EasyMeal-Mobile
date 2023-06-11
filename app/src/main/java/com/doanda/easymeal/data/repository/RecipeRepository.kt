@@ -115,7 +115,7 @@ class RecipeRepository(
                 )
             }
             recipeDao.resetFavorite()
-            recipeDao.insertReplaceRecipe(listRecipeRoom)
+            recipeDao.insertReplaceRecipes(listRecipeRoom)
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }

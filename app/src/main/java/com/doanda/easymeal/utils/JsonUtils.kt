@@ -29,7 +29,7 @@ fun loadFromJsonListRecipeResponse(
 ): ListRecipeResponse {
     val jsonFileString = getJsonStringFromResource(context, R.raw.recipe_response)
     if (jsonFileString != null) {
-        Log.i("JSON", jsonFileString)
+//        Log.i("JSON", jsonFileString)
     } else {
         Log.e("JSON", "FAILED TO LOAD JSON")
     }
@@ -44,7 +44,7 @@ fun loadFromJsonListRecommendedRecipeResponse(
 ): ListRecipeResponse {
     val jsonFileString = getJsonStringFromResource(context, R.raw.recommended_recipe_response)
     if (jsonFileString != null) {
-        Log.i("JSON", jsonFileString)
+//        Log.i("JSON", jsonFileString)
     } else {
         Log.e("JSON", "FAILED TO LOAD JSON")
     }
@@ -59,7 +59,7 @@ fun loadFromJsonListFavoriteResponse(
 ): ListRecipeResponse {
     val jsonFileString = getJsonStringFromResource(context, R.raw.favorite_response)
     if (jsonFileString != null) {
-        Log.i("JSON", jsonFileString)
+//        Log.i("JSON", jsonFileString)
     } else {
         Log.e("JSON", "FAILED TO LOAD JSON")
     }
@@ -74,7 +74,7 @@ fun loadFromJsonListIngredientResponse(
 ): ListIngredientResponse {
     val jsonFileString = getJsonStringFromResource(context, R.raw.ingredient_response)
     if (jsonFileString != null) {
-        Log.i("JSON", jsonFileString)
+//        Log.i("JSON", jsonFileString)
     } else {
         Log.e("JSON", "FAILED TO LOAD JSON")
     }
@@ -89,7 +89,7 @@ fun loadFromJsonListUserIngredientResponse(
 ): ListIngredientResponse {
     val jsonFileString = getJsonStringFromResource(context, R.raw.user_ingredient_response)
     if (jsonFileString != null) {
-        Log.i("JSON", jsonFileString)
+//        Log.i("JSON", jsonFileString)
     } else {
         Log.e("JSON", "FAILED TO LOAD JSON")
     }
@@ -104,7 +104,7 @@ fun loadFromJsonDetailRecipeResponse(
 ): DetailRecipeResponse {
     val jsonFileString = getJsonStringFromResource(context, R.raw.detail_recipe_response)
     if (jsonFileString != null) {
-        Log.i("JSON", jsonFileString)
+//        Log.i("JSON", jsonFileString)
     } else {
         Log.e("JSON", "FAILED TO LOAD JSON")
     }
@@ -119,7 +119,7 @@ fun loadFromJsonShoppingListResponse(
 ): ShoppingListResponse {
     val jsonFileString = getJsonStringFromResource(context, R.raw.shopping_list_response)
     if (jsonFileString != null) {
-        Log.i("JSON", jsonFileString)
+//        Log.i("JSON", jsonFileString)
     } else {
         Log.e("JSON", "FAILED TO LOAD JSON")
     }
@@ -134,7 +134,7 @@ fun loadFromJsonLoginResponse(
 ): LoginResponse {
     val jsonFileString = getJsonStringFromResource(context, R.raw.login_response)
     if (jsonFileString != null) {
-        Log.i("JSON", jsonFileString)
+//        Log.i("JSON", jsonFileString)
     } else {
         Log.e("JSON", "FAILED TO LOAD JSON")
     }
@@ -149,7 +149,7 @@ fun loadFromJsonGeneralResponse(
 ): GeneralResponse {
     val jsonFileString = getJsonStringFromResource(context, R.raw.general_response)
     if (jsonFileString != null) {
-        Log.i("JSON", jsonFileString)
+//        Log.i("JSON", jsonFileString)
     } else {
         Log.e("JSON", "FAILED TO LOAD JSON")
     }
@@ -159,8 +159,3 @@ fun loadFromJsonGeneralResponse(
     return gson.fromJson(jsonFileString, result)
 }
 
-fun loadFromJsonDetectionResponse(
-    context: Context
-) {
-
-}

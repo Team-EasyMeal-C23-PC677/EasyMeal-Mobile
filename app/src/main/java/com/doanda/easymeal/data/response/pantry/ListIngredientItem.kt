@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class ListIngredientItem(
 
 	@field:SerializedName("ingId")
-	val ingId: String,
+	val ingId: Int,
 
 	@field:SerializedName("categoryName")
 	val categoryName: String,

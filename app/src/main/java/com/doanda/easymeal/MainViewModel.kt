@@ -9,4 +9,5 @@ class MainViewModel(
 
 
     fun getUser() = userRepository.getUser()
+    fun getLoginStatus() = userRepository.getLoginStatus()
 }

@@ -10,7 +10,7 @@ import com.doanda.easymeal.data.repository.ShoppingRepository
 import com.doanda.easymeal.data.repository.UserRepository
 import com.doanda.easymeal.di.Injection
 import com.doanda.easymeal.ui.camera.CameraViewModel
-import com.doanda.easymeal.ui.detection.DetectionViewModel
+import com.doanda.easymeal.ui.detection.result.DetectionResultViewModel
 import com.doanda.easymeal.ui.favorite.FavoriteViewModel
 import com.doanda.easymeal.ui.login.LoginViewModel
 import com.doanda.easymeal.ui.pantry.PantryViewModel
@@ -32,7 +32,7 @@ class ViewModelFactory(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(LoginViewModel::class.java) ->
-                LoginViewModel(userRepository) as T
+                LoginViewModel(userRepository, recipeRepository, ingredientRepository, shoppingRepository) as T
             modelClass.isAssignableFrom(RegisterViewModel::class.java) ->
                 RegisterViewModel(userRepository) as T
             modelClass.isAssignableFrom(MainViewModel::class.java) ->
@@ -42,19 +42,19 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(PantryViewModel::class.java) ->
                 PantryViewModel(userRepository, ingredientRepository) as T
             modelClass.isAssignableFrom(RecipeViewModel::class.java) ->
-                RecipeViewModel(userRepository, recipeRepository) as T
+                RecipeViewModel(userRepository, recipeRepository, ingredientRepository) as T
             modelClass.isAssignableFrom(RecipeDetailViewModel::class.java) ->
                 RecipeDetailViewModel(userRepository, ingredientRepository, recipeRepository, shoppingRepository) as T
             modelClass.isAssignableFrom(FavoriteViewModel::class.java) ->
-                FavoriteViewModel(recipeRepository) as T
+                FavoriteViewModel(userRepository, recipeRepository) as T
             modelClass.isAssignableFrom(ShoppingListViewModel::class.java) ->
                 ShoppingListViewModel(userRepository, shoppingRepository) as T
-            modelClass.isAssignableFrom(DetectionViewModel::class.java) ->
-                DetectionViewModel(ingredientRepository) as T
+            modelClass.isAssignableFrom(DetectionResultViewModel::class.java) ->
+                DetectionResultViewModel(userRepository, ingredientRepository) as T
             modelClass.isAssignableFrom(CameraViewModel::class.java) ->
                 CameraViewModel() as T
             modelClass.isAssignableFrom(WelcomeViewModel::class.java) ->
-                WelcomeViewModel(userRepository) as T
+                WelcomeViewModel(userRepository, ingredientRepository) as T
 
             else -> throw IllegalArgumentException("Unknown ViewModel class " + modelClass.name)
         }

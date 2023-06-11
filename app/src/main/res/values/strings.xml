@@ -58,4 +58,16 @@
     <string name="welcome_text">Welcome to EasyMeal</string>
     <string name="placeholder_percentage">80%</string>
     <string name="empty_pantry">Add ingredients and we\'ll find the best recipes for you!</string>
+    <string name="placeholder_category">Rempah-rempah</string>
+    <string name="opening_camera">Opening camera</string>
+    <string name="import_gallery">Import gallery</string>
+    <string name="permission_camera_not_granted">Permission is not granted</string>
+    <string name="choose_detected">Pilih bahan hasil deteksi</string>
+    <string name="capture">Capture</string>
+    <string name="add_to_pantry">Add To Pantry</string>
+    <string name="most_likely">Best match: %1$s</string>
+    <string name="return_to_main">Return</string>
+    <string name="already_in_pantry">%1$s is already in your pantry!</string>
+    <string name="add_ingredient_failed">Failed to add ingredient!</string>
+    <string name="ingredient_added">%1$s added!</string>
 </resources>

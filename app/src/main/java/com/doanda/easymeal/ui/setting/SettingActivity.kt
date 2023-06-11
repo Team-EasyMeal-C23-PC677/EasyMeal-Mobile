@@ -28,11 +28,18 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun setupData() {
-        viewModel.getUser().observe(this) { user ->
-            if (user.isLogin) {
-                setupView(user)
-            } else {
-                goToLogin()
+//        viewModel.getUser().observe(this) { user ->
+//            if (user.isLogin) {
+//                setupView(user)
+//            } else {
+//                goToLogin()
+//            }
+//        }
+        viewModel.getLoginStatus().observe(this) { isLogin ->
+            if (isLogin) {
+                viewModel.getUser().observe(this) { user ->
+                    setupView(user)
+                }
             }
         }
     }
@@ -44,9 +51,14 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun setupView(user: UserEntity) {
-        binding.tvUserName.text = user.userName
+//        binding.tvUserName.text = user.userName
         binding.tvUserEmail.text = user.userEmail
-        binding.etSettingName.setText(user.userName)
+//        binding.etSettingName.setText(user.userName)
+
+        viewModel.getUserName().observe(this) { name ->
+            binding.tvUserName.text = name
+            binding.etSettingName.setText(name)
+        }
 
         binding.btnUpdate.setOnClickListener {
             val nameInput = binding.etSettingName.text.toString()

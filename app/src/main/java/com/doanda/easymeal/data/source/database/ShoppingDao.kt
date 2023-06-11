@@ -2,6 +2,7 @@ package com.doanda.easymeal.data.source.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.doanda.easymeal.data.source.model.IngredientEntity
 import com.doanda.easymeal.data.source.model.ShoppingItemEntity
 
 @Dao
@@ -13,14 +14,26 @@ interface ShoppingDao {
     fun getHaveShoppingList(): LiveData<List<ShoppingItemEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertShoppingList(listShopping: List<ShoppingItemEntity>)
+    suspend fun insertShoppingListItem(listShopping: List<ShoppingItemEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertReplaceShoppingListItem(listShopping: List<ShoppingItemEntity>)
 
     @Update
     suspend fun updateShoppingListItem(shoppingItemEntity: ShoppingItemEntity)
 
-    @Query("DELETE FROM shoppingItem WHERE isHave = 0")
+    @Query("DELETE FROM shoppingItem")
     suspend fun deleteAll()
 
     @Query("SELECT EXISTS(SELECT * FROM shoppingItem WHERE id = :id AND isHave = 1)")
-    suspend fun isHaveShoppingListItem(id: Int): Boolean
+    fun isHaveShoppingListItem(id: Int): Boolean
+
+    @Query("UPDATE shoppingItem SET isHave = 0")
+    suspend fun resetHave()
+
+    @Query("SELECT * FROM shoppingItem WHERE id = :id")
+    suspend fun getIngredientById(id: Int): ShoppingItemEntity
+
+
+
 }

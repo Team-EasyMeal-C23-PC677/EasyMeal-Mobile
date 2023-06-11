@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:text="1/2 sdm"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -38,6 +39,7 @@
             app:layout_constraintWidth_percent="0.45" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cb_shopping_checkbox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:checked="true"
