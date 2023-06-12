@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.recipedetail.RecipeDetailActivity">
 
     <LinearLayout
@@ -107,17 +106,27 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tl_detail_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:contentDescription="@string/cd_recipe_instructions"
             android:background="?attr/colorPrimary"
-            app:tabTextColor="@android:color/white"
+            app:tabTextColor="?attr/colorOnPrimary"
             />
+<!--            app:tabTextColor="@android:color/black"-->
 <!--            android:background="@color/primary"-->
     <!--        app:tabMode="fixed"-->
     <!--        app:tabGravity="fill"-->
@@ -132,15 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="@style/ProgressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
 
     </LinearLayout>

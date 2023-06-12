@@ -45,13 +45,16 @@ object Injection {
     fun provideIngredientRepository(context: Context): IngredientRepository {
         val ingredientDatabase = IngredientDatabase.getInstance(context)
         val ingredientDao = ingredientDatabase.ingredientDao()
+        val shoppingDatabase = ShoppingDatabase.getInstance(context)
+        val shoppingDao = shoppingDatabase.shoppingDao()
         val apiService = ApiConfig.getApiService()
         val dummyApiService = DummyApiService()
 
         return IngredientRepository.getInstance(
             apiService = apiService,
             dummyApiService = dummyApiService,
-            ingredientDao = ingredientDao
+            ingredientDao = ingredientDao,
+            shoppingDao = shoppingDao,
         )
     }
     fun provideShoppingRepository(context: Context): ShoppingRepository {

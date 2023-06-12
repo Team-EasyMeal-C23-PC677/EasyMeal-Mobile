@@ -41,4 +41,7 @@ interface IngredientDao {
 
     @Query("SELECT * FROM ingredient WHERE ingName LIKE :ingName")
     fun searchIngredientByName(ingName: String): LiveData<List<IngredientEntity>>
+
+    @Query("SELECT * FROM ingredient WHERE id IN (:listId)")
+    fun getIngredientsByIds(listId: List<Int>): LiveData<List<IngredientEntity>>
 }

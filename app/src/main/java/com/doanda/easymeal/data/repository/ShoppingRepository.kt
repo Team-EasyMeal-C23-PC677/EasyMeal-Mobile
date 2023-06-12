@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.doanda.easymeal.data.response.GeneralResponse
-import com.doanda.easymeal.data.response.shoppinglist.ShoppingListResponse
 import com.doanda.easymeal.data.source.database.ShoppingDao
-import com.doanda.easymeal.data.source.model.IngredientEntity
 import com.doanda.easymeal.data.source.model.ShoppingItemEntity
 import com.doanda.easymeal.data.source.remote.ApiService
 import com.doanda.easymeal.data.source.remote.DummyApiService
@@ -17,7 +15,6 @@ class ShoppingRepository(
     private val dummyApiService: DummyApiService,
     private val shoppingDao: ShoppingDao
 ) {
-
     fun getShoppingList(userId: Int) : LiveData<Result<List<ShoppingItemEntity>>>
     = liveData {
         emit(Result.Loading)
@@ -35,7 +32,7 @@ class ShoppingRepository(
                     isHave = true
                 )
             }
-            shoppingDao.deleteAll()
+            shoppingDao.resetHave()
             shoppingDao.insertReplaceShoppingListItem(listRoom)
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
@@ -56,6 +53,15 @@ class ShoppingRepository(
         try {
 //            val response = apiService.addShoppingListItem(userId, ingId, qty, unit)
             val response = dummyApiService.addShoppingListItem(userId, ingId, qty, unit)
+
+            val item = shoppingDao.getShoppingListItemById(ingId)
+            if (item != null) {
+                item.qty = qty
+                item.unit = unit
+                item.isHave = true
+                shoppingDao.updateShoppingListItem(item)
+            }
+
             emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
@@ -68,14 +74,30 @@ class ShoppingRepository(
         try {
 //            val response = apiService.deleteShoppingListItem(userId, ingId)
             val response = dummyApiService.deleteShoppingListItem(userId, ingId)
+
+            val item = shoppingDao.getShoppingListItemById(ingId)
+            if (item != null) {
+                item.isHave = false
+                shoppingDao.updateShoppingListItem(item)
+            }
+
             emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
     }
 
+    fun getShoppingListByIds(listId: List<Int>) = shoppingDao.getShoppingListByIds(listId)
+//    fun getShoppingListByIds(listId: List<Int>) : LiveData<List<ShoppingItemEntity>> = liveData {
+//        val data =  shoppingDao.getShoppingListByIds(listId)
+//        val localData: LiveData<List<ShoppingItemEntity>> = MutableLiveData(data)
+//        emitSource(localData)
+//    }
 
     companion object {
+        private const val TAG = "ShoppingRepository"
+
+        @Volatile
         private var INSTANCE : ShoppingRepository? = null
         fun getInstance(
             apiService: ApiService,

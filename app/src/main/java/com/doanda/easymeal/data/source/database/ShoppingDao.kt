@@ -2,7 +2,6 @@ package com.doanda.easymeal.data.source.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.doanda.easymeal.data.source.model.IngredientEntity
 import com.doanda.easymeal.data.source.model.ShoppingItemEntity
 
 @Dao
@@ -32,8 +31,8 @@ interface ShoppingDao {
     suspend fun resetHave()
 
     @Query("SELECT * FROM shoppingItem WHERE id = :id")
-    suspend fun getIngredientById(id: Int): ShoppingItemEntity
+    suspend fun getShoppingListItemById(id: Int): ShoppingItemEntity?
 
-
-
+    @Query("SELECT * FROM shoppingItem WHERE id IN (:listId)")
+    fun getShoppingListByIds(listId: List<Int>) : LiveData<List<ShoppingItemEntity>>
 }

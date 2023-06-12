@@ -15,6 +15,7 @@ import com.doanda.easymeal.ui.favorite.FavoriteViewModel
 import com.doanda.easymeal.ui.login.LoginViewModel
 import com.doanda.easymeal.ui.pantry.PantryViewModel
 import com.doanda.easymeal.ui.recipe.RecipeViewModel
+import com.doanda.easymeal.ui.recipedetail.DetailIngredientViewModel
 import com.doanda.easymeal.ui.recipedetail.RecipeDetailViewModel
 import com.doanda.easymeal.ui.register.RegisterViewModel
 import com.doanda.easymeal.ui.setting.SettingViewModel
@@ -44,7 +45,9 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(RecipeViewModel::class.java) ->
                 RecipeViewModel(userRepository, recipeRepository, ingredientRepository) as T
             modelClass.isAssignableFrom(RecipeDetailViewModel::class.java) ->
-                RecipeDetailViewModel(userRepository, ingredientRepository, recipeRepository, shoppingRepository) as T
+                RecipeDetailViewModel(userRepository, recipeRepository) as T
+            modelClass.isAssignableFrom(DetailIngredientViewModel::class.java) ->
+                DetailIngredientViewModel(ingredientRepository, shoppingRepository) as T
             modelClass.isAssignableFrom(FavoriteViewModel::class.java) ->
                 FavoriteViewModel(userRepository, recipeRepository) as T
             modelClass.isAssignableFrom(ShoppingListViewModel::class.java) ->

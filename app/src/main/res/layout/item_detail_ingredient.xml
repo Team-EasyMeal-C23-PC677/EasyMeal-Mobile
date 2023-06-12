@@ -25,7 +25,6 @@
         android:id="@+id/ch_detail_pantry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="false"
         style="@style/Chip.Pantry"
         app:shapeAppearanceOverlay="@style/Chip.Pantry"
         app:chipIcon="@drawable/ic_round_check_circle_outline"/>
@@ -34,7 +33,6 @@
         android:id="@+id/ch_detail_shopping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="false"
         style="@style/Chip.Shopping"
         app:shapeAppearanceOverlay="@style/Chip.Shopping"
         app:chipIcon="@drawable/ic_round_shopping_cart"/>
