@@ -40,9 +40,9 @@ interface RecipeDao {
     suspend fun resetFavorite()
 
     @Query("SELECT EXISTS(SELECT * FROM recipe WHERE id = :id AND isFavorite = 1)")
-    fun isRecipeFavorite(id: Int): Boolean
+    suspend fun isRecipeFavorite(id: Int): Boolean
 
     @Query("SELECT EXISTS(SELECT * FROM recipe WHERE id = :id AND isRecommended = 1)")
-    fun isRecipeRecommended(id: Int): Boolean
+    suspend fun isRecipeRecommended(id: Int): Boolean
 
 }

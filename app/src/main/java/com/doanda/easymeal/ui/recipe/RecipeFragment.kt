@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.doanda.easymeal.data.source.model.RecipeEntity
 import com.doanda.easymeal.databinding.FragmentRecipeBinding
 import com.doanda.easymeal.ui.ViewModelFactory
-import com.doanda.easymeal.ui.login.LoginActivity
 import com.doanda.easymeal.ui.recipedetail.RecipeDetailActivity
 import com.doanda.easymeal.utils.Result
+import observeOnce
 
 class RecipeFragment : Fragment() {
 
@@ -39,68 +39,20 @@ class RecipeFragment : Fragment() {
         getUser()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
     private fun getUser() {
-//        viewModel.getUser().observe(requireActivity()) { user ->
-//            if (user.isLogin) {
-//                setupData(user.userId)
-//            } else {
-//                goToLogin()
-//            }
-//        }
-        viewModel.getLoginStatus().observe(requireActivity()) { isLogin ->
-            if (isLogin) {
-                viewModel.getUser().observe(requireActivity()) { user ->
-                    setupData(user.userId)
-                }
+        viewModel.getUser().observeOnce(viewLifecycleOwner) { user ->
+            if (user.userId != -1) {
+                setupData(user.userId)
+                setupAction(user.userId)
             }
         }
     }
 
-    private fun setupData(userId: Int) {
-        loadFavoriteData(userId)
-
-        viewModel.isPantryNotEmpty().observe(requireActivity()) {pantryNotEmpty ->
-            if (pantryNotEmpty) {
-                viewModel.getRecommendedRecipes(userId).observe(requireActivity()) { result ->
-                    when (result) {
-                        is Result.Success -> {
-                            showLoading(false)
-                            setupView(userId, result.data)
-                        }
-                        is Result.Loading -> showLoading(true)
-                        is Result.Error -> {
-                            showLoading(false)
-                            val message = "Error loading recommended recipe"
-                            Log.e(TAG, result.error + message)
-                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-            } else {
-                binding.tvEmptyPantry.visibility = View.VISIBLE
-            }
-        }
-    }
-
-    private fun loadFavoriteData(userId: Int) {
-        viewModel.getFavoriteRecipes(userId).observe(requireActivity()) { result ->
-            when (result) {
-                is Result.Success -> {
-                    showLoading(false)
-                }
-                is Result.Loading -> showLoading(true)
-                is Result.Error -> {
-                    showLoading(false)
-                    val message = "Error loading favorite data"
-                    Log.e(TAG, message)
-                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-    private fun setupView(userId: Int, listRecipe: List<RecipeEntity>) {
-
+    private fun setupAction(userId: Int) {
         adapter = RecipeAdapter()
         binding.rvRecipe.apply {
             adapter = this@RecipeFragment.adapter
@@ -111,10 +63,9 @@ class RecipeFragment : Fragment() {
                 false,
             )
         }
-
-        adapter.submitList(listRecipe.toMutableList())
         adapter.setOnItemClickCallback(object : RecipeAdapter.OnItemClickCallback {
             override fun onItemClicked(recipe: RecipeEntity) {
+                Toast.makeText(requireContext(), "Recipe -> RecipeDetail", Toast.LENGTH_SHORT).show()
                 val intent = Intent(requireContext(), RecipeDetailActivity::class.java)
                 intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.id)
                 startActivity(intent)
@@ -125,13 +76,44 @@ class RecipeFragment : Fragment() {
         })
     }
 
+    private fun setupData(userId: Int) {
+        viewModel.isPantryNotEmpty().observeOnce(viewLifecycleOwner) {pantryNotEmpty ->
+            handlePantryStatus(pantryNotEmpty)
+            if (pantryNotEmpty) {
+                getRecommendedRecipes(userId)
+            }
+        }
+    }
+
+    private fun getRecommendedRecipes(userId: Int) {
+        viewModel.getRecommendedRecipes(userId).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    showLoading(false)
+                    Toast.makeText(requireContext(), "Recommended Success", Toast.LENGTH_SHORT).show()
+                    updateList(result.data)
+                }
+                is Result.Loading -> showLoading(true)
+                is Result.Error -> {
+                    showLoading(false)
+                    val message = "Error loading recommended recipe"
+                    Log.e(TAG, result.error + message)
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun updateList(listRecipe: List<RecipeEntity>) {
+        adapter.submitList(listRecipe.toMutableList())
+    }
+
     private fun updateFavorite(userId: Int, recipeId: Int, oldIsFavorite: Boolean) {
         if (oldIsFavorite) {
-            viewModel.deleteFavoriteRecipe(userId, recipeId).observe(requireActivity()) { result ->
+            viewModel.deleteFavoriteRecipe(userId, recipeId).observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is Result.Success -> {
                         showLoading(false)
-                        updateList()
                     }
                     is Result.Loading -> showLoading(true)
                     is Result.Error -> {
@@ -143,11 +125,10 @@ class RecipeFragment : Fragment() {
                 }
             }
         } else {
-            viewModel.addFavoriteRecipe(userId, recipeId).observe(requireActivity()) { result ->
+            viewModel.addFavoriteRecipe(userId, recipeId).observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is Result.Success -> {
                         showLoading(false)
-                        updateList()
                     }
                     is Result.Loading -> showLoading(true)
                     is Result.Error -> {
@@ -161,16 +142,9 @@ class RecipeFragment : Fragment() {
         }
     }
 
-    private fun updateList() {
-        viewModel.getRecommendedRecipesLocal().observe(requireActivity()) { listRecipe ->
-            adapter.submitList(listRecipe.toMutableList())
-        }
-    }
-
-    private fun goToLogin() {
-        val intent = Intent(requireContext(), LoginActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+    private fun handlePantryStatus(pantryNotEmpty: Boolean) {
+        binding.rvRecipe.visibility = if (pantryNotEmpty) View.VISIBLE else View.GONE
+        binding.tvEmptyPantry.visibility = if(pantryNotEmpty) View.GONE else View.VISIBLE
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -178,37 +152,7 @@ class RecipeFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = RecipeFragment()
+//        fun newInstance() = RecipeFragment()
         private const val TAG = "RecipeFragment"
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    private fun dummySetupData() {
-//        val dataRecipe = loadFromJsonListRecipeResponse(requireContext())
-//        val dataFavorite = loadFromJsonListFavoriteResponse(requireContext())
-//        // TODO implement retrofit
-//        // in Result.Success
-//        val listRecipe: List<RecipeEntity> = dataRecipe.listRecipe as List<RecipeEntity>
-//        val listFavorite: List<RecipeEntity> = dataFavorite.listRecipe as List<RecipeEntity>
-//        binding.rvRecipe.apply {
-//            layoutManager = GridLayoutManager(
-//                requireContext(),
-//                2,
-//                GridLayoutManager.VERTICAL,
-//                false,
-//            )
-//            val listAdapter = RecipeAdapter(listRecipe, listFavorite)
-//            listAdapter.setOnItemClickCallback(object : RecipeAdapter.OnItemClickCallback {
-//                override fun onItemClicked(recipe: RecipeEntity) {
-//                    val intent = Intent(requireContext(), RecipeDetailActivity::class.java)
-//                    intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.id)
-//                    startActivity(intent)
-//                }
-//                override fun onFavoriteClicked(recipe: RecipeEntity) {
-//                    // TODO HANDLE FAVORITE
-//                }
-//            })
-//            adapter = listAdapter
-//        }
     }
 }

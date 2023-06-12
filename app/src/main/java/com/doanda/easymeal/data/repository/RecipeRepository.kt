@@ -16,36 +16,36 @@ class RecipeRepository(
     private val dummyApiService: DummyApiService,
     private val recipeDao: RecipeDao,
 ) {
-    fun getAllRecipes(): LiveData<Result<List<RecipeEntity>>>
-            = liveData {
-        emit(Result.Loading)
-        try {
-//            val response = apiService.getAllRecipes()
-            val response = dummyApiService.getAllRecipes()
-
-            val listRecipe = response.listRecipe
-            val listRecipeRoom = listRecipe.map { recipe ->
-                val isFavorite = recipeDao.isRecipeFavorite(id = recipe.id)
-                RecipeEntity(
-                    recipe.id,
-                    recipe.title,
-                    recipe.description,
-                    recipe.totalTime,
-                    recipe.serving,
-                    recipe.imgUrl,
-                    isFavorite = isFavorite,
-                    isRecommended = false,
-                )
-            }
-            recipeDao.deleteAll()
-            recipeDao.insertRecipes(listRecipeRoom)
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
-        val localData: LiveData<Result<List<RecipeEntity>>> =
-            recipeDao.getAllRecipes().map { Result.Success(it) }
-        emitSource(localData)
-    }
+//    fun getAllRecipes(): LiveData<Result<List<RecipeEntity>>>
+//            = liveData {
+//        emit(Result.Loading)
+//        try {
+////            val response = apiService.getAllRecipes()
+//            val response = dummyApiService.getAllRecipes()
+//
+//            val listRecipe = response.listRecipe
+//            val listRecipeRoom = listRecipe.map { recipe ->
+//                val isFavorite = recipeDao.isRecipeFavorite(id = recipe.id)
+//                RecipeEntity(
+//                    recipe.id,
+//                    recipe.title,
+//                    recipe.description,
+//                    recipe.totalTime,
+//                    recipe.serving,
+//                    recipe.imgUrl,
+//                    isFavorite = isFavorite,
+//                    isRecommended = false,
+//                )
+//            }
+//            recipeDao.deleteAll()
+//            recipeDao.insertRecipes(listRecipeRoom)
+//        } catch (e: Exception) {
+//            emit(Result.Error(e.message.toString()))
+//        }
+//        val localData: LiveData<Result<List<RecipeEntity>>> =
+//            recipeDao.getAllRecipes().map { Result.Success(it) }
+//        emitSource(localData)
+//    }
 
     fun getDetailRecipeById(recipeId: Int): LiveData<Result<DetailRecipeResponse>>
     = liveData {

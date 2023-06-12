@@ -159,6 +159,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun proceed(userData: User) {
         if (pantryLoaded && favoriteLoaded && shoppingLoaded) {
+            pantryLoaded = false
+            favoriteLoaded = false
+            shoppingLoaded = false
             Toast.makeText(this, "All loaded!!!!", Toast.LENGTH_SHORT).show()
             val user = UserEntity(
                 userId = userData.userId,

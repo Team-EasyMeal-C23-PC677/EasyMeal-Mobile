@@ -12,11 +12,11 @@ class RecipeViewModel(
 ) : ViewModel() {
     fun getUser() = userRepository.getUser()
 
-    fun getAllRecipes() =
-        recipeRepository.getAllRecipes()
-
-    fun getFavoriteRecipes(userId: Int) =
-        recipeRepository.getFavoriteRecipes(userId)
+//    fun getAllRecipes() =
+//        recipeRepository.getAllRecipes()
+//
+//    fun getFavoriteRecipes(userId: Int) =
+//        recipeRepository.getFavoriteRecipes(userId)
 
     fun getRecommendedRecipes(userId: Int) =
         recipeRepository.getRecommendedRecipes(userId)
@@ -34,5 +34,6 @@ class RecipeViewModel(
         ingredientRepository.isPantryNotEmpty()
 
     fun getLoginStatus() = userRepository.getLoginStatus()
+    fun getFavoriteRecipesLocal() = recipeRepository.getFavoriteRecipesLocal()
 
 }
