@@ -2,17 +2,17 @@ package com.doanda.easymeal.ui.pantry
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.doanda.easymeal.data.response.pantry.ListIngredientItem
 import com.doanda.easymeal.databinding.ItemPantryIngredientBinding
-import com.doanda.easymeal.model.CategoryEntity
+import com.doanda.easymeal.data.source.model.IngredientEntity
 
-class PantryIngredientAdapter(private val listIngredient: List<ListIngredientItem>)
-    : RecyclerView.Adapter<PantryIngredientAdapter.ViewHolder>() {
+class PantryIngredientAdapter : ListAdapter<IngredientEntity, PantryIngredientAdapter.ViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onItemCheckedChanged(ingredient: ListIngredientItem)
+        fun onItemCheckedChanged(ingredient: IngredientEntity)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -20,11 +20,9 @@ class PantryIngredientAdapter(private val listIngredient: List<ListIngredientIte
     }
 
     inner class ViewHolder(val binding: ItemPantryIngredientBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(ingredient: ListIngredientItem) {
+        fun bind(ingredient: IngredientEntity) {
             with(binding) {
-                let {
-                    chPantryIngredient.text = ingredient.ingName
-                }
+                chPantryIngredient.text = ingredient.ingName
             }
         }
     }
@@ -34,18 +32,28 @@ class PantryIngredientAdapter(private val listIngredient: List<ListIngredientIte
         return ViewHolder(binding)
     }
 
-    override fun getItemCount() = listIngredient.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val ingredient = listIngredient[position]
+        val ingredient = getItem(position)
         holder.bind(ingredient)
 
+        holder.binding.chPantryIngredient.setOnCheckedChangeListener(null)
+
+        holder.binding.chPantryIngredient.isChecked = ingredient.isHave
+
         holder.binding.chPantryIngredient.setOnCheckedChangeListener { _, _ ->
-            // TODO if checked add to room, if not delete from room
-            onItemClickCallback.onItemCheckedChanged(listIngredient[holder.bindingAdapterPosition])
-            notifyItemChanged(position)
+            onItemClickCallback.onItemCheckedChanged(ingredient)
         }
     }
 
+    companion object {
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<IngredientEntity> = object : DiffUtil.ItemCallback<IngredientEntity>() {
+            override fun areItemsTheSame(oldItem: IngredientEntity, newItem: IngredientEntity): Boolean {
+                return oldItem.ingId == newItem.ingId
+            }
 
+            override fun areContentsTheSame(oldItem: IngredientEntity, newItem: IngredientEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
 }

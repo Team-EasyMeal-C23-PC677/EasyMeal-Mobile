@@ -4,23 +4,23 @@ import com.google.gson.annotations.SerializedName
 
 data class ListRecipeItem(
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("title")
-	val title: String? = null,
+	val title: String,
 
 	@field:SerializedName("description")
-	val description: String? = null,
+	val description: String,
 
 	@field:SerializedName("total_time")
-	val totalTime: Int? = null,
+	val totalTime: Int,
 
 	@field:SerializedName("serving")
-	val serving: Int? = null,
+	val serving: Int,
 
 	@field:SerializedName("img_url")
-	val imgUrl: String? = null,
+	val imgUrl: String,
 
 	@field:SerializedName("missing")
-	val missing: List<String?>? = null,
+	val missing: List<String>,
 )

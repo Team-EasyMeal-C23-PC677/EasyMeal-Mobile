@@ -13,12 +13,12 @@ class UserPreferences private constructor(
     fun getUser(): Flow<UserEntity> {
         return dataStore.data.map  { preferences ->
             UserEntity(
-                preferences[USER_ID] ?: 1,
-                preferences[USER_NAME] ?: "null",
+                preferences[USER_ID] ?: -1,
+//                preferences[USER_NAME] ?: "null",
                 preferences[USER_EMAIL] ?: "null",
-                preferences[USER_PASSWORD] ?: "null",
-                preferences[IS_LOGIN] ?: false,
-                preferences[IS_FIRST_TIME] ?: true,
+//                preferences[USER_PASSWORD] ?: "null",
+//                preferences[IS_LOGIN] ?: false,
+//                preferences[IS_FIRST_TIME] ?: true,
             )
         }
     }
@@ -26,17 +26,35 @@ class UserPreferences private constructor(
     suspend fun saveUser(user: UserEntity) {
         dataStore.edit {  preferences->
             preferences[USER_ID] = user.userId
-            preferences[USER_NAME] = user.userName
+//            preferences[USER_NAME] = user.userName
             preferences[USER_EMAIL] = user.userEmail
-            preferences[USER_PASSWORD] = user.userPassword
-            preferences[IS_LOGIN] = user.isLogin
-            preferences[IS_FIRST_TIME] = user.isFirstTime
+//            preferences[USER_PASSWORD] = user.userPassword
+//            preferences[IS_LOGIN] = user.isLogin
+//            preferences[IS_FIRST_TIME] = user.isFirstTime
+        }
+    }
+
+    fun getUserName() : Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[USER_NAME] ?: "null"
         }
     }
 
     suspend fun setUserName(name: String) {
         dataStore.edit { preferences ->
             preferences[USER_NAME] = name
+        }
+    }
+
+    fun getLoginStatus() : Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[IS_LOGIN] ?: false
+        }
+    }
+
+    suspend fun setLoginStatus(isLogin: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[IS_LOGIN] = isLogin
         }
     }
 
@@ -62,7 +80,7 @@ class UserPreferences private constructor(
         private val USER_ID = intPreferencesKey("user_id")
         private val USER_NAME = stringPreferencesKey("user_name")
         private val USER_EMAIL = stringPreferencesKey("user_email")
-        private val USER_PASSWORD = stringPreferencesKey("user_password")
+//        private val USER_PASSWORD = stringPreferencesKey("user_password")
         private val IS_LOGIN = booleanPreferencesKey("is_login")
         private val IS_FIRST_TIME = booleanPreferencesKey("is_first_time")
 

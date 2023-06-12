@@ -10,6 +10,7 @@ import com.doanda.easymeal.data.source.model.UserEntity
 import com.doanda.easymeal.data.source.remote.ApiService
 import com.doanda.easymeal.data.source.remote.DummyApiService
 import com.doanda.easymeal.utils.Result
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 class UserRepository(
     private val apiService: ApiService,
@@ -69,12 +70,24 @@ class UserRepository(
         userPreferences.saveUser(user)
     }
 
+    fun getLoginStatus(): LiveData<Boolean> {
+        return userPreferences.getLoginStatus().asLiveData()
+    }
+
+    suspend fun setLoginStatus(isLogin: Boolean) {
+        userPreferences.setLoginStatus(isLogin)
+    }
+
     fun getFirstTimeStatus(): LiveData<Boolean> {
         return userPreferences.getFirstTimeStatus().asLiveData()
     }
 
     suspend fun setFirstTimeStatus(firstTimeStatus: Boolean) {
         userPreferences.setFirstTimeStatus(firstTimeStatus)
+    }
+
+    fun getUserName() : LiveData<String> {
+        return userPreferences.getUserName().asLiveData()
     }
 
     suspend fun setUserName(name: String) {

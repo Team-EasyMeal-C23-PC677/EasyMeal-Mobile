@@ -5,13 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "ingredient")
-class IngredientEntity(
+data class IngredientEntity(
     @field:ColumnInfo(name = "id")
     @field:PrimaryKey
-    val ingId: String,
+    val ingId: Int,
 
     @field:ColumnInfo(name = "categoryName")
-    val categoryName: String? = null,
+    val categoryName: String,
 
     @field:ColumnInfo(name = "ingName")
     val ingName: String,

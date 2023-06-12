@@ -23,4 +23,6 @@ class SettingViewModel( private val userRepository: UserRepository) : ViewModel(
         }
     }
 
+    fun getLoginStatus() = userRepository.getLoginStatus()
+    fun getUserName() = userRepository.getUserName()
 }

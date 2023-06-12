@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName
 data class ShoppingListItem(
 
 	@field:SerializedName("unit")
-	val unit: String? = null,
+	val unit: String,
 
 	@field:SerializedName("qty")
-	val qty: Float? = null,
+	val qty: Float,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("ingName")
-	val ingName: String? = null
+	val ingName: String
 )

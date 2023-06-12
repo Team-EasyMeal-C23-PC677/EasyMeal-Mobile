@@ -3,10 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:name=".utils.MainApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,10 +17,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyMeal"
-        android:name=".utils.MainApplication"
         tools:targetApi="31">
         <activity
             android:name=".ui.detection.DetectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.detection.result.DetectionResultActivity"
             android:exported="false" />
         <activity
             android:name=".ui.setting.SettingActivity"

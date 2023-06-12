@@ -10,16 +10,15 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.doanda.easymeal.data.response.recipe.ListRecipeItem
 import com.doanda.easymeal.databinding.FragmentFavoriteBinding
-import com.doanda.easymeal.ui.recipe.RecipeViewModel
+import com.doanda.easymeal.ui.ViewModelFactory
 import com.doanda.easymeal.ui.recipedetail.RecipeDetailActivity
-import com.doanda.easymeal.utils.loadFromJsonLisFavoriteResponse
-import com.doanda.easymeal.utils.loadFromJsonListRecipeResponse
+import com.doanda.easymeal.utils.loadFromJsonListFavoriteResponse
 
 class FavoriteFragment : Fragment() {
 
 
     private val binding by lazy { FragmentFavoriteBinding.inflate(layoutInflater) }
-    private val viewModel by viewModels<RecipeViewModel>()
+    private val viewModel by viewModels<FavoriteViewModel>{ ViewModelFactory.getInstance(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,28 +30,34 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupView()
         setupData()
     }
 
     @Suppress("UNCHECKED_CAST")
     private fun setupData() {
-        val dataRecipe = loadFromJsonListRecipeResponse(requireContext())
-        val dataFavorite = loadFromJsonLisFavoriteResponse(requireContext())
 
-        // TODO implement retrofit
+        // TODO implement observe
+        val dataFavorite = loadFromJsonListFavoriteResponse(requireContext())
+
         // in Result.Success
-        val listRecipe: List<ListRecipeItem> = dataRecipe.listRecipe as List<ListRecipeItem>
+
         val listFavorite: List<ListRecipeItem> = dataFavorite.listRecipe as List<ListRecipeItem>
 
-        if (listRecipe.isNotEmpty()) {
+        if (listFavorite != null) {
+            setupView(listFavorite)
+        }
+
+    }
+
+    private fun setupView(listFavorite: List<ListRecipeItem>) {
+        if (listFavorite.isNotEmpty()) {
             binding.rvFavorite.apply {
                 layoutManager = LinearLayoutManager(
                     requireContext(),
                     LinearLayoutManager.VERTICAL,
                     false,
                 )
-                val listAdapter = FavoriteAdapter(listFavorite, listRecipe)
+                val listAdapter = FavoriteAdapter(listFavorite)
                 adapter = listAdapter
                 listAdapter.setOnItemClickCallback(object : FavoriteAdapter.OnItemClickCallback {
                     override fun onItemClicked(recipe: ListRecipeItem) {
@@ -68,11 +73,6 @@ class FavoriteFragment : Fragment() {
         } else {
             // TODO handle empty data
         }
-    }
-
-    private fun setupView() {
-//        TODO("Not yet implemented")
-
     }
 
 

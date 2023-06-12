@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "shoppingItem")
-class ShoppingItemEntity (
+data class ShoppingItemEntity (
     @field:ColumnInfo(name = "id")
     @field:PrimaryKey
     val id: Int,
@@ -15,10 +15,10 @@ class ShoppingItemEntity (
     val ingName: String,
 
     @field:ColumnInfo(name = "qty")
-    val qty: Float? = null,
+    val qty: Float,
 
     @field:ColumnInfo(name = "unit")
-    val unit: String? = null,
+    val unit: String,
 
     @field:ColumnInfo(name = "isHave")
     var isHave: Boolean

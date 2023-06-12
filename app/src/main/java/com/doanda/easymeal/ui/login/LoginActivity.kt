@@ -9,43 +9,57 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.doanda.easymeal.MainActivity
 import com.doanda.easymeal.R
+import com.doanda.easymeal.data.response.login.User
 import com.doanda.easymeal.data.source.model.UserEntity
 import com.doanda.easymeal.databinding.ActivityLoginBinding
 import com.doanda.easymeal.ui.ViewModelFactory
 import com.doanda.easymeal.ui.register.RegisterActivity
 import com.doanda.easymeal.ui.welcome.WelcomeActivity
 import com.doanda.easymeal.utils.Result
+import observeOnce
 
 class LoginActivity : AppCompatActivity() {
 
     private val binding: ActivityLoginBinding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<LoginViewModel>{ ViewModelFactory.getInstance(this) }
+
+    private var pantryLoaded: Boolean = false
+    private var favoriteLoaded: Boolean = false
+    private var shoppingLoaded: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.hide()
 
-        setupView()
+        setupData()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.getFirstTimeStatus().removeObservers(this)
+    }
+
+    private fun setupData() {
+        viewModel.getFirstTimeStatus().observeOnce(this) { firstTimeStatus ->
+            if (firstTimeStatus == true) {
+                goToWelcome()
+            } else {
+                setupView()
+            }
+        }
     }
 
     private fun setupView() {
-        viewModel.getFirstTimeStatus().observe(this) { firstTimeStatus ->
-            if (firstTimeStatus == true) {
-                goToWelcome()
-            }
-        }
-
         binding.btnLogin.setOnClickListener {
             login()
         }
-
         binding.btnToRegister.setOnClickListener {
-           goToRegister()
+            goToRegister()
         }
     }
-
-
 
     private fun login() {
         val email = binding.etLoginEmail.text.toString()
@@ -56,21 +70,8 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     val userData = result.data.user
-                    if (userData != null) {
-                        val user = UserEntity(
-                            userId = userData.userId ?: 1,
-                            userName = userData.userName ?: "null",
-                            userEmail = userData.userEmail ?: "null",
-                            userPassword = userData.userPassword ?: "null",
-                            isLogin = true,
-                            isFirstTime = false
-                        )
-                        viewModel.saveUser(user)
-
-                        Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
-
-                        goToMain()
-                    }
+                    Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
+                    loadUserData(userData)
                 }
                 is Result.Error -> {
                     showLoading(false)
@@ -85,23 +86,123 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadUserData(userData: User) {
+        val userId = userData.userId
+
+        if (pantryLoaded && favoriteLoaded && shoppingLoaded) {
+            proceed(userData)
+            return
+        }
+
+        viewModel.getPantryIngredients(userId).observe(this) { result ->
+            when (result) {
+                is Result.Success -> {
+                    showLoading(false)
+                    if (result.data.isNotEmpty()) {
+                        Toast.makeText(this, "Pantry Loaded", Toast.LENGTH_SHORT).show()
+                        pantryLoaded = true
+                    }
+                    proceed(userData)
+                }
+                is Result.Loading -> showLoading(true)
+                is Result.Error -> {
+                    showLoading(false)
+                    pantryLoaded = false
+                    val message = "Failed to load Pantry"
+                    Log.e(TAG, result.error + message)
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        viewModel.getFavoriteRecipes(userId).observe(this) { result ->
+            when (result) {
+                is Result.Success -> {
+                    showLoading(false)
+                    if (result.data.isNotEmpty()) {
+                        Toast.makeText(this, "Favorite Loaded", Toast.LENGTH_SHORT).show()
+                        favoriteLoaded = true
+                    }
+                    proceed(userData)
+                }
+                is Result.Loading -> showLoading(true)
+                is Result.Error -> {
+                    showLoading(false)
+                    favoriteLoaded = false
+                    val message = "Failed to load favorite"
+                    Log.e(TAG, result.error + message)
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        viewModel.getShoppingList(userId).observe(this) { result ->
+            when (result) {
+                is Result.Success -> {
+                    showLoading(false)
+                    if (result.data.isNotEmpty()) {
+                        Toast.makeText(this, "Shopping List Loaded", Toast.LENGTH_SHORT).show()
+                        shoppingLoaded = true
+                    }
+                    proceed(userData)
+                }
+                is Result.Loading -> showLoading(true)
+                is Result.Error -> {
+                    showLoading(false)
+                    shoppingLoaded = false
+                    val message = "Failed to load Shopping List"
+                    Log.e(TAG, result.error + message)
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+    }
+
+    private fun proceed(userData: User) {
+        if (pantryLoaded && favoriteLoaded && shoppingLoaded) {
+            pantryLoaded = false
+            favoriteLoaded = false
+            shoppingLoaded = false
+            Toast.makeText(this, "All loaded!!!!", Toast.LENGTH_SHORT).show()
+            val user = UserEntity(
+                userId = userData.userId,
+//                        userName = userData.userName,
+                userEmail = userData.userEmail,
+//                        userPassword = userData.userPassword,
+//                        isLogin = true,
+//                        isFirstTime = false
+            )
+            viewModel.saveUser(user)
+            viewModel.setLoginStatus(true)
+            viewModel.setUserName(userData.userName)
+
+            Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
+            goToMain()
+        }
+    }
+
     private fun goToRegister() {
+        Toast.makeText(this, "Login -> Register", Toast.LENGTH_SHORT).show()
         val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        finish()
         startActivity(intent)
     }
 
     private fun goToWelcome() {
+        Toast.makeText(this, "Login -> Welcome", Toast.LENGTH_SHORT).show()
         val intentToWelcome = Intent(this@LoginActivity, WelcomeActivity::class.java)
-        intentToWelcome.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intentToWelcome)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//        intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
         finish()
+        startActivity(intentToWelcome)
     }
 
     private fun goToMain() {
+        Toast.makeText(this, "Login -> Main", Toast.LENGTH_SHORT).show()
         val intentToMain = Intent(this@LoginActivity, MainActivity::class.java)
         intentToMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intentToMain)
         finish()
+        startActivity(intentToMain)
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -112,3 +213,5 @@ class LoginActivity : AppCompatActivity() {
         private const val TAG = "LoginActivity"
     }
 }
+
+

@@ -1,62 +1,25 @@
 package com.doanda.easymeal.ui.pantry
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.doanda.easymeal.R
-import com.doanda.easymeal.data.response.pantry.ListIngredientItem
+import com.doanda.easymeal.data.source.model.CategoryEntity
+import com.doanda.easymeal.data.source.model.IngredientEntity
 import com.doanda.easymeal.databinding.ItemCategoryBinding
-import com.doanda.easymeal.model.CategoryEntity
 
-class PantryCategoryAdapter(private val listCategory: List<CategoryEntity>)
-    : RecyclerView.Adapter<PantryCategoryAdapter.ViewHolder>() {
+class PantryCategoryAdapter : ListAdapter<CategoryEntity, PantryCategoryAdapter.ViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onChildItemCheckedChange(ingredient: CategoryEntity)
+        fun onChildItemCheckedChange(ingredient: IngredientEntity)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
-    }
-
-    inner class ViewHolder(val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(category: CategoryEntity) {
-            with(binding) {
-                let {
-                    tvCategoryName.text = category.categoryName
-
-                    // TODO get user pantry info, count in listIngredient
-                    tvCategoryCounter.text = category.listIngredient.size.toString()
-
-                    icCategoryDropdown.setImageResource(R.drawable.ic_round_arrow_right)
-
-                    rvPantryIngredient.setHasFixedSize(true)
-                    rvPantryIngredient.layoutManager =
-                        StaggeredGridLayoutManager(
-                            2,
-                            StaggeredGridLayoutManager.HORIZONTAL
-                        )
-
-                    val adapter =
-                        PantryIngredientAdapter(category.listIngredient)
-                    rvPantryIngredient.adapter = adapter
-                    adapter.setOnItemClickCallback(object : PantryIngredientAdapter.OnItemClickCallback {
-                        override fun onItemCheckedChanged(ingredient: ListIngredientItem) {
-//                            TODO("Not yet implemented")
-
-                        }
-
-                    })
-
-                    val isExpandable = category.isExpandable
-                    rvPantryIngredient.visibility =
-                        if (isExpandable) View.VISIBLE else View.GONE
-                }
-            }
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -64,19 +27,55 @@ class PantryCategoryAdapter(private val listCategory: List<CategoryEntity>)
         return ViewHolder(binding)
     }
 
-    override fun getItemCount() = listCategory.size
+    inner class ViewHolder(val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(category: CategoryEntity) {
+            with(binding) {
+                tvCategoryName.text = category.categoryName
+                binding.icCategoryDropdown.setImageResource(R.drawable.ic_round_arrow_drop_down_circle)
+            }
+        }
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val category = listCategory[position]
+        val category = getItem(position)
         holder.bind(category)
 
-        holder.binding.layoutCategory.setOnClickListener {
-            category.isExpandable = !category.isExpandable
-            holder.binding.icCategoryDropdown.setImageResource(
-                if (category.isExpandable) R.drawable.ic_round_arrow_drop_down
-                else R.drawable.ic_round_arrow_right
+//        val isExpanded = category.isExpanded
+//        holder.binding.rvPantryIngredient.visibility =
+//            if (isExpanded) View.VISIBLE else View.GONE
+
+//        holder.binding.layoutCategory.setOnClickListener {
+//            category.isExpanded = !category.isExpanded
+//            notifyItemChanged(position)
+//        }
+
+        holder.binding.rvPantryIngredient.setHasFixedSize(true)
+        holder.binding.rvPantryIngredient.layoutManager =
+            StaggeredGridLayoutManager(
+                2,
+                StaggeredGridLayoutManager.HORIZONTAL
             )
-            notifyItemChanged(position)
+
+        val adapter =
+            PantryIngredientAdapter()
+        adapter.submitList(category.listIngredient.toMutableList())
+        holder.binding.rvPantryIngredient.adapter = adapter
+        adapter.setOnItemClickCallback(object : PantryIngredientAdapter.OnItemClickCallback {
+            override fun onItemCheckedChanged(ingredient: IngredientEntity) {
+                onItemClickCallback.onChildItemCheckedChange(ingredient)
+            }
+        })
+    }
+
+    companion object {
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<CategoryEntity> = object : DiffUtil.ItemCallback<CategoryEntity>() {
+            override fun areItemsTheSame(oldItem: CategoryEntity, newItem: CategoryEntity): Boolean {
+                return oldItem.categoryName == newItem.categoryName
+            }
+
+            override fun areContentsTheSame(oldItem: CategoryEntity, newItem: CategoryEntity): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 

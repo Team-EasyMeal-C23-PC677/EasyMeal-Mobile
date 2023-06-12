@@ -15,12 +15,6 @@ class RecipeDetailViewModel(
 
     fun getUser() = userRepository.getUser()
 
-    fun getRecipeById(recipeId: Int) = recipeRepository.getRecipeById(recipeId)
-
-
-
-
-
-
-
+    fun getDetailRecipeById(recipeId: Int) = recipeRepository.getDetailRecipeById(recipeId)
+    fun getLoginStatus() = userRepository.getLoginStatus()
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
+<!--    <item android:state_checked="true" app:iconTint="@color/red_theme" android:tint="@color/red_theme" android:color="@color/red_theme"/>-->
+<!--    <item android:state_checked="false" app:iconTint="@color/grey_theme" android:tint="@color/grey_theme" android:color="@color/grey_theme" />-->
+<!--</selector>-->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:color="@color/red_theme"/>
+    <item android:state_checked="true" android:color="@color/red_theme"/>
+    <item android:state_checked="false" android:color="@color/black" />
+</selector>

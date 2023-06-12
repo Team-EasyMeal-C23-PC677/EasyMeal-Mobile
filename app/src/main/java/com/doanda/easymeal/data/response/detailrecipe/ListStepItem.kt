@@ -8,11 +8,11 @@ import kotlinx.parcelize.Parcelize
 data class ListStepItem(
 
 	@field:SerializedName("no")
-	val no: Int? = null,
+	val no: Int,
 
 	@field:SerializedName("description")
-	val description: String? = null,
+	val description: String,
 
 	@field:SerializedName("id")
-	val id: Int? = null
+	val id: Int
 ) : Parcelable

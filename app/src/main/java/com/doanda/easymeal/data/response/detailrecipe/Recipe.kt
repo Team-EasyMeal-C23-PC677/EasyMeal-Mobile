@@ -8,26 +8,26 @@ import kotlinx.parcelize.Parcelize
 data class Recipe(
 
     @field:SerializedName("imgUrl")
-	val imgUrl: String? = null,
+	val imgUrl: String,
 
     @field:SerializedName("totalTime")
-	val totalTime: Int? = null,
+	val totalTime: Int,
 
     @field:SerializedName("description")
-	val description: String? = null,
+	val description: String,
 
     @field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
     @field:SerializedName("title")
-	val title: String? = null,
+	val title: String,
 
     @field:SerializedName("listIngredient")
-	val listIngredient: List<ListDetailIngredientItem?>? = null,
+	val listIngredient: List<ListDetailIngredientItem>,
 
     @field:SerializedName("listStep")
-	val listStep: List<ListStepItem?>? = null,
+	val listStep: List<ListStepItem>,
 
     @field:SerializedName("serving")
-	val serving: Int? = null
+	val serving: Int
 ) : Parcelable

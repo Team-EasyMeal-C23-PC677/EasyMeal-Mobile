@@ -23,7 +23,7 @@
 
     <!--    THEME-->
     <style name="Layout">
-<!--        <item name="android:backgroundTint">@color/white_theme</item>-->
+        <item name="android:background">@color/white_theme</item>
     </style>
 
     <!--    ACTION BAR-->

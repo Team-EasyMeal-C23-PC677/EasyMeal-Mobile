@@ -1,117 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    style="@style/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.recipedetail.RecipeDetailActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_detail_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <ImageView
-            android:id="@+id/iv_detail_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="200dp"
-            android:contentDescription="@string/cd_recipe_image"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:srcCompat="@drawable/photo_sotoayam" />
-
-        <TextView
-            android:id="@+id/tv_detail_time"
-            style="@style/TextViewRecipe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:drawableLeft="@drawable/recipe_time"
-            android:text="@string/placeholder_time"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_detail_image"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_image"
-            />
-
-        <TextView
-            android:id="@+id/tv_detail_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Soto Ayam Surabaya"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@+id/iv_detail_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_detail_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Soto Surabaya kuah koya bisa menjadi alternatif hidangan lezat untuk keluarga. Gurih dan penuh rempah Nusantara, yuk, simak resepnyay di sini"
-            android:textSize="14sp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_detail_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_round_chevron_left"
-            android:contentDescription="Back button"
-            android:layout_margin="16dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-<!--        TODO background circle-->
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fav_detail_favorite"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_round_favorite"
-            android:contentDescription="Favorite button"
-            android:layout_margin="16dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tl_detail_tabs"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:contentDescription="Recipe instructions"
-        app:tabMode="fixed"
-        app:tabGravity="fill"
-        app:tabIndicatorGravity="stretch"
-        app:tabSelectedTextColor="@color/white"
-        app:tabIndicator="@drawable/shape_background_tab_layout"
-        />
-<!--        app:tabIndicatoriAnimationMode="elastic"-->
-<!--        app:tabIndicator=""-->
+        android:orientation="vertical">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_detail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/iv_detail_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="300dp"
+                android:contentDescription="@string/cd_recipe_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:srcCompat="@drawable/photo_sotoayam" />
+
+            <TextView
+                android:id="@+id/tv_detail_time"
+                style="@style/TextViewRecipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/placeholder_time"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_detail_image"
+                app:layout_constraintStart_toStartOf="@+id/iv_detail_image"
+                app:drawableLeftCompat="@drawable/recipe_time" />
+
+            <TextView
+                android:id="@+id/tv_detail_serving"
+                style="@style/TextViewRecipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/placeholder_serving"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_detail_image"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_image"
+                app:drawableLeftCompat="@drawable/recipe_serving" />
+
+            <TextView
+                android:id="@+id/tv_detail_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_title"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/iv_detail_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_detail_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_description"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_detail_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_round_arrow_back"
+                android:contentDescription="@string/cd_back_button"
+                android:layout_margin="16dp"
+                android:textAlignment="center"
+                app:fabCustomSize="40dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_detail_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_round_favorite"
+                android:contentDescription="@string/cd_favorite_button"
+                android:layout_margin="16dp"
+                app:fabCustomSize="40dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_detail_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/cd_recipe_instructions"
+            android:background="?attr/colorPrimary"
+            app:tabTextColor="@android:color/white"
+            />
+<!--            android:background="@color/primary"-->
+    <!--        app:tabMode="fixed"-->
+    <!--        app:tabGravity="fill"-->
+    <!--        app:tabIndicatorGravity="stretch"-->
+    <!--        app:tabSelectedTextColor="@color/white"-->
+    <!--        app:tabIndicator="@drawable/shape_background_tab_layout"-->
+    <!--        app:tabIndicatoriAnimationMode="elastic"-->
+    <!--        app:tabIndicator=""-->
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
-
-
-</LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 data class ListIngredientItem(
 
 	@field:SerializedName("ingId")
-	val ingId: String? = null,
+	val ingId: Int,
 
 	@field:SerializedName("categoryName")
-	val categoryName: String? = null,
+	val categoryName: String,
 
 	@field:SerializedName("ingName")
-	val ingName: String? = null
+	val ingName: String
 )

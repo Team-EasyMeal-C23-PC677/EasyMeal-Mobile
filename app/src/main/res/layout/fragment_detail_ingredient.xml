@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="16dp"
     android:gravity="center"
     tools:context=".ui.recipedetail.DetailIngredientFragment">
 
 
-<!--&lt;!&ndash;        TODO implement portion changing&ndash;&gt;-->
+<!--&lt;!&ndash;        TODO implement portion changing-->
 <!--        <ImageButton-->
 <!--            android:id="@+id/btn_detail_portion_minus"-->
 <!--            android:layout_width="32dp"-->
