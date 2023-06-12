@@ -1,16 +1,15 @@
 package com.doanda.easymeal.ui.pantry
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.doanda.easymeal.R
-import com.doanda.easymeal.databinding.ItemCategoryBinding
 import com.doanda.easymeal.data.source.model.CategoryEntity
 import com.doanda.easymeal.data.source.model.IngredientEntity
+import com.doanda.easymeal.databinding.ItemCategoryBinding
 
 class PantryCategoryAdapter : ListAdapter<CategoryEntity, PantryCategoryAdapter.ViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -41,13 +40,13 @@ class PantryCategoryAdapter : ListAdapter<CategoryEntity, PantryCategoryAdapter.
         val category = getItem(position)
         holder.bind(category)
 
-        val isExpanded = category.isExpanded
-        holder.binding.rvPantryIngredient.visibility =
-            if (isExpanded) View.VISIBLE else View.GONE
+//        val isExpanded = category.isExpanded
+//        holder.binding.rvPantryIngredient.visibility =
+//            if (isExpanded) View.VISIBLE else View.GONE
 
 //        holder.binding.layoutCategory.setOnClickListener {
 //            category.isExpanded = !category.isExpanded
-//            notifyItemChanged(position) // TODO find alternative
+//            notifyItemChanged(position)
 //        }
 
         holder.binding.rvPantryIngredient.setHasFixedSize(true)
@@ -63,7 +62,7 @@ class PantryCategoryAdapter : ListAdapter<CategoryEntity, PantryCategoryAdapter.
         holder.binding.rvPantryIngredient.adapter = adapter
         adapter.setOnItemClickCallback(object : PantryIngredientAdapter.OnItemClickCallback {
             override fun onItemCheckedChanged(ingredient: IngredientEntity) {
-                onItemClickCallback.onChildItemCheckedChange(ingredient) // TODO bener
+                onItemClickCallback.onChildItemCheckedChange(ingredient)
             }
         })
     }
