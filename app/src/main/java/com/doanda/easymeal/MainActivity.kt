@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        Toast.makeText(this, "Main setup view", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Main setup view", Toast.LENGTH_SHORT).show()
 
         val navView: BottomNavigationView = binding.navView
         navView.background = null
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goToLogin() {
-        Toast.makeText(this, "Main -> Login", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Main -> Login", Toast.LENGTH_SHORT).show()
         val intent = Intent(this@MainActivity, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         finish()
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goToSetting() {
-        Toast.makeText(this, "Main -> Setting", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Main -> Setting", Toast.LENGTH_SHORT).show()
         val intent = Intent(this@MainActivity, SettingActivity::class.java)
         startActivity(intent)
     }
