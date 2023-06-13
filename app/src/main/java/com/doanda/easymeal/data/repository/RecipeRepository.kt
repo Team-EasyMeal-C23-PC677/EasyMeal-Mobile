@@ -70,7 +70,7 @@ class RecipeRepository(
 //            val response = apiService.getFavoriteRecipes(userId)
             val response = dummyApiService.getFavoriteRecipes(userId)
 
-            val listRecipe = response.listRecipe
+            val listRecipe = response.listFavoriteRecipe
             val listRecipeRoom = listRecipe.map { recipe ->
                 val isRecommended = recipeDao.isRecipeRecommended(recipe.id)
                 RecipeEntity(

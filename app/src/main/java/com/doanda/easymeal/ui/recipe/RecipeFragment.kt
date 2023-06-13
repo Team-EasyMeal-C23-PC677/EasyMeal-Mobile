@@ -7,12 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import com.doanda.easymeal.data.source.model.IngredientEntity
 import com.doanda.easymeal.data.source.model.RecipeEntity
 import com.doanda.easymeal.databinding.FragmentRecipeBinding
 import com.doanda.easymeal.ui.ViewModelFactory
+import com.doanda.easymeal.ui.pantry.PantryFragment
 import com.doanda.easymeal.ui.recipedetail.RecipeDetailActivity
 import com.doanda.easymeal.utils.Result
 import observeOnce
@@ -24,7 +28,8 @@ class RecipeFragment : Fragment() {
 
     private lateinit var adapter: RecipeAdapter
 
-//    private var pantryObserver: Observer<List<IngredientEntity>>? = null
+
+    private var initPantryObserver: Observer<List<IngredientEntity>>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,11 +47,12 @@ class RecipeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
 
-//        pantryObserver?.let {
-//            viewModel.getPantryIngredientsLocal().removeObserver(it)
-//            pantryObserver = null
+//        initPantryObserver?.let {
+//            viewModel.getPantryIngredientsLocal().removeObservers(viewLifecycleOwner)
 //        }
+        viewModel.getRecommendedRecipes(-1).removeObservers(viewLifecycleOwner)
     }
+
     private fun getUser() {
         viewModel.getUser().observeOnce(viewLifecycleOwner) { user ->
             if (user.userId != -1) {
@@ -81,34 +87,37 @@ class RecipeFragment : Fragment() {
     }
 
     private fun setupData(userId: Int) {
-//        viewModel.isPantryNotEmpty().observeOnce(viewLifecycleOwner) {pantryNotEmpty ->
-//            handlePantryStatus(pantryNotEmpty)
-//            if (pantryNotEmpty) {
-//                getRecommendedRecipes(userId)
-//            }
+        handlePantryStatus(false)
+        if (initPantryObserver == null) {
+            initPantryObserver = Observer { listIng ->
+//                val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
+//                val notEmpty = listIng.isNotEmpty()
+//                handlePantryStatus(isPantryUpdated)
+//                if (notEmpty && isPantryUpdated)
+//                    getRecommendedRecipes(userId)
+                val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
+                val notEmpty = listIng.isNotEmpty()
+                handlePantryStatus(notEmpty)
+                if (notEmpty)
+                    getRecommendedRecipes(userId)
+            }
+            viewModel.getPantryIngredientsLocal().observeOnce(viewLifecycleOwner, initPantryObserver!!)
+        }
+//        val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
+//        if (isPantryUpdated) {
+//            getRecommendedRecipes(userId)
+//        } else {
+//            getRecommendedRecipesLocal()
 //        }
-        viewModel.getPantryIngredientsLocal().observe(viewLifecycleOwner) { listIng ->
-            if (listIng != null) {
-                handlePantryStatus(listIng.isNotEmpty())
-                getRecommendedRecipes(userId)
+        getRecommendedRecipesLocal()
+    }
+
+    private fun getRecommendedRecipesLocal() {
+        viewModel.getRecommendedRecipesLocal().observe(viewLifecycleOwner) { listRecipe ->
+            if (listRecipe != null) {
+                updateList(listRecipe)
             }
         }
-//        if (pantryObserver == null) {
-//            pantryObserver = Observer { listIng ->
-//                if (listIng != null) {
-//                    handlePantryStatus(listIng.isNotEmpty())
-//                    getRecommendedRecipes(userId)
-//                }
-//            }
-//            viewModel.getPantryIngredientsLocal().observe(viewLifecycleOwner, pantryObserver!!)
-//        }
-
-//        viewModel.listPantryIng.observe(viewLifecycleOwner) { listIng ->
-//            if (listIng != null) {
-//                handlePantryStatus(listIng.isNotEmpty())
-//                getRecommendedRecipes(userId)
-//            }
-//        }
     }
 
     private fun getRecommendedRecipes(userId: Int) {
@@ -171,6 +180,7 @@ class RecipeFragment : Fragment() {
     private fun handlePantryStatus(pantryNotEmpty: Boolean) {
         with (binding) {
             rvRecipe.visibility = if (pantryNotEmpty) View.VISIBLE else View.GONE
+            tvRecipes.visibility = if (pantryNotEmpty) View.VISIBLE else View.GONE
 
             ivIllustEmptyPantry.visibility = if (pantryNotEmpty) View.GONE else View.VISIBLE
             tvEmptyPantry.visibility = if (pantryNotEmpty) View.GONE else View.VISIBLE

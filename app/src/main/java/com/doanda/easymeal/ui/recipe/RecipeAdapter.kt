@@ -16,8 +16,8 @@ class RecipeAdapter : ListAdapter<RecipeEntity, RecipeAdapter.ViewHolder>(DIFF_C
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onFavoriteClicked(recipe: RecipeEntity)
         fun onItemClicked(recipe: RecipeEntity)
+        fun onFavoriteClicked(recipe: RecipeEntity)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -39,6 +39,8 @@ class RecipeAdapter : ListAdapter<RecipeEntity, RecipeAdapter.ViewHolder>(DIFF_C
                             timeText.add(getString(R.string.minute_format).format(minutes))
                         timeText.joinToString(" ")
                     }
+
+                tvRecipeDesc.text = recipe.description
 
                 tvRecipeServing.text =
                     itemView.context.getString(R.string.serving_format).format(recipe.serving)
@@ -92,7 +94,6 @@ class RecipeAdapter : ListAdapter<RecipeEntity, RecipeAdapter.ViewHolder>(DIFF_C
             override fun areItemsTheSame(oldItem: RecipeEntity, newItem: RecipeEntity): Boolean {
                 return oldItem.id == newItem.id
             }
-
             override fun areContentsTheSame(oldItem: RecipeEntity, newItem: RecipeEntity): Boolean {
                 return oldItem == newItem
             }
