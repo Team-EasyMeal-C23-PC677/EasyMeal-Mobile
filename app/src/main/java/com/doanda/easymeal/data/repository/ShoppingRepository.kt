@@ -22,7 +22,7 @@ class ShoppingRepository(
 //            val response = apiService.getShoppingList(userId)
             val response = dummyApiService.getShoppingList(userId)
 
-            val list = response.shoppingList
+            val list = response.listIngredient
             val listRoom = list.map { item ->
                 ShoppingItemEntity(
                     item.id,

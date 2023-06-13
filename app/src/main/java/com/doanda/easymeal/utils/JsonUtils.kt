@@ -57,7 +57,7 @@ fun loadFromJsonListRecommendedRecipeResponse(
 
 fun loadFromJsonListFavoriteResponse(
     context: Context,
-): ListRecipeResponse {
+): ListFavoriteResponse {
     val jsonFileString = getJsonStringFromResource(context, R.raw.get_favorite_recipes)
     if (jsonFileString != null) {
 //        Log.i("JSON", jsonFileString)

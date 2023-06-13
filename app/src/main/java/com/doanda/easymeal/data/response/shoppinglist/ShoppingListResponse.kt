@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class ShoppingListResponse(
 
-	@field:SerializedName("shoppingList")
-	val shoppingList: List<ShoppingListItem>,
+	@field:SerializedName("listIngredient")
+	val listIngredient: List<ShoppingListItem>,
 
 	@field:SerializedName("error")
 	val error: Boolean,
