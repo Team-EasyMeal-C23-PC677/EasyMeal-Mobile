@@ -78,4 +78,16 @@
     <string name="register_desc">Masukkan nama, email, dan password untuk mendaftar</string>
     <string name="have_all_ingredients">Kamu punya semua bahan!</string>
     <string name="ingredients_missing">Kamu butuh %1$s</string>
+    <string name="show_pantry_ishave">Tampilkan milik saya</string>
+    <string name="recommend_recipes">Lihat rekomendasi resep</string>
+    <string name="what_in_pantry">Apa isi kulkasmu?</string>
+    <string name="what_in_pantry_desc">Tambahkan bahan-bahan yang kamu punya!</string>
+    <string name="searchbar_hint">Cari resep</string>
+    <string name="recipe_recommended">Resep-resep paling cocok untukmu</string>
+    <string name="what_to_buy">Daftar belanja kamu</string>
+    <string name="setting">Pengaturan</string>
+    <string name="take_photo">Ambil foto</string>
+    <string name="import_from_gallery">Impor dari galeri</string>
+    <string name="ingredient_not_recognized">Tidak mengenali bahan?</string>
+    <string name="ingredient_not_recognized_desc">Ambil fotonya untuk mendeteksi bahan</string>
 </resources>
