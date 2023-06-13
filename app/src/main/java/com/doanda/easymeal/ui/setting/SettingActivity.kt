@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.doanda.easymeal.R
 import com.doanda.easymeal.data.source.model.UserEntity
 import com.doanda.easymeal.databinding.ActivitySettingBinding
 import com.doanda.easymeal.ui.ViewModelFactory
@@ -25,6 +26,7 @@ class SettingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.setting)
 
         setupData()
     }
