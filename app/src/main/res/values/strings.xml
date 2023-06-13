@@ -32,8 +32,6 @@
     <string name="placeholder_description">Soto Surabaya kuah koya bisa menjadi alternatif hidangan lezat untuk keluarga. Gurih dan penuh rempah Nusantara, yuk, simak resepnya di sini!</string>
     <string name="tab_ingredients">Bahan-Bahan</string>
     <string name="tab_steps">Langkah</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="detail_ingredient_qty">%1$s %2$s</string>
     <string name="cd_capture">Capture image</string>
     <string name="cd_rotate">Rotate camera</string>
@@ -57,7 +55,8 @@
     <string name="logout">Logout</string>
     <string name="welcome_text">Welcome to EasyMeal</string>
     <string name="placeholder_percentage">80%</string>
-    <string name="empty_pantry">Add ingredients and we\'ll find the best recipes for you!</string>
+    <string name="empty_pantry_desc">Add ingredients in your pantry and we\'ll find the best recipes for you!</string>
+    <string name="empty_pantry">Your pantry is empty</string>
     <string name="placeholder_category">Rempah-rempah</string>
     <string name="opening_camera">Opening camera</string>
     <string name="import_gallery">Import gallery</string>
@@ -70,4 +69,13 @@
     <string name="already_in_pantry">%1$s is already in your pantry!</string>
     <string name="add_ingredient_failed">Failed to add ingredient!</string>
     <string name="ingredient_added">%1$s added!</string>
+    <string name="empty_favorite">No favorite recipes listed</string>
+    <string name="empty_favorite_desc">Find recipes you like and see them here!</string>
+    <string name="empty_shopping">Your shopping list is empty</string>
+    <string name="empty_shopping_desc">Find recipes and add ingredients you are missing to the list!</string>
+    <string name="welcome_text_desc">Find the best recipes for you according to what you already have!</string>
+    <string name="login_desc">Enter your email and password to continue</string>
+    <string name="register_desc">Enter your name, email, and password to register</string>
+    <string name="have_all_ingredients">You have all ingredients!</string>
+    <string name="ingredients_missing">You\'re missing %1$s</string>
 </resources>

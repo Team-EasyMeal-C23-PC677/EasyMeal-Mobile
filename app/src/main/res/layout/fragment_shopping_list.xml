@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:paddingEnd="16dp"
+        android:paddingBottom="80dp">
 
         <!--    <include-->
         <!--        android:id="@+id/shopping_list_searchbar"-->
@@ -26,7 +27,7 @@
             android:text="Apa saja yang ingin dibeli?"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -43,39 +44,79 @@
             tools:listitem="@layout/item_shopping_list"
             />
 
-        <TextView
-            android:id="@+id/tv_shopping_list_have"
+        <ImageView
+            android:id="@+id/iv_illust_empty_shopping"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sudah dibeli"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/rv_shopping_list_need"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_shopping_list_have"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_shopping_list_have"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:srcCompat="@drawable/illust_empty_shopping"
+            android:layout_marginTop="200dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/item_shopping_list"
-            />
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_empty_shopping"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_shopping"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_illust_empty_shopping" />
+
+        <TextView
+            android:id="@+id/tv_empty_shopping_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_shopping_desc"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:textColor="@color/grey_darker"
+            android:textAlignment="center"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_empty_shopping" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_shopping_list_have"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Sudah dibeli"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/rv_shopping_list_need"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_shopping_list_have"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_shopping_list_have"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            tools:listitem="@layout/item_shopping_list"-->
+<!--            />-->
 
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/ProgressBar"
+            android:layout_marginTop="250dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
 

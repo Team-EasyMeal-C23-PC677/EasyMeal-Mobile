@@ -17,8 +17,9 @@
     <color name="secondary_lighter">#FFD679</color>
     <color name="secondary_darker">#C68006</color>
     <color name="red_theme">#ed3333</color>
-    <color name="grey_theme">#8C8C8C</color>
-    <color name="grey_lighter_theme">#DBDBDB</color>
+    <color name="grey">#8C8C8C</color>
+    <color name="grey_lighter">#DBDBDB</color>
+    <color name="grey_darker">#4A4A4A</color>
     <color name="white_transparent">#D3FFFFFF</color>
 
 

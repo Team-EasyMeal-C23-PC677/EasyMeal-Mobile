@@ -23,7 +23,7 @@
 
     <!--    THEME-->
     <style name="Layout">
-        <item name="android:background">@color/white_theme</item>
+<!--        <item name="android:background">@color/white_theme</item>-->
     </style>
 
     <!--    ACTION BAR-->
@@ -39,9 +39,9 @@
 
     <!--    TEXT FIELD-->
     <style name="TextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/grey_theme</item>
-        <item name="hintTextColor">@color/grey_theme</item>
-        <item name="titleTextColor">@color/grey_theme</item>
+        <item name="boxStrokeColor">@color/grey</item>
+        <item name="hintTextColor">@color/grey</item>
+        <item name="titleTextColor">@color/grey</item>
         <item name="boxStrokeWidth">2dp</item>
         <item name="boxCornerRadiusBottomStart">24dp</item>
         <item name="boxCornerRadiusBottomEnd">24dp</item>
@@ -56,7 +56,7 @@
     <style name="TextField.Password">
         <item name="startIconDrawable">@drawable/ic_key</item>
         <item name="endIconMode">password_toggle</item>
-        <item name="endIconTint">@color/grey_theme</item>
+        <item name="endIconTint">@color/grey</item>
     </style>
 
     <style name="TextField.Email">

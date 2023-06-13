@@ -14,22 +14,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:paddingEnd="16dp"
+        android:paddingBottom="80dp">
 
         <!--    <include-->
         <!--        android:id="@+id/recipe_searchbar"-->
         <!--        layout="@layout/component_searchbar" />-->
 
+        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_pantry_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_pantry_to_recipe"
             tools:listitem="@layout/item_category" />
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 
         <TextView
             android:id="@+id/tv_pantry_title"
@@ -51,7 +53,7 @@
             android:layout_height="wrap_content"
             android:text="Tampilkan Milik Saya"
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pantry_title"
@@ -65,7 +67,7 @@
             style="@style/Button.Secondary"
             android:text="Lihat Rekomendasi Resep"
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_pantry_have"
