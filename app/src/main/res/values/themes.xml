@@ -21,21 +21,20 @@
 
     </style>
 
+    <style name="SplashScreen" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:windowBackground">@drawable/layer_list_splash</item>
+<!--        <item name="android:statusBarColor">@color/mint_green</item>-->
+    </style>
+
     <!--    THEME-->
     <style name="Layout">
 <!--        <item name="android:background">@color/white_theme</item>-->
     </style>
 
-    <!--    ACTION BAR-->
-<!--    <style name="ActionBar" parent="Widget.Material3.Light.ActionBar.Solid">-->
-<!--        <item name="background">@color/white</item>-->
-<!--    </style>-->
-
     <!--    SEARCH BAR-->
     <style name="SearchBar" parent="Widget.Material3.SearchBar">
 
     </style>
-
 
     <!--    TEXT FIELD-->
     <style name="TextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -63,9 +62,6 @@
         <item name="startIconDrawable">@drawable/ic_mail_outline</item>
     </style>
 
-
-
-<!--    TODO style progress bar-->
     <!--    PROGRESS BAR-->
     <style name="ProgressBar">
         <item name="android:visibility">invisible</item>
@@ -77,38 +73,23 @@
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
-                <item name="boxCornerRadiusBottomStart">24dp</item>
-                <item name="boxCornerRadiusBottomEnd">24dp</item>
-                <item name="boxCornerRadiusTopStart">24dp</item>
-                <item name="boxCornerRadiusTopEnd">24dp</item>
-        <!--        <item name="android:topLeftRadius">8dp</item>-->
-        <!--        <item name="android:topRightRadius">8dp</item>-->
-        <!--        <item name="android:bottomLeftRadius">8dp</item>-->
-        <!--        <item name="android:bottomRightRadius">8dp</item>-->
+        <item name="cornerRadius">20dp</item>
     </style>
 
     <style name="Button.Secondary">
         <item name="backgroundTint">@color/secondary</item>
-        <!--        <item name="android:textColor">@color/black</item>-->
-        <!--        <item name="android:padding">8dp</item>-->
     </style>
 
     <style name="Button.Secondary.Inactive">
         <item name="backgroundTint">@color/secondary_lighter</item>
-        <!--        <item name="android:textColor">@color/grey_theme</item>-->
-        <!--        <item name="android:padding">8dp</item>-->
     </style>
 
     <style name="Button.Primary">
         <item name="backgroundTint">@color/primary</item>
-        <!--        <item name="android:textColor">@color/black</item>-->
-        <!--        <item name="android:padding">8dp</item>-->
     </style>
 
     <!--    IMAGEVIEW-->
     <style name="ImageView.Corner" parent="">
-        <!--        <item name="cornerSizeTopRight">8dp</item>-->
-        <!--        <item name="cornerSizeTopLeft">8dp</item>-->
         <item name="cornerSizeBottomLeft">16dp</item>
         <item name="cornerSizeBottomRight">16dp</item>
         <item name="cornerFamily">rounded</item>
