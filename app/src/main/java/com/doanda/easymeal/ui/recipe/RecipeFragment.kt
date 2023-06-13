@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -47,10 +46,10 @@ class RecipeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
 
-//        initPantryObserver?.let {
-//            viewModel.getPantryIngredientsLocal().removeObservers(viewLifecycleOwner)
-//        }
-        viewModel.getRecommendedRecipes(-1).removeObservers(viewLifecycleOwner)
+        initPantryObserver?.let {
+            viewModel.getPantryIngredientsLocal().removeObservers(viewLifecycleOwner)
+        }
+//        viewModel.getRecommendedRecipes(-1).removeObservers(viewLifecycleOwner)
     }
 
     private fun getUser() {
@@ -87,7 +86,6 @@ class RecipeFragment : Fragment() {
     }
 
     private fun setupData(userId: Int) {
-        handlePantryStatus(false)
         if (initPantryObserver == null) {
             initPantryObserver = Observer { listIng ->
 //                val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
@@ -113,7 +111,7 @@ class RecipeFragment : Fragment() {
     }
 
     private fun getRecommendedRecipesLocal() {
-        viewModel.getRecommendedRecipesLocal().observe(viewLifecycleOwner) { listRecipe ->
+        viewModel.getRecommendedRecipesLocal().observeOnce(viewLifecycleOwner) { listRecipe ->
             if (listRecipe != null) {
                 updateList(listRecipe)
             }
