@@ -3,6 +3,7 @@ package com.doanda.easymeal.data.source.remote
 import com.doanda.easymeal.data.response.GeneralResponse
 import com.doanda.easymeal.data.response.login.LoginResponse
 import com.doanda.easymeal.data.response.detailrecipe.DetailRecipeResponse
+import com.doanda.easymeal.data.response.favorite.ListFavoriteResponse
 import com.doanda.easymeal.data.response.pantry.ListIngredientResponse
 import com.doanda.easymeal.data.response.recipe.ListRecipeResponse
 import com.doanda.easymeal.data.response.shoppinglist.ShoppingListResponse
@@ -55,7 +56,7 @@ class DummyApiService(
     // FAVORITE
     suspend fun getFavoriteRecipes(
         userId: Int
-    ): ListRecipeResponse {
+    ): ListFavoriteResponse {
         return loadFromJsonListFavoriteResponse(MainApplication.applicationContext())
     }
 

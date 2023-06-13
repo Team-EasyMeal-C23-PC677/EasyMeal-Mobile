@@ -31,7 +31,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.hide()
 
         setupData()
@@ -70,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     val userData = result.data.user
-                    Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
                     loadUserData(userData)
                 }
                 is Result.Error -> {
@@ -99,7 +98,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     if (result.data.isNotEmpty()) {
-                        Toast.makeText(this, "Pantry Loaded", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, "Pantry Loaded", Toast.LENGTH_SHORT).show()
                         pantryLoaded = true
                     }
                     proceed(userData)
@@ -119,7 +118,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     if (result.data.isNotEmpty()) {
-                        Toast.makeText(this, "Favorite Loaded", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, "Favorite Loaded", Toast.LENGTH_SHORT).show()
                         favoriteLoaded = true
                     }
                     proceed(userData)
@@ -139,7 +138,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     if (result.data.isNotEmpty()) {
-                        Toast.makeText(this, "Shopping List Loaded", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, "Shopping List Loaded", Toast.LENGTH_SHORT).show()
                         shoppingLoaded = true
                     }
                     proceed(userData)
@@ -162,14 +161,14 @@ class LoginActivity : AppCompatActivity() {
             pantryLoaded = false
             favoriteLoaded = false
             shoppingLoaded = false
-            Toast.makeText(this, "All loaded!!!!", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "All loaded!!!!", Toast.LENGTH_SHORT).show()
             val user = UserEntity(
                 userId = userData.userId,
-//                        userName = userData.userName,
+//                userName = userData.userName,
                 userEmail = userData.userEmail,
-//                        userPassword = userData.userPassword,
-//                        isLogin = true,
-//                        isFirstTime = false
+//                userPassword = userData.userPassword,
+//                isLogin = true,
+//                isFirstTime = false
             )
             viewModel.saveUser(user)
             viewModel.setLoginStatus(true)
@@ -181,7 +180,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToRegister() {
-        Toast.makeText(this, "Login -> Register", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Login -> Register", Toast.LENGTH_SHORT).show()
         val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         finish()
@@ -189,7 +188,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToWelcome() {
-        Toast.makeText(this, "Login -> Welcome", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Login -> Welcome", Toast.LENGTH_SHORT).show()
         val intentToWelcome = Intent(this@LoginActivity, WelcomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
 //        intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -198,7 +197,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToMain() {
-        Toast.makeText(this, "Login -> Main", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Login -> Main", Toast.LENGTH_SHORT).show()
         val intentToMain = Intent(this@LoginActivity, MainActivity::class.java)
         intentToMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         finish()

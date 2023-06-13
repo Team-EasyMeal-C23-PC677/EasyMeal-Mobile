@@ -8,4 +8,5 @@ class MainViewModel(
 ) : ViewModel() {
     fun getUser() = userRepository.getUser()
     fun getLoginStatus() = userRepository.getLoginStatus()
+    fun getUserName() = userRepository.getUserName()
 }

@@ -30,6 +30,8 @@ class FavoriteAdapter : ListAdapter<RecipeEntity, FavoriteAdapter.ViewHolder>(DI
             with(binding) {
                 tvFavoriteTitle.text = recipe.title
 
+                tvFavoriteDescription.text = recipe.description
+
                 tvFavoriteTime.text =
                     with(itemView.context) {
                         val (hours, minutes) = convertMinuteToHourMinute(recipe.totalTime)
