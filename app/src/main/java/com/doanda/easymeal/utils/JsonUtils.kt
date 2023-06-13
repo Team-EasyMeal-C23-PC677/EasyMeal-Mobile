@@ -6,6 +6,7 @@ import com.doanda.easymeal.R
 import com.doanda.easymeal.data.response.GeneralResponse
 import com.doanda.easymeal.data.response.login.LoginResponse
 import com.doanda.easymeal.data.response.detailrecipe.DetailRecipeResponse
+import com.doanda.easymeal.data.response.favorite.ListFavoriteResponse
 import com.doanda.easymeal.data.response.pantry.ListIngredientResponse
 import com.doanda.easymeal.data.response.recipe.ListRecipeResponse
 import com.doanda.easymeal.data.response.shoppinglist.ShoppingListResponse
@@ -27,7 +28,7 @@ fun getJsonStringFromResource(context: Context, resource: Int): String? {
 fun loadFromJsonListRecipeResponse(
     context: Context,
 ): ListRecipeResponse {
-    val jsonFileString = getJsonStringFromResource(context, R.raw.recipe_response)
+    val jsonFileString = getJsonStringFromResource(context, R.raw.get_all_recipe)
     if (jsonFileString != null) {
 //        Log.i("JSON", jsonFileString)
     } else {
@@ -42,7 +43,7 @@ fun loadFromJsonListRecipeResponse(
 fun loadFromJsonListRecommendedRecipeResponse(
     context: Context,
 ): ListRecipeResponse {
-    val jsonFileString = getJsonStringFromResource(context, R.raw.recommended_recipe_response)
+    val jsonFileString = getJsonStringFromResource(context, R.raw.get_recommended_recipes)
     if (jsonFileString != null) {
 //        Log.i("JSON", jsonFileString)
     } else {
@@ -56,8 +57,8 @@ fun loadFromJsonListRecommendedRecipeResponse(
 
 fun loadFromJsonListFavoriteResponse(
     context: Context,
-): ListRecipeResponse {
-    val jsonFileString = getJsonStringFromResource(context, R.raw.favorite_response)
+): ListFavoriteResponse {
+    val jsonFileString = getJsonStringFromResource(context, R.raw.get_favorite_recipes)
     if (jsonFileString != null) {
 //        Log.i("JSON", jsonFileString)
     } else {
@@ -65,14 +66,14 @@ fun loadFromJsonListFavoriteResponse(
     }
 
     val gson = Gson()
-    val result = object : TypeToken<ListRecipeResponse>() {}.type
+    val result = object : TypeToken<ListFavoriteResponse>() {}.type
     return gson.fromJson(jsonFileString, result)
 }
 
 fun loadFromJsonListIngredientResponse(
     context: Context,
 ): ListIngredientResponse {
-    val jsonFileString = getJsonStringFromResource(context, R.raw.ingredient_response)
+    val jsonFileString = getJsonStringFromResource(context, R.raw.get_all_ingredients)
     if (jsonFileString != null) {
 //        Log.i("JSON", jsonFileString)
     } else {
@@ -87,7 +88,7 @@ fun loadFromJsonListIngredientResponse(
 fun loadFromJsonListUserIngredientResponse(
     context: Context,
 ): ListIngredientResponse {
-    val jsonFileString = getJsonStringFromResource(context, R.raw.user_ingredient_response)
+    val jsonFileString = getJsonStringFromResource(context, R.raw.get_pantry_ingredients)
     if (jsonFileString != null) {
 //        Log.i("JSON", jsonFileString)
     } else {
@@ -102,7 +103,7 @@ fun loadFromJsonListUserIngredientResponse(
 fun loadFromJsonDetailRecipeResponse(
     context: Context,
 ): DetailRecipeResponse {
-    val jsonFileString = getJsonStringFromResource(context, R.raw.detail_recipe_response)
+    val jsonFileString = getJsonStringFromResource(context, R.raw.get_detail_recipe_by_id)
     if (jsonFileString != null) {
 //        Log.i("JSON", jsonFileString)
     } else {
@@ -117,7 +118,7 @@ fun loadFromJsonDetailRecipeResponse(
 fun loadFromJsonShoppingListResponse(
     context: Context
 ): ShoppingListResponse {
-    val jsonFileString = getJsonStringFromResource(context, R.raw.shopping_list_response)
+    val jsonFileString = getJsonStringFromResource(context, R.raw.get_shopping_list)
     if (jsonFileString != null) {
 //        Log.i("JSON", jsonFileString)
     } else {
@@ -132,7 +133,7 @@ fun loadFromJsonShoppingListResponse(
 fun loadFromJsonLoginResponse(
     context: Context
 ): LoginResponse {
-    val jsonFileString = getJsonStringFromResource(context, R.raw.login_response)
+    val jsonFileString = getJsonStringFromResource(context, R.raw.login)
     if (jsonFileString != null) {
 //        Log.i("JSON", jsonFileString)
     } else {

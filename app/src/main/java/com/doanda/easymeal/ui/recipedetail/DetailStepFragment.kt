@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.doanda.easymeal.R
 import com.doanda.easymeal.data.response.detailrecipe.Recipe
 import com.doanda.easymeal.databinding.FragmentDetailStepBinding
 

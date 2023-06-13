@@ -20,7 +20,4 @@ data class ListRecipeItem(
 
 	@field:SerializedName("img_url")
 	val imgUrl: String,
-
-	@field:SerializedName("missing")
-	val missing: List<String>,
 )

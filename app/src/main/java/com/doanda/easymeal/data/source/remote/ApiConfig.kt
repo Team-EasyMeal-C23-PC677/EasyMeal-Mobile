@@ -18,10 +18,9 @@ class ApiConfig {
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .build()
-
-            val dummyApiUrl = "https://easymeal-api.google.com/" // TODO use BuildConfig.API_URL
+            val url = "https://backend-js-dot-capstone-project677.et.r.appspot.com/"
             val retrofit = Retrofit.Builder()
-                .baseUrl(dummyApiUrl)
+                .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

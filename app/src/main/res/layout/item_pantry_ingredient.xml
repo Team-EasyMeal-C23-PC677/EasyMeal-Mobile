@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools"
+<com.google.android.material.chip.Chip
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ch_pantry_ingredient"
+    style="@style/Widget.MaterialComponents.Chip.Choice"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    card_view:cardElevation="0dp">
-    
-    <com.google.android.material.chip.Chip
-        android:id="@+id/ch_pantry_ingredient"
-        style="@style/Widget.MaterialComponents.Chip.Filter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:text="@string/placeholder_ingredient_name"
-        />
-<!--    app:chipBackgroundColor=""-->
-<!--    app:chipStrokeColor=""-->
-</androidx.cardview.widget.CardView>
+    android:layout_marginHorizontal="4dp"
+    android:textSize="12sp"
+    android:text="@string/placeholder_ingredient_name"
+    android:elevation="0dp"
+    android:checked="false"
+    />
+<!--<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:card_view="http://schemas.android.com/tools"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    card_view:cardElevation="0dp"-->
+<!--    app:elevation="0dp"-->
+<!--    android:elevation="0dp">-->
+<!--    -->
+<!--    <com.google.android.material.chip.Chip-->
+<!--        android:id="@+id/ch_pantry_ingredient"-->
+<!--        style="@style/Widget.MaterialComponents.Chip.Filter"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="4dp"-->
+<!--        android:textSize="12sp"-->
+<!--        android:text="@string/placeholder_ingredient_name"-->
+<!--        android:elevation="0dp"-->
+<!--        />-->
+<!--&lt;!&ndash;    app:chipBackgroundColor=""&ndash;&gt;-->
+<!--&lt;!&ndash;    app:chipStrokeColor=""&ndash;&gt;-->
+<!--</androidx.cardview.widget.CardView>-->

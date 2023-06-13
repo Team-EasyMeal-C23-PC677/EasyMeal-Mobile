@@ -42,6 +42,9 @@ interface RecipeDao {
     @Query("SELECT EXISTS(SELECT * FROM recipe WHERE id = :id AND isFavorite = 1)")
     suspend fun isRecipeFavorite(id: Int): Boolean
 
+    @Query("SELECT recipe.isFavorite FROM recipe WHERE id = :id")
+    fun isRecipeFavoriteObserve(id: Int): LiveData<Boolean>
+
     @Query("SELECT EXISTS(SELECT * FROM recipe WHERE id = :id AND isRecommended = 1)")
     suspend fun isRecipeRecommended(id: Int): Boolean
 

@@ -1,0 +1,30 @@
+{
+    "error": false,
+    "message": "Success",
+    "listIngredient": [
+        {
+            "id": 2,
+            "ingName": "Wijen putih",
+            "qty": 2,
+            "unit": "sdm"
+        },
+        {
+            "id": 8,
+            "ingName": "Baking powder",
+            "qty": 0.25,
+            "unit": "sdt"
+        },
+        {
+            "id": 14,
+            "ingName": "Bawang Putih",
+            "qty": 3,
+            "unit": "siung"
+        },
+        {
+            "id": 15,
+            "ingName": "Jahe",
+            "qty": 1,
+            "unit": "cm"
+        }
+    ]
+}

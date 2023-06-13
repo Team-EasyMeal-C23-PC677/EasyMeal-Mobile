@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,68 +8,80 @@
     android:layout_height="match_parent"
     tools:context=".ui.pantry.PantryFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp">
-
-        <!--    <include-->
-        <!--        android:id="@+id/recipe_searchbar"-->
-        <!--        layout="@layout/component_searchbar" />-->
+        android:paddingEnd="16dp"
+        android:paddingBottom="80dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_pantry_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_pantry_to_recipe"
             tools:listitem="@layout/item_category" />
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 
         <TextView
             android:id="@+id/tv_pantry_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apa Isi Kulkasmu?"
+            android:text="@string/what_in_pantry"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="14sp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
-        <!--        app:layout_constraintBottom_toTopOf="@+id/btn_pantry_have"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/recipe_searchbar"-->
 
-        <Button
-            android:id="@+id/btn_pantry_have"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_pantry_desc"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Tampilkan Milik Saya"
-            android:textStyle="bold"
-            android:textSize="14sp"
+            android:text="@string/what_in_pantry_desc"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pantry_title"
             />
-        <!--        app:layout_constraintBottom_toTopOf="@+id/btn_pantry_to_recipe"-->
+
+<!--        TODO implement filter-->
+        <Button
+            android:id="@+id/btn_pantry_have"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Button.Primary"
+            android:text="@string/show_pantry_ishave"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pantry_desc"
+            />
 
         <Button
             android:id="@+id/btn_pantry_to_recipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Button.Secondary"
-            android:text="Lihat Rekomendasi Resep"
+            android:text="@string/recommend_recipes"
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="12sp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_pantry_have"
             />
-        <!--        app:layout_constraintBottom_toTopOf="@+id/rv_pantry_category"-->
 
         <ProgressBar
             android:id="@+id/progress_bar"

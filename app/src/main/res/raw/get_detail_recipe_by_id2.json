@@ -1,0 +1,84 @@
+{
+    "error": false,
+    "message": "Success",
+    "recipe": {
+        "id": 2,
+        "title": "Ayam Kukus Bawang Putih",
+        "description": "Selain merupakan sumber protein hewani, ayam kukus cenderung mudah diterima anak karena teksturnya yang lembut, mudah meresap dengan bumbu sehingga lezat, dan relatif aman untuk dikenalkan karena minim allergen. Sementara itu, sumber karbohidratnya bisa berasal dari nasi tim yang gurih dan lembut. ",
+        "totalTime": 60,
+        "serving": 4,
+        "imgUrl": "https://storage.googleapis.com/capstone-project677/ayam_kukus_bawang_putih.jpeg",
+        "listIngredient": [
+            {
+                "id": 9,
+                "name": "Garam",
+                "qty": 2.5,
+                "unit": "gram"
+            },
+            {
+                "id": 10,
+                "name": "Ayam",
+                "qty": 500,
+                "unit": "gram"
+            },
+            {
+                "id": 11,
+                "name": "Minyak Wijen",
+                "qty": 1,
+                "unit": "sdm"
+            },
+            {
+                "id": 12,
+                "name": "Royco kaldu Ayam Spesial",
+                "qty": 1,
+                "unit": "sdt"
+            },
+            {
+                "id": 13,
+                "name": "Merica putih",
+                "qty": 2.5,
+                "unit": "sdt"
+            },
+            {
+                "id": 14,
+                "name": "Bawang Putih",
+                "qty": 3,
+                "unit": "siung"
+            },
+            {
+                "id": 15,
+                "name": "Jahe",
+                "qty": 1,
+                "unit": "cm"
+            },
+            {
+                "id": 16,
+                "name": "Daun bawang",
+                "qty": 1,
+                "unit": "Batang"
+            }
+        ],
+        "listStep": [
+            {
+                "id": 1,
+                "no": 1,
+                "description": "Lumuri seluruh bagian daging ayam dengan minyak wijen, Royco Kaldu Ayam Spesial, garam, merica, bawang putih, jahe, dan daun bawang yang sudah di potong kasar hingga merata."
+            },
+            {
+                "id": 2,
+                "no": 2,
+                "description": "Diamkan dalam kulkas minimal selama 2 jam agar bumbunya meresap. Keluarkan."
+            },
+            {
+                "id": 3,
+                "no": 3,
+                "description": "Kukus dalam dandang panas hingga matang. Angkat."
+            },
+            {
+                "id": 4,
+                "no": 4,
+                "description": "Sajikan bersama nasi"
+            }
+        ]
+    }
+}

@@ -1,5 +1,6 @@
 package com.doanda.easymeal.data.response.login
 
+import com.doanda.easymeal.utils.defaultUser
 import com.google.gson.annotations.SerializedName
 
 data class LoginResponse(

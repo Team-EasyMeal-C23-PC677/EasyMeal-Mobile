@@ -7,12 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import com.doanda.easymeal.data.source.model.IngredientEntity
 import com.doanda.easymeal.data.source.model.RecipeEntity
 import com.doanda.easymeal.databinding.FragmentRecipeBinding
 import com.doanda.easymeal.ui.ViewModelFactory
+import com.doanda.easymeal.ui.pantry.PantryFragment
 import com.doanda.easymeal.ui.recipedetail.RecipeDetailActivity
 import com.doanda.easymeal.utils.Result
 import observeOnce
@@ -24,6 +28,9 @@ class RecipeFragment : Fragment() {
 
     private lateinit var adapter: RecipeAdapter
 
+
+    private var initPantryObserver: Observer<List<IngredientEntity>>? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,16 +38,19 @@ class RecipeFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Setup views
         getUser()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+//        initPantryObserver?.let {
+//            viewModel.getPantryIngredientsLocal().removeObservers(viewLifecycleOwner)
+//        }
+        viewModel.getRecommendedRecipes(-1).removeObservers(viewLifecycleOwner)
     }
 
     private fun getUser() {
@@ -77,10 +87,35 @@ class RecipeFragment : Fragment() {
     }
 
     private fun setupData(userId: Int) {
-        viewModel.isPantryNotEmpty().observeOnce(viewLifecycleOwner) {pantryNotEmpty ->
-            handlePantryStatus(pantryNotEmpty)
-            if (pantryNotEmpty) {
-                getRecommendedRecipes(userId)
+        handlePantryStatus(false)
+        if (initPantryObserver == null) {
+            initPantryObserver = Observer { listIng ->
+//                val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
+//                val notEmpty = listIng.isNotEmpty()
+//                handlePantryStatus(isPantryUpdated)
+//                if (notEmpty && isPantryUpdated)
+//                    getRecommendedRecipes(userId)
+                val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
+                val notEmpty = listIng.isNotEmpty()
+                handlePantryStatus(notEmpty)
+                if (notEmpty)
+                    getRecommendedRecipes(userId)
+            }
+            viewModel.getPantryIngredientsLocal().observeOnce(viewLifecycleOwner, initPantryObserver!!)
+        }
+//        val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
+//        if (isPantryUpdated) {
+//            getRecommendedRecipes(userId)
+//        } else {
+//            getRecommendedRecipesLocal()
+//        }
+        getRecommendedRecipesLocal()
+    }
+
+    private fun getRecommendedRecipesLocal() {
+        viewModel.getRecommendedRecipesLocal().observe(viewLifecycleOwner) { listRecipe ->
+            if (listRecipe != null) {
+                updateList(listRecipe)
             }
         }
     }
@@ -143,8 +178,14 @@ class RecipeFragment : Fragment() {
     }
 
     private fun handlePantryStatus(pantryNotEmpty: Boolean) {
-        binding.rvRecipe.visibility = if (pantryNotEmpty) View.VISIBLE else View.GONE
-        binding.tvEmptyPantry.visibility = if(pantryNotEmpty) View.GONE else View.VISIBLE
+        with (binding) {
+            rvRecipe.visibility = if (pantryNotEmpty) View.VISIBLE else View.GONE
+            tvRecipes.visibility = if (pantryNotEmpty) View.VISIBLE else View.GONE
+
+            ivIllustEmptyPantry.visibility = if (pantryNotEmpty) View.GONE else View.VISIBLE
+            tvEmptyPantry.visibility = if (pantryNotEmpty) View.GONE else View.VISIBLE
+            tvEmptyPantryDesc.visibility = if (pantryNotEmpty) View.GONE else View.VISIBLE
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {

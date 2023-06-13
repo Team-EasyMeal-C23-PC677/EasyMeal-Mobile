@@ -25,18 +25,20 @@
         android:id="@+id/ch_detail_pantry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="false"
+        android:checkable="true"
         style="@style/Chip.Pantry"
         app:shapeAppearanceOverlay="@style/Chip.Pantry"
+        app:checkedIcon="@null"
         app:chipIcon="@drawable/ic_round_check_circle_outline"/>
 
     <com.google.android.material.chip.Chip
         android:id="@+id/ch_detail_shopping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="false"
+        android:checkable="true"
         style="@style/Chip.Shopping"
         app:shapeAppearanceOverlay="@style/Chip.Shopping"
+        app:checkedIcon="@null"
         app:chipIcon="@drawable/ic_round_shopping_cart"/>
 
 </LinearLayout>

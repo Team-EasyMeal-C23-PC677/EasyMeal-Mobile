@@ -1,0 +1,95 @@
+{
+    "error": false,
+    "message": "Success",
+    "recipe": {
+        "id": 1,
+        "title": "Pisang Goreng Crispy",
+        "description": "Berbeda dengan pisang goreng biasa, tambahan wijen dalam adonannya akan menambah rasa dan juga tekstur lapisan adonan pisang. Selain itu, ada tambahan gula pasir dan kelapa kering pada lapisan crispy pisang yang bikin adonan tepungnya jadi legit dan gurih.",
+        "totalTime": 60,
+        "serving": 4,
+        "imgUrl": "https://storage.googleapis.com/capstone-project677/pisang%20goreng%20krispi.jpg",
+        "listIngredient": [
+            {
+                "id": 1,
+                "name": "Pisang tanduk",
+                "qty": 2,
+                "unit": "buah"
+            },
+            {
+                "id": 2,
+                "name": "Wijen putih",
+                "qty": 2,
+                "unit": "sdm"
+            },
+            {
+                "id": 3,
+                "name": "Minyak",
+                "qty": 250,
+                "unit": "ml"
+            },
+            {
+                "id": 4,
+                "name": "Tepung beras",
+                "qty": 100,
+                "unit": "gram"
+            },
+            {
+                "id": 5,
+                "name": "Kelapa parut kering",
+                "qty": 3,
+                "unit": "sdm"
+            },
+            {
+                "id": 6,
+                "name": "Air",
+                "qty": 130,
+                "unit": "ml"
+            },
+            {
+                "id": 7,
+                "name": "Gula pasir",
+                "qty": 3,
+                "unit": "sdm"
+            },
+            {
+                "id": 8,
+                "name": "Baking powder",
+                "qty": 0.25,
+                "unit": "sdt"
+            },
+            {
+                "id": 9,
+                "name": "Garam",
+                "qty": 0.25,
+                "unit": "sdt"
+            }
+        ],
+        "listStep": [
+            {
+                "id": 1,
+                "no": 1,
+                "description": "Kupas pisang tanduk, belah dua memanjang. Potong masing-masing menjadi 3-4 bagian.  Sisihkan."
+            },
+            {
+                "id": 2,
+                "no": 2,
+                "description": "Adonan: Campur tepung beras , dan kelapa parut kering. Tuang air, gula, dan garam, aduk hingga tercampur rata. Tambahkan wijen, aduk rata."
+            },
+            {
+                "id": 3,
+                "no": 3,
+                "description": "Celupkan potongan pisang ke dalam adonan tepung."
+            },
+            {
+                "id": 4,
+                "no": 4,
+                "description": "Panaskan minyak, goreng pisang hingga matang dan kecokelatan. Angkat dan tiriskan."
+            },
+            {
+                "id": 5,
+                "no": 5,
+                "description": "Siapkan piring, Makanan siap untuk di sajikan."
+            }
+        ]
+    }
+}

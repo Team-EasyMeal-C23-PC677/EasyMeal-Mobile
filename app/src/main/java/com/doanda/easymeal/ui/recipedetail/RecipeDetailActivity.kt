@@ -1,79 +1,100 @@
 package com.doanda.easymeal.ui.recipedetail
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.doanda.easymeal.R
 import com.doanda.easymeal.data.response.detailrecipe.Recipe
 import com.doanda.easymeal.databinding.ActivityRecipeDetailBinding
 import com.doanda.easymeal.ui.ViewModelFactory
-import com.doanda.easymeal.utils.loadFromJsonDetailRecipeResponse
+import com.doanda.easymeal.utils.Result
 import com.google.android.material.tabs.TabLayoutMediator
 import convertMinuteToHourMinute
+import observeOnce
 
 class RecipeDetailActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityRecipeDetailBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<RecipeDetailViewModel> {ViewModelFactory.getInstance(this)}
-    private var recipeId: Int? = null
+
+    private lateinit var adapter: SectionsPagerAdapter
+    private var isFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-//        getUser()
+        getUser()
     }
 
     private fun getUser() {
-//        viewModel.getUser().observe(this) { user ->
-//            if (user.isLogin) {
-//                setupData(user.userId)
-//            }
-//        }
-        viewModel.getLoginStatus().observe(this) { isLogin ->
-            if (isLogin) {
-                viewModel.getUser().observe(this) { user ->
-                    setupData(user.userId)
+        val recipeId = intent.getIntExtra(EXTRA_RECIPE_ID, -1)
+        viewModel.getUser().observeOnce(this) { user ->
+            if (user.userId != -1 && recipeId != -1) {
+                setupData(user.userId, recipeId)
+            }
+        }
+    }
+    private fun setupData(userId: Int, recipeId: Int) {
+
+        viewModel.getDetailRecipeById(recipeId).observe(this) { result ->
+            when (result) {
+                is Result.Success -> {
+                    showLoading(false)
+                    val data = result.data.recipe
+                    setupView(userId, data)
+                }
+                is Result.Loading -> showLoading(true)
+                is Result.Error -> {
+                    showLoading(false)
+                    val message = "Failed loading recipe detail"
+                    Log.e(TAG, result.error + message)
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    private fun setupData(userId: Int) {
-        // TODO observe getRecipeDetail, if Success then
-        val dataRecipeDetail = loadFromJsonDetailRecipeResponse(this@RecipeDetailActivity )
-
-
-        recipeId = intent.getIntExtra(EXTRA_RECIPE_ID, 1)
-        if (recipeId != null) {
-            showLoading(false)
-            val recipe = dataRecipeDetail.recipe
-            if (recipe != null) {
-                setupView(recipe)
+    private fun setupView(userId: Int, recipe: Recipe) {
+        viewModel.getIngredientsByIds(recipe.listIngredient.map { it.id }).observe(this) { listIng ->
+            if (listIng != null) {
+                val listMissingIngs = listIng.filter { !it.isHave }.map { it.ingName }
+                if (listMissingIngs.isEmpty()) {
+                    binding.tvDetailStatus.text = getString(R.string.have_all_ingredients)
+                    binding.tvDetailStatus.setTextColor(getColor(R.color.primary))
+                } else {
+                    binding.tvDetailStatus.text = getString(R.string.ingredients_missing).format(listMissingIngs.joinToString(", "))
+                    binding.tvDetailStatus.setTextColor(getColor(R.color.red_theme))
+                }
             }
         }
-    }
 
-    private fun checkIfRecipeBookmarked(recipeId: Int?) {
-//        TODO("Not yet implemented")
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-
-    private fun setupView(recipe: Recipe) {
-        val adapter = SectionsPagerAdapter(this)
-        adapter.recipe = recipe
-        binding.viewPager.adapter = adapter
-        TabLayoutMediator(binding.tlDetailTabs, binding.viewPager) { tab, position ->
-            tab.text = getString(TAB_TITLES[position])
+        viewModel.isRecipeFavoriteLocal(recipe.id).observe(this) { isFavorite ->
+            if (isFavorite != null) {
+                this.isFavorite = isFavorite
+                val iconColor = if (isFavorite) ContextCompat.getColor(this, R.color.red_theme) else ContextCompat.getColor(this, R.color.grey)
+                val iconColorStateList = ColorStateList.valueOf(iconColor)
+                binding.fabDetailFavorite.imageTintList = iconColorStateList
+            }
         }
 
-        checkIfRecipeBookmarked(recipe.id)
+        adapter = SectionsPagerAdapter(this)
+        adapter.recipe = recipe
+        adapter.userId = userId
+
+        binding.viewPager.adapter = adapter
+
+        TabLayoutMediator(binding.tlDetailTabs, binding.viewPager) { tab, position ->
+            tab.text = getString(TAB_TITLES[position])
+        }.attach()
+
         binding.tvDetailTitle.text = recipe.title
         binding.tvDetailDescription.text = recipe.description
 
@@ -91,13 +112,50 @@ class RecipeDetailActivity : AppCompatActivity() {
             .load(recipe.imgUrl)
             .into(binding.ivDetailImage)
 
-        binding.fabDetailBack.setOnClickListener {
-            // TODO handle back
-        }
-
         binding.fabDetailFavorite.setOnClickListener {
-            // TODO handle favorite button
+            updateFavorite(userId, recipe.id, this.isFavorite)
         }
+        binding.fabDetailBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    private fun updateFavorite(userId: Int, recipeId: Int, oldIsFavorite: Boolean) {
+        if (oldIsFavorite) {
+            viewModel.deleteFavoriteRecipe(userId, recipeId).observe(this) { result ->
+                when (result) {
+                    is Result.Success -> {
+                        showLoading(false)
+                    }
+                    is Result.Loading -> showLoading(true)
+                    is Result.Error -> {
+                        showLoading(false)
+                        val message = "Delete favorite failed"
+                        Log.e(TAG, result.error + message)
+                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        } else {
+            viewModel.addFavoriteRecipe(userId, recipeId).observe(this) { result ->
+                when (result) {
+                    is Result.Success -> {
+                        showLoading(false)
+                    }
+                    is Result.Loading -> showLoading(true)
+                    is Result.Error -> {
+                        showLoading(false)
+                        val message = "Add favorite failed"
+                        Log.e(TAG, result.error + message)
+                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object {

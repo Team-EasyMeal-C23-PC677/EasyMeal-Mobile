@@ -2,22 +2,21 @@ package com.doanda.easymeal.ui.recipedetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.doanda.easymeal.R
-import com.doanda.easymeal.data.response.detailrecipe.ListDetailIngredientItem
-import com.doanda.easymeal.data.response.recipe.ListRecipeItem
+import com.doanda.easymeal.data.source.model.DetailIngredientEntity
 import com.doanda.easymeal.databinding.ItemDetailIngredientBinding
 import convertDecimalToFraction
 
-// TODO replace ListDetailIngredientItem with IngredientEntity
-class DetailIngredientAdapter(private val listDetailIngredient: List<ListDetailIngredientItem?>)
-    : RecyclerView.Adapter<DetailIngredientAdapter.ViewHolder>(){
+class DetailIngredientAdapter : ListAdapter<DetailIngredientEntity, DetailIngredientAdapter.ViewHolder>(DIFF_CALLBACK){
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onPantryCheckboxClicked(detailIngredient: ListDetailIngredientItem)
-        fun onShoppingCheckboxClicked(detailIngredient: ListDetailIngredientItem)
+        fun onPantryCheckboxClicked(detailIng: DetailIngredientEntity)
+        fun onShoppingCheckboxClicked(detailIng: DetailIngredientEntity)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -26,17 +25,14 @@ class DetailIngredientAdapter(private val listDetailIngredient: List<ListDetailI
 
     inner class ViewHolder(val binding: ItemDetailIngredientBinding)
         : RecyclerView.ViewHolder(binding.root) {
-        fun bind(detailIngredient: ListDetailIngredientItem?) {
-            with(binding) {
-                detailIngredient?.let {
-                    tvDetailIngredientQty.text =
-                        itemView.context.getString(R.string.detail_ingredient_qty)
-                            .format(
-                                convertDecimalToFraction(detailIngredient.qty),
-                                detailIngredient.unit
-                            )
-                    tvDetailIngredientName.text = detailIngredient.name
-                }
+        fun bind(detailIng: DetailIngredientEntity) {
+            with (binding) {
+                tvDetailIngredientQty.text = itemView.context.getString(R.string.detail_ingredient_qty)
+                    .format(
+                        convertDecimalToFraction(detailIng.qty),
+                        detailIng.unit
+                    )
+                tvDetailIngredientName.text = detailIng.ingName
             }
         }
     }
@@ -46,27 +42,38 @@ class DetailIngredientAdapter(private val listDetailIngredient: List<ListDetailI
         return ViewHolder(binding)
     }
 
-    override fun getItemCount() = listDetailIngredient.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val detailIngredient = listDetailIngredient[position]
-        holder.bind(detailIngredient)
+        val detailIng = getItem(position)
+        holder.bind(detailIng)
 
         holder.binding.chDetailPantry.setOnCheckedChangeListener(null)
         holder.binding.chDetailShopping.setOnCheckedChangeListener(null)
 
-        // TODO use IngredientEntity isHave
-        holder.binding.chDetailPantry.isChecked = false
-        holder.binding.chDetailShopping.isChecked = false
+        holder.binding.chDetailPantry.isChecked = detailIng.isInPantry
+        holder.binding.chDetailShopping.isChecked = detailIng.isInShoppingList
 
-        holder.binding.chDetailPantry.setOnCheckedChangeListener { _, isChecked ->
-            // TODO implement chip checked change
+        holder.binding.chDetailPantry.isSelected = detailIng.isInPantry
+        holder.binding.chDetailShopping.isSelected = detailIng.isInShoppingList
+
+        holder.binding.chDetailPantry.setOnCheckedChangeListener { _, _ ->
+            onItemClickCallback.onPantryCheckboxClicked(detailIng)
         }
 
-        holder.binding.chDetailShopping.setOnCheckedChangeListener { _, isChecked ->
-            // TODO implement chip checked change
+        holder.binding.chDetailShopping.setOnCheckedChangeListener { _, _ ->
+            onItemClickCallback.onShoppingCheckboxClicked(detailIng)
         }
-
-
     }
+
+    companion object {
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<DetailIngredientEntity> = object : DiffUtil.ItemCallback<DetailIngredientEntity>() {
+            override fun areItemsTheSame(oldItem: DetailIngredientEntity, newItem: DetailIngredientEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: DetailIngredientEntity, newItem: DetailIngredientEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+
 }

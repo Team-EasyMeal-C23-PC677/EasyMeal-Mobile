@@ -5,8 +5,31 @@
     style="@style/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_theme"
     tools:context=".ui.login.LoginActivity">
+
+    <ImageView
+        android:id="@+id/iv_illust_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/illust_login"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login_desc"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_illust_login" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tf_login_email"
@@ -56,7 +79,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/login"
         app:layout_constraintBottom_toTopOf="@+id/login_or"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +89,7 @@
         android:id="@+id/login_or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/or"
         app:layout_constraintBottom_toTopOf="@+id/btn_to_register"
         app:layout_constraintEnd_toEndOf="parent"

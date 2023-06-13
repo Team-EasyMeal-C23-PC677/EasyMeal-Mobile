@@ -1,0 +1,31 @@
+{
+    "error": false,
+    "message": "Success",
+    "listIngredient": [
+        {
+            "ingId": 1,
+            "categoryName": "Buah-buahan",
+            "ingName": "Pisang tanduk"
+        },
+        {
+            "ingId": 3,
+            "categoryName": "Minyak dan lemak",
+            "ingName": "Minyak"
+        },
+        {
+            "ingId": 6,
+            "categoryName": "Minuman",
+            "ingName": "Air"
+        },
+        {
+            "ingId": 7,
+            "categoryName": "Bahan Manis",
+            "ingName": "Gula pasir"
+        },
+        {
+            "ingId": 9,
+            "categoryName": "Bahan Umum",
+            "ingName": "Garam"
+        }
+    ]
+}
