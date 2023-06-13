@@ -11,5 +11,5 @@ data class ListRecipeResponse(
 	val message: String,
 
 	@field:SerializedName("listRecipe")
-	val listRecipe: List<ListRecipeItem>
+	val listRecipe: List<ListRecipeItem> = emptyList()
 )
