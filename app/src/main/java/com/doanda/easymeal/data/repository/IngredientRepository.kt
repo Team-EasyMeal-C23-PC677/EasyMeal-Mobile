@@ -7,7 +7,6 @@ import androidx.lifecycle.map
 import com.doanda.easymeal.data.response.GeneralResponse
 import com.doanda.easymeal.data.source.database.IngredientDao
 import com.doanda.easymeal.data.source.database.ShoppingDao
-import com.doanda.easymeal.data.source.model.DetailIngredientEntity
 import com.doanda.easymeal.data.source.model.IngredientEntity
 import com.doanda.easymeal.data.source.model.ShoppingItemEntity
 import com.doanda.easymeal.data.source.remote.ApiService
@@ -138,16 +137,7 @@ class IngredientRepository(
     = ingredientDao.searchIngredientByName(ingName)
 
     fun getIngredientsByIds(listId: List<Int>) = ingredientDao.getIngredientsByIds(listId)
-
-//    fun getDetailIngredientsByIds(listId: List<Int>) : LiveData<List<DetailIngredientEntity>>
-//    = liveData {
-//        val listResult = mutableListOf<DetailIngredientEntity>()
-//        listId.forEach { id ->
-//            val ing = ingredientDao.getIngredientById(id)
-//            val item = shoppingDao.getShoppingListItemById(id)
-//
-//        }
-//    }
+    suspend fun clearPantry() = ingredientDao.resetHave()
 
     companion object {
         private const val TAG = "IngredientRepository"

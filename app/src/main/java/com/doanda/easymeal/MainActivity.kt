@@ -16,6 +16,7 @@ import com.doanda.easymeal.databinding.ActivityMainBinding
 import com.doanda.easymeal.ui.ViewModelFactory
 import com.doanda.easymeal.ui.detection.DetectionActivity
 import com.doanda.easymeal.ui.login.LoginActivity
+import com.doanda.easymeal.ui.setting.SettingActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import observeOnce
 
@@ -45,24 +46,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
         setupView()
+//        binding.fabCamera.setOnClickListener {
+//            goToSetting()
+//        }
     }
 
     private fun goToLogin() {
         Toast.makeText(this, "Main -> Login", Toast.LENGTH_SHORT).show()
         val intent = Intent(this@MainActivity, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//        intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
         finish()
         startActivity(intent)
     }
 
-//    private fun goToWelcome() {
-//        Toast.makeText(this, "Main -> Welcome", Toast.LENGTH_SHORT).show()
-//        val intent = Intent(this@MainActivity, WelcomeActivity::class.java)
-//        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//        finish()
-//        startActivity(intent)
-//    }
+    private fun goToSetting() {
+        Toast.makeText(this, "Main -> Setting", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this@MainActivity, SettingActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun setupView() {
         Toast.makeText(this, "Main setup view", Toast.LENGTH_SHORT).show()
