@@ -11,8 +11,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.compose.ui.input.key.Key.Companion.Back
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import com.doanda.easymeal.MainActivity
 import com.doanda.easymeal.R
@@ -50,7 +48,7 @@ class DetectionResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.hide()
 
         setupData()
     }
@@ -60,11 +58,10 @@ class DetectionResultActivity : AppCompatActivity() {
         file = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getSerializableExtra(EXTRA_PICTURE, File::class.java)
         } else {
+            @Suppress("DEPRECATION")
             intent.getSerializableExtra(EXTRA_PICTURE) as File
         }
         isBack = intent.getBooleanExtra(EXTRA_IS_BACK_CAMERA, true)
-
-
 
         appExecutor.diskIO.execute {
             file = reduceFileImage(file as File)
@@ -132,17 +129,10 @@ class DetectionResultActivity : AppCompatActivity() {
                 }
             }
             val classes = arrayOf("jahe", "kunyit", "lengkuas")
-//            result!!.text = classes[maxPos]
 
             this.labels = classes
             this.confidences = confidences
             this.detectedIng = classes[maxPos]
-
-//            var s = ""
-//            for (i in classes.indices) {
-//                s += String.format("%s: %.1f%%\n", classes[i], confidences[i] * 100)
-//            }
-//            confidence!!.text = s
 
             // Releases model resources if no longer used.
             handleDetectionResults()
@@ -161,29 +151,13 @@ class DetectionResultActivity : AppCompatActivity() {
             val listDetection = mutableListOf<DetectionEntity>()
 
             var maxConfidence = 0.0f
-            var maxPos = 0
             for (i in confidences.indices) {
                 if (confidences[i] > maxConfidence) {
                     maxConfidence = confidences[i]
-                    maxPos = i
                 }
-//                val data = viewModel.searchIngredientByName(labels[i])
-//                data.confidence = confidences[i]
-//                listDetection.add(data)
             }
 
             if (maxConfidence > 0.5f) {
-                //                val bestMatch = viewModel.searchIngredientByName(detectedIng)
-//                bestMatch.confidence = confidences[maxPos]
-//
-//                viewModel.getUser().observe(this) { user ->
-//                    if (user.isLogin) {
-//                        setupView(user.userId, listDetection, bestMatch)
-//                    } else {
-//                        Toast.makeText(this, "Not logged in!", Toast.LENGTH_SHORT).show()
-////                    goToLogin() TODO implement
-//                    }
-//                }
                 viewModel.searchIngredientByName(detectedIng).observe(this) { listResult ->
                     if (listResult.isNotEmpty()) {
                         val result = listResult.first()
@@ -194,26 +168,11 @@ class DetectionResultActivity : AppCompatActivity() {
                             result.isHave,
                             confidence = maxConfidence
                         )
-
-//                        viewModel.getUser().observe(this) { user ->
-//                            if (user.isLogin) {
-//                                setupView(user.userId, listDetection, data)
-//                            } else {
-//                                Toast.makeText(this, "Not logged in!", Toast.LENGTH_SHORT).show()
-////                          goToLogin() TODO implement
-//                            }
-//                        }
-                        viewModel.getLoginStatus().observe(this) {isLogin ->
-                            if (isLogin) {
-                                viewModel.getUser().observe(this) { user ->
-                                    setupView(user.userId, listDetection, data)
-                                }
-                            } else {
-                                Toast.makeText(this, "Not logged in!", Toast.LENGTH_SHORT).show()
-//                              goToLogin() TODO implement
+                        viewModel.getUser().observe(this) { user ->
+                            if (user != null) {
+                                setupView(user.userId, listDetection, data)
                             }
                         }
-
                     } else {
                         handleNotDetected()
                     }
@@ -221,41 +180,30 @@ class DetectionResultActivity : AppCompatActivity() {
             } else {
                 handleNotDetected()
             }
-
-
         }
         // TODO implement list of detection
     }
 
     private fun handleNotDetected() {
-        binding.btnAddPantry.text = getString(R.string.return_to_main)
-        binding.btnAddPantry.setOnClickListener {
-            goToMain()
-        }
+        binding.tvMostLikely.text = getString(R.string.detection_failed)
+        binding.btnAddPantry.visibility = View.GONE
     }
-
-
 
     private fun setupView(userId: Int, listDetection: MutableList<DetectionEntity>, bestMatch: DetectionEntity) {
         binding.tvMostLikely.text = getString(R.string.most_likely).format(bestMatch.ingName)
 
-        binding.tvDetection.visibility = View.GONE
-        binding.rvDetectedIngredients.visibility = View.GONE
-
-
+        binding.btnBack.setOnClickListener {
+            goToMain()
+        }
         if (bestMatch.isHave == true) {
             binding.tvMostLikely.text = getString(R.string.already_in_pantry).format(bestMatch.ingName)
-            binding.btnAddPantry.text = getString(R.string.return_to_main)
-            binding.btnAddPantry.setOnClickListener {
-                goToMain()
-            }
+            binding.btnAddPantry.visibility = View.GONE
         } else {
             binding.btnAddPantry.setOnClickListener {
                 viewModel.addPantryIngredient(userId, bestMatch.ingId).observe(this) { result ->
                     when (result) {
                         is Result.Success -> {
                             showLoading(false)
-                            // TODO handle success
                             Toast.makeText(this, getString(R.string.ingredient_added).format(bestMatch.ingName), Toast.LENGTH_SHORT).show()
                             goToMain()
                         }
@@ -279,18 +227,9 @@ class DetectionResultActivity : AppCompatActivity() {
         finish()
     }
 
-
-    private fun goToLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-        finish()
-    }
-
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
-
 
     companion object {
         const val EXTRA_PICTURE = "extra_picture"
@@ -298,19 +237,6 @@ class DetectionResultActivity : AppCompatActivity() {
         const val EXTRA_IS_BACK_CAMERA = "extra_is_back_camera"
         private val TAG = "DetectionResultActivity"
         private val imageSize = 224
-//        private val mInputSize = 224
-//        private val mModelPath = "model.tflite"
-//        private val mLabelPath = "labels.txt"
     }
 
-    //    private fun classifyImage(file: File) {
-//        Toast.makeText(this, "Classifying image", Toast.LENGTH_SHORT).show()
-//        val bitmap = BitmapFactory.decodeFile(file.path)
-//        val classifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)
-//
-//        binding.ivDetectionImage.setImageBitmap(bitmap)
-//
-//        val result = classifier.recognizeImage(bitmap)
-//        binding.tvDetection.text = result[0].title
-//    }
 }

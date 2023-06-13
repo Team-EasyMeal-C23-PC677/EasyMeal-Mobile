@@ -90,4 +90,5 @@
     <string name="import_from_gallery">Impor dari galeri</string>
     <string name="ingredient_not_recognized">Tidak mengenali bahan?</string>
     <string name="ingredient_not_recognized_desc">Ambil fotonya untuk mendeteksi bahan</string>
+    <string name="detection_failed">Maaf, tidak dapat mendeteksi bahan</string>
 </resources>
