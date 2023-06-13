@@ -17,7 +17,6 @@ import com.doanda.easymeal.R
 import com.doanda.easymeal.data.source.model.DetectionEntity
 import com.doanda.easymeal.databinding.ActivityDetectionResultBinding
 import com.doanda.easymeal.ui.ViewModelFactory
-import com.doanda.easymeal.ui.login.LoginActivity
 import com.doanda.easymeal.utils.*
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -157,7 +156,7 @@ class DetectionResultActivity : AppCompatActivity() {
                 }
             }
 
-            if (maxConfidence > 0.5f) {
+            if (maxConfidence > 0.8f) {
                 viewModel.searchIngredientByName(detectedIng).observe(this) { listResult ->
                     if (listResult.isNotEmpty()) {
                         val result = listResult.first()
@@ -181,7 +180,10 @@ class DetectionResultActivity : AppCompatActivity() {
                 handleNotDetected()
             }
         }
-        // TODO implement list of detection
+
+        binding.btnBack.setOnClickListener {
+            goToMain()
+        }
     }
 
     private fun handleNotDetected() {
@@ -192,9 +194,7 @@ class DetectionResultActivity : AppCompatActivity() {
     private fun setupView(userId: Int, listDetection: MutableList<DetectionEntity>, bestMatch: DetectionEntity) {
         binding.tvMostLikely.text = getString(R.string.most_likely).format(bestMatch.ingName)
 
-        binding.btnBack.setOnClickListener {
-            goToMain()
-        }
+
         if (bestMatch.isHave == true) {
             binding.tvMostLikely.text = getString(R.string.already_in_pantry).format(bestMatch.ingName)
             binding.btnAddPantry.visibility = View.GONE
