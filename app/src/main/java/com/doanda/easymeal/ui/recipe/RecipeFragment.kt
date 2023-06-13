@@ -24,6 +24,8 @@ class RecipeFragment : Fragment() {
 
     private lateinit var adapter: RecipeAdapter
 
+//    private var pantryObserver: Observer<List<IngredientEntity>>? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,18 +33,20 @@ class RecipeFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Setup views
         getUser()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
+    override fun onDestroyView() {
+        super.onDestroyView()
 
+//        pantryObserver?.let {
+//            viewModel.getPantryIngredientsLocal().removeObserver(it)
+//            pantryObserver = null
+//        }
+    }
     private fun getUser() {
         viewModel.getUser().observeOnce(viewLifecycleOwner) { user ->
             if (user.userId != -1) {
@@ -77,12 +81,34 @@ class RecipeFragment : Fragment() {
     }
 
     private fun setupData(userId: Int) {
-        viewModel.isPantryNotEmpty().observeOnce(viewLifecycleOwner) {pantryNotEmpty ->
-            handlePantryStatus(pantryNotEmpty)
-            if (pantryNotEmpty) {
+//        viewModel.isPantryNotEmpty().observeOnce(viewLifecycleOwner) {pantryNotEmpty ->
+//            handlePantryStatus(pantryNotEmpty)
+//            if (pantryNotEmpty) {
+//                getRecommendedRecipes(userId)
+//            }
+//        }
+        viewModel.getPantryIngredientsLocal().observe(viewLifecycleOwner) { listIng ->
+            if (listIng != null) {
+                handlePantryStatus(listIng.isNotEmpty())
                 getRecommendedRecipes(userId)
             }
         }
+//        if (pantryObserver == null) {
+//            pantryObserver = Observer { listIng ->
+//                if (listIng != null) {
+//                    handlePantryStatus(listIng.isNotEmpty())
+//                    getRecommendedRecipes(userId)
+//                }
+//            }
+//            viewModel.getPantryIngredientsLocal().observe(viewLifecycleOwner, pantryObserver!!)
+//        }
+
+//        viewModel.listPantryIng.observe(viewLifecycleOwner) { listIng ->
+//            if (listIng != null) {
+//                handlePantryStatus(listIng.isNotEmpty())
+//                getRecommendedRecipes(userId)
+//            }
+//        }
     }
 
     private fun getRecommendedRecipes(userId: Int) {
@@ -143,8 +169,13 @@ class RecipeFragment : Fragment() {
     }
 
     private fun handlePantryStatus(pantryNotEmpty: Boolean) {
-        binding.rvRecipe.visibility = if (pantryNotEmpty) View.VISIBLE else View.GONE
-        binding.tvEmptyPantry.visibility = if(pantryNotEmpty) View.GONE else View.VISIBLE
+        with (binding) {
+            rvRecipe.visibility = if (pantryNotEmpty) View.VISIBLE else View.GONE
+
+            ivIllustEmptyPantry.visibility = if (pantryNotEmpty) View.GONE else View.VISIBLE
+            tvEmptyPantry.visibility = if (pantryNotEmpty) View.GONE else View.VISIBLE
+            tvEmptyPantryDesc.visibility = if (pantryNotEmpty) View.GONE else View.VISIBLE
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {

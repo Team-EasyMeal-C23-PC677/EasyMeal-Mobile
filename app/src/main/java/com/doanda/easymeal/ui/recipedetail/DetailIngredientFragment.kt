@@ -120,7 +120,7 @@ class DetailIngredientFragment : Fragment() {
                 updatePantry(userId, detailIng.id, detailIng.isInPantry)
             }
             override fun onShoppingCheckboxClicked(detailIng: DetailIngredientEntity) {
-                updateShoppingList(userId, detailIng.id, detailIng)
+                updateShoppingList(userId, detailIng)
             }
         })
     }
@@ -161,13 +161,13 @@ class DetailIngredientFragment : Fragment() {
         }
     }
 
-    private fun updateShoppingList(userId: Int, id: Int, detailIng: DetailIngredientEntity) {
+    private fun updateShoppingList(userId: Int, detailIng: DetailIngredientEntity) {
         if (detailIng.isInShoppingList) {
             viewModel.deleteShoppingListItem(userId, detailIng.id).observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is Result.Success -> {
                         showLoading(false)
-                        Toast.makeText(requireContext(), "Shopping item added!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Shopping item removed!", Toast.LENGTH_SHORT).show()
                     }
                     is Result.Loading -> showLoading(true)
                     is Result.Error -> {
@@ -183,7 +183,7 @@ class DetailIngredientFragment : Fragment() {
                 when (result) {
                     is Result.Success -> {
                         showLoading(false)
-                        Toast.makeText(requireContext(), "Shopping item removed!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Shopping item added!", Toast.LENGTH_SHORT).show()
                     }
                     is Result.Loading -> showLoading(true)
                     is Result.Error -> {

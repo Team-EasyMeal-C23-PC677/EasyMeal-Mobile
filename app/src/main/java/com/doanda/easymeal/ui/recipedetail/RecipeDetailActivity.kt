@@ -1,5 +1,6 @@
 package com.doanda.easymeal.ui.recipedetail
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -7,13 +8,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.doanda.easymeal.R
 import com.doanda.easymeal.data.response.detailrecipe.Recipe
 import com.doanda.easymeal.databinding.ActivityRecipeDetailBinding
 import com.doanda.easymeal.ui.ViewModelFactory
-import com.doanda.easymeal.ui.recipe.RecipeFragment
 import com.doanda.easymeal.utils.Result
 import com.google.android.material.tabs.TabLayoutMediator
 import convertMinuteToHourMinute
@@ -43,15 +43,7 @@ class RecipeDetailActivity : AppCompatActivity() {
         }
     }
     private fun setupData(userId: Int, recipeId: Int) {
-        viewModel.isRecipeFavoriteLocal(recipeId).observe(this) { isFavorite ->
-            if (isFavorite) {
-                this.isFavorite = true
-                binding.fabDetailFavorite.setImageResource(R.drawable.ic_round_favorite_selected)
-            } else {
-                this.isFavorite = false
-                binding.fabDetailFavorite.setImageResource(R.drawable.ic_round_favorite)
-            }
-        }
+
         viewModel.getDetailRecipeById(recipeId).observe(this) { result ->
             when (result) {
                 is Result.Success -> {
@@ -71,6 +63,27 @@ class RecipeDetailActivity : AppCompatActivity() {
     }
 
     private fun setupView(userId: Int, recipe: Recipe) {
+        viewModel.getIngredientsByIds(recipe.listIngredient.map { it.id }).observe(this) { listIng ->
+            if (listIng != null) {
+                val listMissingIngs = listIng.filter { !it.isHave }.map { it.ingName }
+                if (listMissingIngs.isEmpty()) {
+                    binding.tvDetailStatus.text = getString(R.string.have_all_ingredients)
+                    binding.tvDetailStatus.setTextColor(getColor(R.color.primary))
+                } else {
+                    binding.tvDetailStatus.text = getString(R.string.ingredients_missing).format(listMissingIngs.joinToString(", "))
+                    binding.tvDetailStatus.setTextColor(getColor(R.color.red_theme))
+                }
+            }
+        }
+
+        viewModel.isRecipeFavoriteLocal(recipe.id).observe(this) { isFavorite ->
+            if (isFavorite != null) {
+                this.isFavorite = isFavorite
+                val iconColor = if (isFavorite) ContextCompat.getColor(this, R.color.red_theme) else ContextCompat.getColor(this, R.color.grey)
+                val iconColorStateList = ColorStateList.valueOf(iconColor)
+                binding.fabDetailFavorite.imageTintList = iconColorStateList
+            }
+        }
 
         adapter = SectionsPagerAdapter(this)
         adapter.recipe = recipe
@@ -117,7 +130,7 @@ class RecipeDetailActivity : AppCompatActivity() {
                     is Result.Loading -> showLoading(true)
                     is Result.Error -> {
                         showLoading(false)
-                        val message = "Favorite failed"
+                        val message = "Delete favorite failed"
                         Log.e(TAG, result.error + message)
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                     }
@@ -132,7 +145,7 @@ class RecipeDetailActivity : AppCompatActivity() {
                     is Result.Loading -> showLoading(true)
                     is Result.Error -> {
                         showLoading(false)
-                        val message = "Delete favorite failed"
+                        val message = "Add favorite failed"
                         Log.e(TAG, result.error + message)
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                     }

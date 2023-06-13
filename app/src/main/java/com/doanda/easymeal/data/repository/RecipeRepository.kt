@@ -133,7 +133,7 @@ class RecipeRepository(
     fun getFavoriteRecipesLocal() = recipeDao.getFavoriteRecipes()
 
     fun getRecommendedRecipesLocal() = recipeDao.getRecommendedRecipes()
-
+    suspend fun clearFavorite() = recipeDao.resetFavorite()
 
 
     companion object {

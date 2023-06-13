@@ -39,13 +39,13 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(MainViewModel::class.java) ->
                 MainViewModel(userRepository) as T
             modelClass.isAssignableFrom(SettingViewModel::class.java) ->
-                SettingViewModel(userRepository) as T
+                SettingViewModel(userRepository, recipeRepository, ingredientRepository, shoppingRepository) as T
             modelClass.isAssignableFrom(PantryViewModel::class.java) ->
                 PantryViewModel(userRepository, ingredientRepository) as T
             modelClass.isAssignableFrom(RecipeViewModel::class.java) ->
                 RecipeViewModel(userRepository, recipeRepository, ingredientRepository) as T
             modelClass.isAssignableFrom(RecipeDetailViewModel::class.java) ->
-                RecipeDetailViewModel(userRepository, recipeRepository) as T
+                RecipeDetailViewModel(userRepository, recipeRepository, ingredientRepository) as T
             modelClass.isAssignableFrom(DetailIngredientViewModel::class.java) ->
                 DetailIngredientViewModel(ingredientRepository, shoppingRepository) as T
             modelClass.isAssignableFrom(FavoriteViewModel::class.java) ->
