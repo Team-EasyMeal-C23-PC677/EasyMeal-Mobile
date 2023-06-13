@@ -10,14 +10,14 @@ class ShoppingListViewModel(
 ) : ViewModel() {
     fun getUser() = userRepository.getUser()
 
-    fun getShoppingList(userId: Int) = shoppingRepository.getShoppingList(userId)
+//    fun getShoppingList(userId: Int) = shoppingRepository.getShoppingList(userId)
 
-    fun addShoppingListItem(
-        userId: Int,
-        ingId: Int,
-        qty: Float,
-        unit: String,
-    ) = shoppingRepository.addShoppingListItem(userId, ingId, qty, unit)
+//    fun addShoppingListItem(
+//        userId: Int,
+//        ingId: Int,
+//        qty: Float,
+//        unit: String,
+//    ) = shoppingRepository.addShoppingListItem(userId, ingId, qty, unit)
 
     fun deleteShoppingListItem(
         userId: Int,
@@ -25,5 +25,5 @@ class ShoppingListViewModel(
     ) = shoppingRepository.deleteShoppingListItem(userId, ingId)
 
     fun getLoginStatus() = userRepository.getLoginStatus()
-
+    fun getShoppingListLocal() = shoppingRepository.getShoppingListLocal()
 }

@@ -88,11 +88,8 @@ class ShoppingRepository(
     }
 
     fun getShoppingListByIds(listId: List<Int>) = shoppingDao.getShoppingListByIds(listId)
-//    fun getShoppingListByIds(listId: List<Int>) : LiveData<List<ShoppingItemEntity>> = liveData {
-//        val data =  shoppingDao.getShoppingListByIds(listId)
-//        val localData: LiveData<List<ShoppingItemEntity>> = MutableLiveData(data)
-//        emitSource(localData)
-//    }
+    fun getShoppingListLocal() = shoppingDao.getShoppingList()
+    suspend fun clearShoppingList() = shoppingDao.resetHave()
 
     companion object {
         private const val TAG = "ShoppingRepository"

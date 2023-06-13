@@ -2,21 +2,20 @@ package com.doanda.easymeal.ui.shoppinglist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.doanda.easymeal.R
-import com.doanda.easymeal.data.response.shoppinglist.ShoppingListItem
+import com.doanda.easymeal.data.source.model.ShoppingItemEntity
 import com.doanda.easymeal.databinding.ItemShoppingListBinding
 import convertDecimalToFraction
 
-// TODO change ShoppingListItem to ShoppingEntity
-class ShoppingListAdapter(private val listShopping: List<ShoppingListItem>)
-    : RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
-
+class ShoppingListAdapter : ListAdapter<ShoppingItemEntity, ShoppingListAdapter.ViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onDeleteClicked(shoppingListItem: ShoppingListItem)
-        fun onCheckboxClicked(shoppingListItem: ShoppingListItem)
+        fun onDeleteClicked(shoppingListItem: ShoppingItemEntity)
+//        fun onCheckboxClicked(shoppingListItem: ShoppingItemEntity)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -25,20 +24,17 @@ class ShoppingListAdapter(private val listShopping: List<ShoppingListItem>)
 
     inner class ViewHolder(val binding: ItemShoppingListBinding)
         : RecyclerView.ViewHolder(binding.root) {
-        fun bind(shoppingListItem: ShoppingListItem?) {
+        fun bind(shoppingListItem: ShoppingItemEntity) {
             with(binding) {
-                shoppingListItem?.let {
-                    tvShoppingIngredientName.text = shoppingListItem.ingName
-                    tvShoppingIngredientQty.text =
-                        itemView.context.getString(R.string.detail_ingredient_qty)
-                            .format(
-                                convertDecimalToFraction(shoppingListItem.qty),
-                                shoppingListItem.unit
-                            )
-                }
+                tvShoppingIngredientName.text = shoppingListItem.ingName
+                tvShoppingIngredientQty.text =
+                    itemView.context.getString(R.string.detail_ingredient_qty)
+                        .format(
+                            convertDecimalToFraction(shoppingListItem.qty),
+                            shoppingListItem.unit
+                        )
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,27 +42,30 @@ class ShoppingListAdapter(private val listShopping: List<ShoppingListItem>)
         return ViewHolder(binding)
     }
 
-    override fun getItemCount() = listShopping.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val shoppingListItem = listShopping[position]
+        val shoppingListItem = getItem(position)
         holder.bind(shoppingListItem)
 
-        // TODO change list into room entity with isHave attribute
-
         holder.binding.btnDeleteItem.setOnClickListener {
-            onItemClickCallback.onDeleteClicked(listShopping[holder.bindingAdapterPosition])
+            onItemClickCallback.onDeleteClicked(shoppingListItem)
         }
 
-        holder.binding.cbShoppingCheckbox.setOnCheckedChangeListener(null)
-
-        // TODO use ShoppingEntity isHave
-        holder.binding.cbShoppingCheckbox.isChecked = false
-
-        holder.binding.cbShoppingCheckbox.setOnCheckedChangeListener { _, isChecked ->
-            // TODO implement checkbox checked change
-            onItemClickCallback.onCheckboxClicked(listShopping[holder.bindingAdapterPosition])
-        }
+//        holder.binding.cbShoppingCheckbox.setOnCheckedChangeListener(null)
+//        holder.binding.cbShoppingCheckbox.isChecked = false
+//        holder.binding.cbShoppingCheckbox.setOnCheckedChangeListener { _, isChecked ->
+//            onItemClickCallback.onCheckboxClicked(shoppingListItem)
+//        }
     }
 
+    companion object {
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<ShoppingItemEntity> = object : DiffUtil.ItemCallback<ShoppingItemEntity>() {
+            override fun areItemsTheSame(oldItem: ShoppingItemEntity, newItem: ShoppingItemEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: ShoppingItemEntity, newItem: ShoppingItemEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
 }
