@@ -33,7 +33,7 @@ class WelcomeActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     if (result.data.isNotEmpty())
-                        Toast.makeText(this, "Ingredients Loaded", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, "Ingredients Loaded", Toast.LENGTH_SHORT).show()
                     setupView()
                 }
                 is Result.Loading -> showLoading(true)
@@ -63,7 +63,7 @@ class WelcomeActivity : AppCompatActivity() {
     private fun goToLogin() {
         val intentToLogin = Intent(this@WelcomeActivity, LoginActivity::class.java)
         intentToLogin.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        Toast.makeText(this, "Welcome -> Login", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Welcome -> Login", Toast.LENGTH_SHORT).show()
         startActivity(intentToLogin)
         finish()
     }
@@ -71,7 +71,7 @@ class WelcomeActivity : AppCompatActivity() {
     private fun goToRegister() {
         val intentToRegister = Intent(this@WelcomeActivity, RegisterActivity::class.java)
         intentToRegister.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        Toast.makeText(this, "Welcome -> Register", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Welcome -> Register", Toast.LENGTH_SHORT).show()
         startActivity(intentToRegister)
         finish()
     }
