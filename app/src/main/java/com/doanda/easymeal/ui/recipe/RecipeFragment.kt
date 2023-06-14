@@ -123,7 +123,7 @@ class RecipeFragment : Fragment() {
             when (result) {
                 is Result.Success -> {
                     showLoading(false)
-                    Toast.makeText(requireContext(), "Recommended Success", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Recommended Success", Toast.LENGTH_SHORT).show()
                     updateList(result.data)
                 }
                 is Result.Loading -> showLoading(true)
