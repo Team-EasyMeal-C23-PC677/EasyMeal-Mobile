@@ -24,8 +24,8 @@ class IngredientRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.getAllIngredients()
-            val response = dummyApiService.getAllIngredients()
+            val response = apiService.getAllIngredients()
+//            val response = dummyApiService.getAllIngredients()
 
             val listIng = response.listIngredient
             val listIngRoom = listIng.map { ing ->
@@ -39,7 +39,7 @@ class IngredientRepository(
             }
             ingredientDao.resetHave()
             ingredientDao.insertReplaceIngredients(listIngRoom)
-            Log.d("IngredientRepository", "Ingredients Loaded")
+            Log.d(TAG, "Success getAllIngredients loadIngredients")
             val listShopRoom = listIng.map { ing ->
                 val shopItem = shoppingDao.getShoppingListItemById(ing.ingId)
                 ShoppingItemEntity(
@@ -52,8 +52,9 @@ class IngredientRepository(
             }
             shoppingDao.resetHave()
             shoppingDao.insertReplaceShoppingListItem(listShopRoom)
-            Log.d("IngredientRepository", "Shopping List Loaded")
+            Log.d(TAG, "Success getAllIngredients loadShoppingList")
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
         val localData: LiveData<Result<List<IngredientEntity>>> =
@@ -65,8 +66,8 @@ class IngredientRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.getPantryIngredients(userId)
-            val response = dummyApiService.getPantryIngredients(userId)
+            val response = apiService.getPantryIngredients(userId)
+//            val response = dummyApiService.getPantryIngredients(userId)
 
             val listIng = response.listIngredient
             val listIngRoom = listIng.map { ing ->
@@ -79,7 +80,9 @@ class IngredientRepository(
             }
             ingredientDao.resetHave()
             ingredientDao.insertReplaceIngredients(listIngRoom)
+            Log.d(TAG, "Success getPantryIngredients")
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
         val localData: LiveData<Result<List<IngredientEntity>>> =
@@ -87,20 +90,20 @@ class IngredientRepository(
         emitSource(localData)
     }
 
-    // TODO handle fail
     fun addPantryIngredient(userId: Int, ingId: Int) : LiveData<Result<GeneralResponse>>
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.addPantryIngredient(userId, ingId)
-            val response = dummyApiService.addPantryIngredient(userId, ingId)
+            val response = apiService.addPantryIngredient(userId, ingId)
+//            val response = dummyApiService.addPantryIngredient(userId, ingId)
 
             val ing = ingredientDao.getIngredientById(ingId)
             ing.isHave = true
             ingredientDao.updateIngredient(ing)
-
+            Log.d(TAG, "Success addPantryIngredient")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
@@ -110,16 +113,17 @@ class IngredientRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.deletePantryIngredient(userId, ingId)
-            val response = dummyApiService.deletePantryIngredient(userId, ingId)
+            val response = apiService.deletePantryIngredient(userId, ingId)
+//            val response = dummyApiService.deletePantryIngredient(userId, ingId)
 
             val ing = ingredientDao.getIngredientById(ingId)
             ing.isHave = false
             ingredientDao.updateIngredient(ing)
 
+            Log.d(TAG, "Success deletePantryIngredient")
             emit(Result.Success(response))
         } catch (e: Exception) {
-            Log.e("IngredientRepository", e.message.toString())
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
@@ -140,7 +144,7 @@ class IngredientRepository(
     suspend fun clearPantry() = ingredientDao.resetHave()
 
     companion object {
-        private const val TAG = "IngredientRepository"
+        private const val TAG = "IngredientRepositoryLoggg"
 
         @Volatile
         private var INSTANCE: IngredientRepository? = null

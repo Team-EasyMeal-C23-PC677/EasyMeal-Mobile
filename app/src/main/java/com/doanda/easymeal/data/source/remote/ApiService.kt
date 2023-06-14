@@ -12,23 +12,26 @@ import retrofit2.http.*
 interface ApiService {
 
     // USER
+    @FormUrlEncoded
     @POST("register")
     suspend fun register( // OK
-        @Query("nama_profil") name: String,
-        @Query("email") email: String,
-        @Query("password") password: String,
+        @Field("nama_profil") name: String,
+        @Field("email") email: String,
+        @Field("password") password: String,
     ): GeneralResponse
 
+    @FormUrlEncoded
     @POST("login")
     suspend fun login(// OK
-        @Query("email") email: String,
-        @Query("password") password: String
+        @Field("email") email: String,
+        @Field("password") password: String
     ): LoginResponse
 
+    @FormUrlEncoded
     @PUT("user/{user_id}")
     suspend fun updateName(
         @Path("user_id") userId: Int,
-        @Query("user_name") userName: String,
+        @Field("user_name") userName: String,
     ): GeneralResponse// OK
 
     // RECIPE

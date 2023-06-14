@@ -19,8 +19,8 @@ class ShoppingRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.getShoppingList(userId)
-            val response = dummyApiService.getShoppingList(userId)
+            val response = apiService.getShoppingList(userId)
+//            val response = dummyApiService.getShoppingList(userId)
 
             val list = response.listIngredient
             val listRoom = list.map { item ->
@@ -51,8 +51,8 @@ class ShoppingRepository(
             = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.addShoppingListItem(userId, ingId, qty, unit)
-            val response = dummyApiService.addShoppingListItem(userId, ingId, qty, unit)
+            val response = apiService.addShoppingListItem(userId, ingId, qty, unit)
+//            val response = dummyApiService.addShoppingListItem(userId, ingId, qty, unit)
 
             val item = shoppingDao.getShoppingListItemById(ingId)
             if (item != null) {
@@ -72,8 +72,8 @@ class ShoppingRepository(
             = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.deleteShoppingListItem(userId, ingId)
-            val response = dummyApiService.deleteShoppingListItem(userId, ingId)
+            val response = apiService.deleteShoppingListItem(userId, ingId)
+//            val response = dummyApiService.deleteShoppingListItem(userId, ingId)
 
             val item = shoppingDao.getShoppingListItemById(ingId)
             if (item != null) {
@@ -92,7 +92,7 @@ class ShoppingRepository(
     suspend fun clearShoppingList() = shoppingDao.resetHave()
 
     companion object {
-        private const val TAG = "ShoppingRepository"
+        private const val TAG = "ShoppingRepositoryLoggg"
 
         @Volatile
         private var INSTANCE : ShoppingRepository? = null

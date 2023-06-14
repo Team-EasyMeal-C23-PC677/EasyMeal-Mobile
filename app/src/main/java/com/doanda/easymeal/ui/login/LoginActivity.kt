@@ -88,17 +88,12 @@ class LoginActivity : AppCompatActivity() {
     private fun loadUserData(userData: User) {
         val userId = userData.userId
 
-        if (pantryLoaded && favoriteLoaded && shoppingLoaded) {
-            proceed(userData)
-            return
-        }
-
         viewModel.getPantryIngredients(userId).observe(this) { result ->
             when (result) {
                 is Result.Success -> {
                     showLoading(false)
                     if (result.data.isNotEmpty()) {
-//                        Toast.makeText(this, "Pantry Loaded", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Pantry Loaded", Toast.LENGTH_SHORT).show()
                         pantryLoaded = true
                     }
                     proceed(userData)
@@ -118,7 +113,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     if (result.data.isNotEmpty()) {
-//                        Toast.makeText(this, "Favorite Loaded", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Favorite Loaded", Toast.LENGTH_SHORT).show()
                         favoriteLoaded = true
                     }
                     proceed(userData)
@@ -138,7 +133,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     if (result.data.isNotEmpty()) {
-//                        Toast.makeText(this, "Shopping List Loaded", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Shopping List Loaded", Toast.LENGTH_SHORT).show()
                         shoppingLoaded = true
                     }
                     proceed(userData)
@@ -161,7 +156,7 @@ class LoginActivity : AppCompatActivity() {
             pantryLoaded = false
             favoriteLoaded = false
             shoppingLoaded = false
-//            Toast.makeText(this, "All loaded!!!!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "All loaded!!!!", Toast.LENGTH_SHORT).show()
             val user = UserEntity(
                 userId = userData.userId,
 //                userName = userData.userName,

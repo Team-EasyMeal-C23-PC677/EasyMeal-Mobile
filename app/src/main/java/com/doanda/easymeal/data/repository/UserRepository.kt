@@ -25,12 +25,12 @@ class UserRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.register(name, email, password)
-            val response = dummyApiService.register(name, email, password)
+            val response = apiService.register(name, email, password)
+//            val response = dummyApiService.register(name, email, password)
             emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
-        }
+        } // TODO handle 400 email exists!!
     }
 
     fun login(
@@ -40,8 +40,8 @@ class UserRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.login(email, password)
-            val response = dummyApiService.login(email, password)
+            val response = apiService.login(email, password)
+//            val response = dummyApiService.login(email, password)
             emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
@@ -52,8 +52,8 @@ class UserRepository(
     fun updateName(userId: Int, userName: String) : LiveData<Result<GeneralResponse>>
     = liveData {
         try {
-//            val response = apiService.updateName(userId, userName)
-            val response = dummyApiService.updateName(userId, userName)
+            val response = apiService.updateName(userId, userName)
+//            val response = dummyApiService.updateName(userId, userName)
             emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
@@ -95,6 +95,8 @@ class UserRepository(
     }
 
     companion object {
+        private const val TAG = "UserRepositoryLoggg"
+
         @Volatile
         private var INSTANCE: UserRepository? = null
         fun getInstance(
