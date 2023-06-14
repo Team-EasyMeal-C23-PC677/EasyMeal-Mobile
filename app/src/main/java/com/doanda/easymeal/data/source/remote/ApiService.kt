@@ -14,7 +14,7 @@ interface ApiService {
     // USER
     @FormUrlEncoded
     @POST("register")
-    suspend fun register( // OK
+    suspend fun register(
         @Field("nama_profil") name: String,
         @Field("email") email: String,
         @Field("password") password: String,
@@ -22,7 +22,7 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("login")
-    suspend fun login(// OK
+    suspend fun login(
         @Field("email") email: String,
         @Field("password") password: String
     ): LoginResponse
@@ -32,16 +32,16 @@ interface ApiService {
     suspend fun updateName(
         @Path("user_id") userId: Int,
         @Field("user_name") userName: String,
-    ): GeneralResponse// OK
+    ): GeneralResponse
 
     // RECIPE
     @GET("recipe")
-    suspend fun getAllRecipes(): ListRecipeResponse// OK
+    suspend fun getAllRecipes(): ListRecipeResponse
 
     @GET("recipes/{userId}")
     suspend fun getRecommendedRecipes(
         @Path("userId") userId: Int,
-    ): ListRecipeResponse// OK
+    ): ListRecipeResponse
 
     @GET("recipe/{recipeId}")
     suspend fun getDetailRecipeById(
@@ -52,13 +52,13 @@ interface ApiService {
     @GET("favorite/{userId}")
     suspend fun getFavoriteRecipes(
         @Path("userId") userId: Int,
-    ): ListFavoriteResponse// OK
+    ): ListFavoriteResponse
 
     @POST("favorite/{userId}/{recipeId}")
     suspend fun addFavoriteRecipe(
         @Path("userId") userId: Int,
         @Path("recipeId") recipeId: Int,
-    ): GeneralResponse// OK
+    ): GeneralResponse
 
     @DELETE("favorite/{userId}/{recipeId}")
     suspend fun deleteFavoriteRecipe(
@@ -67,25 +67,25 @@ interface ApiService {
     ): GeneralResponse
 
     // INGREDIENT & PANTRY
-    @GET("ingredients") // OK
+    @GET("ingredients")
     suspend fun getAllIngredients(): ListIngredientResponse
 
     @GET("pantry/{userId}")
     suspend fun getPantryIngredients(
         @Path("userId") userId: Int,
-    ): ListIngredientResponse// OK
+    ): ListIngredientResponse
 
     @POST("pantry/{userId}/{ingId}")
     suspend fun addPantryIngredient(
         @Path("userId") userId: Int,
         @Path("ingId") ingId: Int,
-    ): GeneralResponse// OK
+    ): GeneralResponse
 
     @DELETE("pantry/{userId}/{ingId}")
     suspend fun deletePantryIngredient(
         @Path("userId") userId: Int,
         @Path("ingId") ingId: Int,
-    ): GeneralResponse// OK
+    ): GeneralResponse
 
     // SHOPPING LIST
     @GET("shopping-list/{userId}")
