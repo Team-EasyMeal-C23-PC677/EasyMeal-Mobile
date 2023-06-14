@@ -61,8 +61,8 @@ class RegisterActivity : AppCompatActivity() {
                     }
                     is Result.Error -> {
                         showLoading(false)
-                        Log.e(TAG, result.error)
-                        Toast.makeText(this, getString(R.string.response_register_failed), Toast.LENGTH_SHORT).show()
+                        val message = if ("400" in result.error) getString(R.string.email_already) else getString(R.string.response_register_failed)
+                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                     }
                     is Result.Loading -> showLoading(true)
                 }
