@@ -93,12 +93,13 @@ interface ApiService {
         @Path("userId") userId: Int,
     ): ShoppingListResponse
 
+    @FormUrlEncoded
     @POST("shopping-list/{userId}/{ingId}")
     suspend fun addShoppingListItem(
         @Path("userId") userId: Int,
         @Path("ingId") ingId: Int,
-        @Query("qty") qty: Float,
-        @Query("unit") unit: String,
+        @Field("qty") qty: Float,
+        @Field("unit") unit: String,
     ): GeneralResponse
 
     @DELETE("shopping-list/{userId}/{ingId}")
