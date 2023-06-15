@@ -1,13 +1,9 @@
 <resources>
     <string name="app_name">EasyMeal</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dasbor</string>
-    <string name="title_notifications">Notifikasi</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Masuk</string>
     <string name="or">Atau</string>
-    <string name="enter_with_google">Masuk dengan Google</string>
     <string name="name">Nama</string>
     <string name="register">Buat Akun</string>
     <string name="to_register">Buat Akun</string>
@@ -16,17 +12,13 @@
     <string name="title_pantry">Kulkas</string>
     <string name="title_favorite">Favorit</string>
     <string name="title_shopping_list">Belanja</string>
-    <string name="search_hint">Cari</string>
     <string name="cd_recipe_image">Gambar resep</string>
     <string name="title_activity_recipe_detail">RecipeDetailActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
     <string name="hour_format">%1$d j </string>
     <string name="minute_format">%1$d m</string>
     <string name="serving_format">%1$d porsi</string>
     <string name="placeholder_time">1 j 30 m</string>
     <string name="placeholder_serving">1 porsi</string>
-    <string name="placeholder_warning">Ayam +3</string>
     <string name="cd_favorite_button">Tombol favorit</string>
     <string name="placeholder_title">Soto Ayam Surabaya</string>
     <string name="placeholder_description">Soto Surabaya kuah koya bisa menjadi alternatif hidangan lezat untuk keluarga. Gurih dan penuh rempah Nusantara, yuk, simak resepnya di sini!</string>
@@ -43,7 +35,6 @@
     <string name="response_register_failed">Gagal buat akun</string>
     <string name="response_register_success">Sukses buat akun</string>
     <string name="open_camera_failed">Tidak bisa membuka kamera</string>
-    <string name="compressing_image">Mengkompresi gambar</string>
     <string name="cd_detection_image">Gambar deteksi</string>
     <string name="placeholder_ingredient_name">Bawang putih</string>
     <string name="cd_recipe_instructions">Instruksi resep</string>
@@ -82,7 +73,6 @@
     <string name="recommend_recipes">Lihat rekomendasi resep</string>
     <string name="what_in_pantry">Apa isi kulkasmu?</string>
     <string name="what_in_pantry_desc">Tambahkan bahan-bahan yang kamu punya!</string>
-    <string name="searchbar_hint">Cari resep</string>
     <string name="recipe_recommended">Resep-resep paling cocok untukmu</string>
     <string name="what_to_buy">Daftar belanja kamu</string>
     <string name="setting">Pengaturan</string>
