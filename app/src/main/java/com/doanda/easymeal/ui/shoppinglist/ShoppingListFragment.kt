@@ -89,7 +89,7 @@ class ShoppingListFragment : Fragment() {
             when (result) {
                 is Result.Success -> {
                     showLoading(false)
-                    Toast.makeText(requireContext(), "Item deleted!", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Item deleted!", Toast.LENGTH_SHORT).show()
                 }
                 is Result.Loading -> showLoading(true)
                 is Result.Error -> {
@@ -112,7 +112,6 @@ class ShoppingListFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = ShoppingListFragment()
         private const val TAG = "ShoppingListFragment"
     }
 }
