@@ -8,12 +8,10 @@ import com.doanda.easymeal.data.response.GeneralResponse
 import com.doanda.easymeal.data.source.database.ShoppingDao
 import com.doanda.easymeal.data.source.model.ShoppingItemEntity
 import com.doanda.easymeal.data.source.remote.ApiService
-import com.doanda.easymeal.data.source.remote.DummyApiService
 import com.doanda.easymeal.utils.Result
 
 class ShoppingRepository(
     private val apiService: ApiService,
-    private val dummyApiService: DummyApiService,
     private val shoppingDao: ShoppingDao
 ) {
     fun getShoppingList(userId: Int) : LiveData<Result<List<ShoppingItemEntity>>>
@@ -21,7 +19,6 @@ class ShoppingRepository(
         emit(Result.Loading)
         try {
             val response = apiService.getShoppingList(userId)
-//            val response = dummyApiService.getShoppingList(userId)
 
             val list = response.listIngredient
             val listRoom = list.map { item ->
@@ -56,7 +53,6 @@ class ShoppingRepository(
         emit(Result.Loading)
         try {
             val response = apiService.addShoppingListItem(userId, ingId, qty, unit)
-//            val response = dummyApiService.addShoppingListItem(userId, ingId, qty, unit)
 
             val item = shoppingDao.getShoppingListItemById(ingId)
             if (item != null) {
@@ -79,7 +75,6 @@ class ShoppingRepository(
         emit(Result.Loading)
         try {
             val response = apiService.deleteShoppingListItem(userId, ingId)
-//            val response = dummyApiService.deleteShoppingListItem(userId, ingId)
 
             val item = shoppingDao.getShoppingListItemById(ingId)
             if (item != null) {
@@ -106,11 +101,10 @@ class ShoppingRepository(
         private var INSTANCE : ShoppingRepository? = null
         fun getInstance(
             apiService: ApiService,
-            dummyApiService: DummyApiService,
             shoppingDao: ShoppingDao
         ) : ShoppingRepository =
             INSTANCE?: synchronized(this) {
-                INSTANCE?: ShoppingRepository(apiService, dummyApiService, shoppingDao)
+                INSTANCE?: ShoppingRepository(apiService, shoppingDao)
             }.also { INSTANCE = it }
     }
 }

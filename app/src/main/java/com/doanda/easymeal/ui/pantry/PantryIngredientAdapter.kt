@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.doanda.easymeal.databinding.ItemPantryIngredientBinding
 import com.doanda.easymeal.data.source.model.IngredientEntity
+import com.doanda.easymeal.databinding.ItemPantryIngredientBinding
 
 class PantryIngredientAdapter : ListAdapter<IngredientEntity, PantryIngredientAdapter.ViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemClickCallback: OnItemClickCallback

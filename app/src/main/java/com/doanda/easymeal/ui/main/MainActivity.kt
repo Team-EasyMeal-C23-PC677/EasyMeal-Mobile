@@ -1,17 +1,17 @@
-package com.doanda.easymeal
+package com.doanda.easymeal.ui.main
 
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.doanda.easymeal.R
 import com.doanda.easymeal.databinding.ActivityMainBinding
 import com.doanda.easymeal.ui.ViewModelFactory
 import com.doanda.easymeal.ui.detection.DetectionActivity
