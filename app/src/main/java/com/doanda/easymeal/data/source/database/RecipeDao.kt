@@ -45,8 +45,8 @@ interface RecipeDao {
     @Query("UPDATE recipe SET isRecommended = false")
     suspend fun resetRecommended()
 
-    @Query("UPDATE recipe SET isFavorite = false")
-    suspend fun resetFavorite()
+    @Query("UPDATE recipe SET isFavorite = false, isRecommended = false, `order` = 0")
+    suspend fun resetRecipes()
 
     @Query("SELECT EXISTS(SELECT * FROM recipe WHERE id = :id AND isFavorite = 1)")
     suspend fun isRecipeFavorite(id: Int): Boolean

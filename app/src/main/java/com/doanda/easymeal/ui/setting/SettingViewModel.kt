@@ -38,9 +38,9 @@ class SettingViewModel(
             ingredientRepository.clearPantry()
         }
     }
-    fun clearFavorite() {
+    fun clearRecipes() {
         viewModelScope.launch {
-            recipeRepository.clearFavorite()
+            recipeRepository.clearRecipes()
         }
     }
     fun clearShoppingList() {
