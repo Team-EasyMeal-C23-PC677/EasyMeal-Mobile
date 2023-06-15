@@ -62,7 +62,6 @@
                 android:id="@+id/tv_detail_status"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/ingredients_missing"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/red_theme"

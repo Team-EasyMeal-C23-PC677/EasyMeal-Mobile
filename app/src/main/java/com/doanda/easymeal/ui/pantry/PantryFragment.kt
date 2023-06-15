@@ -66,6 +66,25 @@ class PantryFragment : Fragment() {
         viewModel.getAllIngredientsLocal().observe(viewLifecycleOwner) { listIng ->
             if (listIng.isNotEmpty()) {
                 updateList(listIng)
+            } else {
+                loadAllIngredients()
+            }
+        }
+    }
+
+    private fun loadAllIngredients() {
+        viewModel.getAllIngredients().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    showLoading(false)
+                }
+                is Result.Loading -> showLoading(true)
+                is Result.Error -> {
+                    showLoading(false)
+                    val message = "Failed to load ingredients"
+                    Log.e(TAG, result.error + message)
+//                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

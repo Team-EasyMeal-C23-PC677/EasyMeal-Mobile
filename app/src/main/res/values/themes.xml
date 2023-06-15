@@ -112,34 +112,20 @@
         <item name="cornerSize">16dp</item>
     </style>
 
-    <!--    TYPOGRAPHY-->
-
-    <!--    TODO complete typography-->
-<!--    <style name="Text.Body"></style>-->
-
-    <!--    SHAPEABLE IMAGE VIEW-->
-
-    <!--    CHIP-->
-
-    <!--        parent="Widget.MaterialComponents.Chip.Choice"-->
-    <style name="Chip"
-        >
+    <style name="Chip">
         <item name="chipMinTouchTargetSize">30dp</item>
         <item name="chipIconVisible">true</item>
-<!--        <item name="chipIconTint">@color/primary</item>-->
         <item name="chipStrokeWidth">2dp</item>
-<!--        <item name="android:textColor">@color/color_choice_chip_text_color</item>-->
         <item name="cornerFamily">rounded</item>
-        <item name="chipIconSize">32dp</item>
         <item name="cornerSize">50%</item>
-        <item name="chipMinHeight">36dp</item>
+    </style>
+
+    <style name="Chip.Pantry" parent="Chip">
+        <item name="chipIconSize">32dp</item>
         <item name="chipStartPadding">8dp</item>
         <item name="chipEndPadding">8dp</item>
         <item name="textStartPadding">0dp</item>
         <item name="textEndPadding">0dp</item>
-    </style>
-
-    <style name="Chip.Pantry" parent="Chip">
         <item name="cornerSizeTopRight">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="android:layout_marginStart">8dp</item>
@@ -149,11 +135,24 @@
     </style>
 
     <style name="Chip.Shopping" parent="Chip">
+        <item name="chipIconSize">32dp</item>
+        <item name="chipStartPadding">8dp</item>
+        <item name="chipEndPadding">8dp</item>
+        <item name="textStartPadding">0dp</item>
+        <item name="textEndPadding">0dp</item>
         <item name="cornerSizeTopLeft">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="chipIconTint">@color/color_choice_chip_icon_tint_secondary</item>
         <item name="chipBackgroundColor">@color/color_choice_chip_background_color_secondary</item>
         <item name="chipStrokeColor">@color/color_choice_chip_strokecolor_selector_secondary</item>
+    </style>
+
+    <style name="Chip.Filter" parent="Chip">
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipIconTint">@color/color_choice_chip_icon_tint_secondary</item>
+        <item name="chipBackgroundColor">@color/color_choice_chip_background_color_secondary</item>
+        <item name="chipStrokeColor">@color/color_choice_chip_strokecolor_selector_secondary</item>
+        <item name="textStartPadding">4dp</item>
     </style>
 
     <style name="Theme.EasyMeal.NoActionBar">

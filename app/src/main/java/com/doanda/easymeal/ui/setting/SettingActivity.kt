@@ -61,7 +61,7 @@ class SettingActivity : AppCompatActivity() {
                         is Result.Success -> {
                             showLoading(false)
                             viewModel.setUserName(nameInput)
-                            Toast.makeText(this, "Name changed successfully!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, getString(R.string.name_changed_success), Toast.LENGTH_SHORT).show()
                         }
                         is Result.Loading -> showLoading(true)
                         is Result.Error -> {
@@ -72,7 +72,7 @@ class SettingActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.cannot_be_empty), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -88,7 +88,7 @@ class SettingActivity : AppCompatActivity() {
     private fun logout() {
         viewModel.logout()
         viewModel.clearPantry()
-        viewModel.clearFavorite()
+        viewModel.clearRecipes()
         viewModel.clearShoppingList()
         goToLogin()
     }

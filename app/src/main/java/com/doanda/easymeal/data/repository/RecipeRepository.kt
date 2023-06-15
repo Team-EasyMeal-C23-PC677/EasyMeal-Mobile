@@ -57,6 +57,7 @@ class RecipeRepository(
                 listRecipeRoom.add(recipeEntity)
             }
 
+            recipeDao.resetRecommended()
             recipeDao.insertReplaceRecipes(listRecipeRoom)
 
             Log.d(TAG, "Success getRecommendedRecipes")
@@ -90,7 +91,7 @@ class RecipeRepository(
                     isRecommended = isRecommended,
                 )
             }
-            recipeDao.resetFavorite()
+            recipeDao.resetRecipes()
             recipeDao.insertReplaceRecipes(listRecipeRoom)
             Log.d(TAG, "Success getFavoriteRecipes")
         } catch (e: Exception) {
@@ -145,8 +146,8 @@ class RecipeRepository(
     fun getFavoriteRecipesLocal() = recipeDao.getFavoriteRecipes()
 
     fun getRecommendedRecipesLocal() = recipeDao.getRecommendedRecipes()
-    suspend fun clearFavorite() = recipeDao.resetFavorite()
 
+    suspend fun clearRecipes() = recipeDao.resetRecipes()
 
     companion object {
         private const val TAG = "RecipeRepositoryLoggg"
