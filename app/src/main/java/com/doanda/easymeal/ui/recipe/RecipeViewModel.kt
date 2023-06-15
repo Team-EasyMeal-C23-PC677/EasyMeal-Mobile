@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.doanda.easymeal.data.repository.IngredientRepository
 import com.doanda.easymeal.data.repository.RecipeRepository
 import com.doanda.easymeal.data.repository.UserRepository
-import com.doanda.easymeal.data.source.model.IngredientEntity
 
 class RecipeViewModel(
     private val userRepository: UserRepository,
@@ -14,15 +13,35 @@ class RecipeViewModel(
     private val ingredientRepository: IngredientRepository
 ) : ViewModel() {
 
-    private var _listPantryIng = MutableLiveData<List<IngredientEntity>>()
-    val listPantryIng: LiveData<List<IngredientEntity>> = _listPantryIng
-//    ingredientRepository.getPantryIngredientsLocal() // = _listPantryIng
+    private val _recipeFilter = MutableLiveData<RecipeFragment.RecipeFilter?>()
+    val recipeFilter: LiveData<RecipeFragment.RecipeFilter?> = _recipeFilter
+
+    init {
+        _recipeFilter.value = RecipeFragment.RecipeFilter()
+    }
+
+    fun setFilterTime(time: Int?) {
+        val recipeFilter = _recipeFilter.value
+        recipeFilter?.maxTotalTime = time
+        _recipeFilter.value = recipeFilter
+    }
+    fun setFilterFavorite(isFavorite: Boolean?) {
+        val recipeFilter = _recipeFilter.value
+        recipeFilter?.isFavorite = isFavorite
+        _recipeFilter.value = recipeFilter
+    }
+    fun setFilterServing(serving: IntRange?) {
+        val recipeFilter = _recipeFilter.value
+        recipeFilter?.servings = serving
+        _recipeFilter.value = recipeFilter
+    }
+    fun setFilterSearch(query: String?) {
+        val recipeFilter = _recipeFilter.value
+        recipeFilter?.query = query
+        _recipeFilter.value = recipeFilter
+    }
 
     fun getUser() = userRepository.getUser()
-
-    fun setPantryIngs(listIng: List<IngredientEntity>) {
-        _listPantryIng.value = listIng
-    }
 
     fun getRecommendedRecipes(userId: Int) =
         recipeRepository.getRecommendedRecipes(userId)
@@ -37,11 +56,4 @@ class RecipeViewModel(
         recipeRepository.deleteFavoriteRecipe(userId, recipeId)
 
     fun getPantryIngredientsLocal() = ingredientRepository.getPantryIngredientsLocal()
-
-    fun isPantryNotEmpty() =
-        ingredientRepository.isPantryNotEmpty()
-
-    fun getLoginStatus() = userRepository.getLoginStatus()
-    fun getFavoriteRecipesLocal() = recipeRepository.getFavoriteRecipesLocal()
-
 }
