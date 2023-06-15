@@ -42,10 +42,12 @@ class RecipeRepository(
 
             val listRecipe = response.listRecipe
             val listRecipeId = mutableListOf<Int>()
-            val listRecipeRoom = listRecipe.map { recipe ->
+            val listRecipeRoom = mutableListOf<RecipeEntity>()
+
+            for (recipe in listRecipe) {
                 val isFavorite = recipeDao.isRecipeFavorite(recipe.id)
                 listRecipeId.add(recipe.id)
-                RecipeEntity(
+                val recipeEntity = RecipeEntity(
                     recipe.id,
                     recipe.title,
                     recipe.description,
@@ -53,13 +55,26 @@ class RecipeRepository(
                     recipe.serving,
                     recipe.imgUrl,
                     isFavorite = isFavorite,
-                    isRecommended = true,
+                    isRecommended = true
                 )
+                listRecipeRoom.add(recipeEntity)
             }
-            recipeDao.resetRecommended()
-            recipeDao.deleteRecipes(listRecipeId)
-            recipeDao.insertRecipes(listRecipeRoom)
+
+            val existingRecipes = recipeDao.getRecipesByIds(listRecipeId)
+            for (recipeEntity in listRecipeRoom) {
+                val existingRecipe = existingRecipes.find { it.id == recipeEntity.id}
+                if (existingRecipe != null) {
+                    recipeDao.updateRecipe(recipeEntity)
+                } else {
+                    recipeDao.insertRecipe(recipeEntity)
+                }
+            }
+            val recipesToDelete = existingRecipes.filterNot { it.id in listRecipeId && !it.isFavorite}
+            recipeDao.deleteRecipes(recipesToDelete.map {it.id})
+
+            Log.d(TAG, "Success getRecommendedRecipes")
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
         val localData: LiveData<Result<List<RecipeEntity>>> =
@@ -90,7 +105,9 @@ class RecipeRepository(
             }
             recipeDao.resetFavorite()
             recipeDao.insertReplaceRecipes(listRecipeRoom)
+            Log.d(TAG, "Success getFavoriteRecipes")
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
         val localData: LiveData<Result<List<RecipeEntity>>> =
@@ -109,14 +126,16 @@ class RecipeRepository(
             recipe.isFavorite = true
             recipeDao.updateRecipe(recipe)
 
+            Log.d(TAG, "Success addFavoriteRecipe")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
 
     fun deleteFavoriteRecipe(userId: Int, recipeId: Int) : LiveData<Result<GeneralResponse>>
-            = liveData {
+    = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.deleteFavoriteRecipe(userId, recipeId)
@@ -126,8 +145,10 @@ class RecipeRepository(
             recipe.isFavorite = false
             recipeDao.updateRecipe(recipe)
 
+            Log.d(TAG, "Success deleteFavoriteRecipe")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
