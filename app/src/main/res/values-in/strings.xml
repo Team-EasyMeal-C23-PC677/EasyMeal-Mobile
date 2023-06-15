@@ -96,5 +96,7 @@
     <string name="favorite_capital">Favorit</string>
     <string name="search_recipes">Cari resep…</string>
     <string name="name_changed_success">Berhasil mengupdate nama</string>
-
+    <string name="recipe_in_favorite">Resep favoritmu</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
 </resources>

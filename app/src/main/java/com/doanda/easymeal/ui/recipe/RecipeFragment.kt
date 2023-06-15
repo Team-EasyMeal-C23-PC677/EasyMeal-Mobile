@@ -156,8 +156,8 @@ class RecipeFragment : Fragment() {
             }
         }
         binding.chFavorite.setOnCheckedChangeListener { _, isChecked ->
-            val title = "Recipe in your favorites"
-            val options = arrayOf("Yes", "No")
+            val title = getString(R.string.recipe_in_favorite)
+            val options = arrayOf(getString(R.string.yes), getString(R.string.no))
             val values = arrayOf(true, false)
             if (binding.chFavorite.isChecked) {
                 val dialog = AlertDialog.Builder(requireContext())

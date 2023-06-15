@@ -96,4 +96,7 @@
     <string name="favorite_capital">Favorite</string>
     <string name="search_recipes">Search recipes…</string>
     <string name="name_changed_success">Name changed successfully!</string>
+    <string name="recipe_in_favorite">Recipe in your favorites</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
