@@ -13,29 +13,6 @@
         android:layout_height="match_parent"
         android:paddingBottom="80dp">
 
-<!--        <com.google.android.material.search.SearchBar-->
-<!--            android:id="@+id/searchBar"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="16dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:hint="@string/searchbar_hint"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
-<!--        </com.google.android.material.search.SearchBar>-->
-<!--        <com.google.android.material.search.SearchView-->
-<!--            android:id="@+id/searchView"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:hint="@string/searchbar_hint"-->
-<!--            app:layout_anchor="@id/searchBar"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
-<!--        </com.google.android.material.search.SearchView>-->
-
         <TextView
             android:id="@+id/tv_recipes"
             android:layout_width="0dp"
@@ -66,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/illust_empty_pantry"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="150dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
