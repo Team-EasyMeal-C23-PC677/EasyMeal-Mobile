@@ -8,7 +8,6 @@ import com.doanda.easymeal.data.repository.IngredientRepository
 import com.doanda.easymeal.data.repository.RecipeRepository
 import com.doanda.easymeal.data.repository.ShoppingRepository
 import com.doanda.easymeal.data.repository.UserRepository
-import com.doanda.easymeal.ui.camera.CameraViewModel
 import com.doanda.easymeal.ui.detection.result.DetectionResultViewModel
 import com.doanda.easymeal.ui.favorite.FavoriteViewModel
 import com.doanda.easymeal.ui.login.LoginViewModel
@@ -54,8 +53,6 @@ class ViewModelFactory(
                 ShoppingListViewModel(userRepository, shoppingRepository) as T
             modelClass.isAssignableFrom(DetectionResultViewModel::class.java) ->
                 DetectionResultViewModel(userRepository, ingredientRepository) as T
-            modelClass.isAssignableFrom(CameraViewModel::class.java) ->
-                CameraViewModel() as T
             modelClass.isAssignableFrom(WelcomeViewModel::class.java) ->
                 WelcomeViewModel(userRepository, ingredientRepository) as T
 
