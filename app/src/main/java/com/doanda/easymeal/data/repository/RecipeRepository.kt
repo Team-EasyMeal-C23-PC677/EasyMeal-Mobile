@@ -61,17 +61,7 @@ class RecipeRepository(
                 listRecipeRoom.add(recipeEntity)
             }
 
-            val existingRecipes = recipeDao.getRecipesByIds(listRecipeId)
-            for (recipeEntity in listRecipeRoom) {
-                val existingRecipe = existingRecipes.find { it.id == recipeEntity.id}
-                if (existingRecipe != null) {
-                    recipeDao.updateRecipe(recipeEntity)
-                } else {
-                    recipeDao.insertRecipe(recipeEntity)
-                }
-            }
-            val recipesToDelete = existingRecipes.filterNot { it.id in listRecipeId && !it.isFavorite}
-            recipeDao.deleteRecipes(recipesToDelete.map {it.id})
+            recipeDao.insertReplaceRecipes(listRecipeRoom)
 
             Log.d(TAG, "Success getRecommendedRecipes")
         } catch (e: Exception) {

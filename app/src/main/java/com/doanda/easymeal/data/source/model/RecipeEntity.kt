@@ -32,6 +32,6 @@ data class RecipeEntity(
     var isRecommended: Boolean,
 
     @field:ColumnInfo(name = "order")
-    var order: Int? = null,
+    var order: Int? = 0,
 )
 
