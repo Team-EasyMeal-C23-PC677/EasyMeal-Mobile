@@ -29,11 +29,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setTheme(R.style.Theme_EasyMeal)
-
         hideSystemUI()
 
         setupData()
+        setupView()
     }
 
     override fun onDestroy() {
@@ -42,7 +41,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupData() {
-        setupView()
         viewModel.getLoginStatus().observeOnce(this) { isLogin ->
             if (!isLogin) {
                 goToLogin()
