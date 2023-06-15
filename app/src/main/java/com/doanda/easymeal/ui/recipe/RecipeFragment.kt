@@ -59,6 +59,7 @@ class RecipeFragment : Fragment() {
     }
 
     private fun setupData(userId: Int) {
+        getRecommendedRecipesLocal()
         if (initPantryObserver == null) {
             initPantryObserver = Observer { listIng ->
                 val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
@@ -69,7 +70,6 @@ class RecipeFragment : Fragment() {
             }
             viewModel.getPantryIngredientsLocal().observeOnce(viewLifecycleOwner, initPantryObserver!!)
         }
-        getRecommendedRecipesLocal()
     }
 
     private fun setupAction(userId: Int) {
@@ -97,7 +97,7 @@ class RecipeFragment : Fragment() {
     }
 
     private fun getRecommendedRecipesLocal() {
-        viewModel.getRecommendedRecipesLocal().observeOnce(viewLifecycleOwner) { listRecipe ->
+        viewModel.getRecommendedRecipesLocal().observe(viewLifecycleOwner) { listRecipe ->
             if (listRecipe != null) {
                 updateList(listRecipe)
             }

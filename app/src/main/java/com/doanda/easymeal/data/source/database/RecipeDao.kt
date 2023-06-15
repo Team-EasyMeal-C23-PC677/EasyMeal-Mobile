@@ -12,7 +12,7 @@ interface RecipeDao {
     @Query("SELECT * FROM recipe WHERE isFavorite = 1")
     fun getFavoriteRecipes(): LiveData<List<RecipeEntity>>
 
-    @Query("SELECT * FROM recipe WHERE isRecommended = 1")
+    @Query("SELECT * FROM recipe WHERE isRecommended = 1 ORDER BY `order`")
     fun getRecommendedRecipes(): LiveData<List<RecipeEntity>>
 
     @Query("SELECT * FROM recipe WHERE id = :id")

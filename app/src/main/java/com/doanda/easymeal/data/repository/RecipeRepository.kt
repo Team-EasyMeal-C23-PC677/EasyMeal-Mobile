@@ -44,7 +44,7 @@ class RecipeRepository(
             val listRecipeId = mutableListOf<Int>()
             val listRecipeRoom = mutableListOf<RecipeEntity>()
 
-            for (recipe in listRecipe) {
+            for ((index, recipe) in listRecipe.withIndex()) {
                 val isFavorite = recipeDao.isRecipeFavorite(recipe.id)
                 listRecipeId.add(recipe.id)
                 val recipeEntity = RecipeEntity(
@@ -55,7 +55,8 @@ class RecipeRepository(
                     recipe.serving,
                     recipe.imgUrl,
                     isFavorite = isFavorite,
-                    isRecommended = true
+                    isRecommended = true,
+                    order = index,
                 )
                 listRecipeRoom.add(recipeEntity)
             }
