@@ -12,17 +12,23 @@ interface RecipeDao {
     @Query("SELECT * FROM recipe WHERE isFavorite = 1")
     fun getFavoriteRecipes(): LiveData<List<RecipeEntity>>
 
-    @Query("SELECT * FROM recipe WHERE isRecommended = 1")
+    @Query("SELECT * FROM recipe WHERE isRecommended = 1 ORDER BY `order`")
     fun getRecommendedRecipes(): LiveData<List<RecipeEntity>>
 
     @Query("SELECT * FROM recipe WHERE id = :id")
     suspend fun getRecipeById(id: Int): RecipeEntity
+
+    @Query("SELECT * FROM recipe WHERE id IN (:listId)")
+    suspend fun getRecipesByIds(listId: List<Int>): List<RecipeEntity>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertRecipes(listRecipe: List<RecipeEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertReplaceRecipes(listRecipe: List<RecipeEntity>)
+
+    @Insert(onConflict= OnConflictStrategy.REPLACE)
+    suspend fun insertRecipe(recipeEntity: RecipeEntity)
 
     @Update
     suspend fun updateRecipe(recipe: RecipeEntity)
@@ -32,6 +38,9 @@ interface RecipeDao {
 
     @Query("DELETE from recipe WHERE id IN (:listId)")
     suspend fun deleteRecipes(listId: List<Int>)
+
+    @Delete
+    suspend fun deleteRecipe(recipe: RecipeEntity)
 
     @Query("UPDATE recipe SET isRecommended = false")
     suspend fun resetRecommended()
@@ -47,5 +56,6 @@ interface RecipeDao {
 
     @Query("SELECT EXISTS(SELECT * FROM recipe WHERE id = :id AND isRecommended = 1)")
     suspend fun isRecipeRecommended(id: Int): Boolean
+
 
 }

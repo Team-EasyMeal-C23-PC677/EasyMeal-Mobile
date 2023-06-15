@@ -32,11 +32,11 @@ class DetectionActivity : AppCompatActivity() {
 
     private fun setupView() {
         binding.cameraXButton.setOnClickListener {
-            Toast.makeText(this, "Camera clcked", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Camera clcked", Toast.LENGTH_SHORT).show()
             startCameraX()
         }
         binding.galleryButton.setOnClickListener {
-            Toast.makeText(this, "Gallery clcked", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Gallery clcked", Toast.LENGTH_SHORT).show()
             startGallery()
         }
     }

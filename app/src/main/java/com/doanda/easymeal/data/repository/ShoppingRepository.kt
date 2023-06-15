@@ -1,5 +1,6 @@
 package com.doanda.easymeal.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
@@ -19,8 +20,8 @@ class ShoppingRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.getShoppingList(userId)
-            val response = dummyApiService.getShoppingList(userId)
+            val response = apiService.getShoppingList(userId)
+//            val response = dummyApiService.getShoppingList(userId)
 
             val list = response.listIngredient
             val listRoom = list.map { item ->
@@ -34,7 +35,10 @@ class ShoppingRepository(
             }
             shoppingDao.resetHave()
             shoppingDao.insertReplaceShoppingListItem(listRoom)
+
+            Log.d(TAG, "Success getShoppingList")
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
         val localData: LiveData<Result<List<ShoppingItemEntity>>> =
@@ -51,8 +55,8 @@ class ShoppingRepository(
             = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.addShoppingListItem(userId, ingId, qty, unit)
-            val response = dummyApiService.addShoppingListItem(userId, ingId, qty, unit)
+            val response = apiService.addShoppingListItem(userId, ingId, qty, unit)
+//            val response = dummyApiService.addShoppingListItem(userId, ingId, qty, unit)
 
             val item = shoppingDao.getShoppingListItemById(ingId)
             if (item != null) {
@@ -62,18 +66,20 @@ class ShoppingRepository(
                 shoppingDao.updateShoppingListItem(item)
             }
 
+            Log.d(TAG, "Success addShoppingListItem")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
 
     fun deleteShoppingListItem(userId: Int, ingId: Int) : LiveData<Result<GeneralResponse>>
-            = liveData {
+    = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.deleteShoppingListItem(userId, ingId)
-            val response = dummyApiService.deleteShoppingListItem(userId, ingId)
+            val response = apiService.deleteShoppingListItem(userId, ingId)
+//            val response = dummyApiService.deleteShoppingListItem(userId, ingId)
 
             val item = shoppingDao.getShoppingListItemById(ingId)
             if (item != null) {
@@ -81,8 +87,10 @@ class ShoppingRepository(
                 shoppingDao.updateShoppingListItem(item)
             }
 
+            Log.d(TAG, "Success deleteShoppingListItem")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
@@ -92,7 +100,7 @@ class ShoppingRepository(
     suspend fun clearShoppingList() = shoppingDao.resetHave()
 
     companion object {
-        private const val TAG = "ShoppingRepository"
+        private const val TAG = "ShoppingRepositoryLoggg"
 
         @Volatile
         private var INSTANCE : ShoppingRepository? = null

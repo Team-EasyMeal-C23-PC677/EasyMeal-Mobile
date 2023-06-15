@@ -1,13 +1,9 @@
 <resources>
     <string name="app_name">EasyMeal</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="or">Or</string>
-    <string name="enter_with_google">Login with Google</string>
     <string name="name">Name</string>
     <string name="register">Register</string>
     <string name="to_register">Register</string>
@@ -16,17 +12,13 @@
     <string name="title_pantry">Pantry</string>
     <string name="title_favorite">Favorite</string>
     <string name="title_shopping_list">Grocery</string>
-    <string name="search_hint">Search</string>
     <string name="cd_recipe_image">Recipe image</string>
     <string name="title_activity_recipe_detail">RecipeDetailActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
     <string name="hour_format">"%1$d h "</string>
     <string name="minute_format">%1$d m</string>
     <string name="serving_format">%1$d servings</string>
     <string name="placeholder_time"> </string>
     <string name="placeholder_serving"> </string>
-    <string name="placeholder_warning"> </string>
     <string name="cd_favorite_button">Favorite button</string>
     <string name="placeholder_title"> </string>
     <string name="placeholder_description"> </string>
@@ -43,7 +35,6 @@
     <string name="response_register_failed">Register failed</string>
     <string name="response_register_success">Register successful!</string>
     <string name="open_camera_failed">Could not open camera!</string>
-    <string name="compressing_image">Compressing image</string>
     <string name="cd_detection_image">Detection image</string>
     <string name="placeholder_ingredient_name"> </string>
     <string name="cd_recipe_instructions">Recipe instructions</string>
@@ -82,7 +73,6 @@
     <string name="recommend_recipes">Recommend me recipes</string>
     <string name="what_in_pantry">What is in your pantry?</string>
     <string name="what_in_pantry_desc">Add ingredients that you have</string>
-    <string name="searchbar_hint">Search recipes</string>
     <string name="recipe_recommended">Here are the best recipes for you</string>
     <string name="what_to_buy">What you need</string>
     <string name="setting">Setting</string>
@@ -91,4 +81,6 @@
     <string name="ingredient_not_recognized">Not sure about an ingredient?</string>
     <string name="ingredient_not_recognized_desc">Take a picture and detect it immediately!</string>
     <string name="detection_failed">Sorry, could not detect any ingredient</string>
+    <string name="email_already">Email already registered</string>
+    <string name="cannot_be_empty">Fields cannot be empty!</string>
 </resources>

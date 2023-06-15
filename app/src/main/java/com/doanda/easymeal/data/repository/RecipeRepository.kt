@@ -1,5 +1,6 @@
 package com.doanda.easymeal.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
@@ -21,10 +22,13 @@ class RecipeRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.getDetailRecipeById(recipeId)
-            val response = dummyApiService.getDetailRecipeById(recipeId)
+            val response = apiService.getDetailRecipeById(recipeId)
+//            val response = dummyApiService.getDetailRecipeById(recipeId)
+
+            Log.d(TAG, "Success getDetailRecipeById")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
@@ -33,15 +37,17 @@ class RecipeRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.getRecommendedRecipes(userId)
-            val response = dummyApiService.getRecommendedRecipes(userId)
+            val response = apiService.getRecommendedRecipes(userId)
+//            val response = dummyApiService.getRecommendedRecipes(userId)
 
             val listRecipe = response.listRecipe
             val listRecipeId = mutableListOf<Int>()
-            val listRecipeRoom = listRecipe.map { recipe ->
+            val listRecipeRoom = mutableListOf<RecipeEntity>()
+
+            for ((index, recipe) in listRecipe.withIndex()) {
                 val isFavorite = recipeDao.isRecipeFavorite(recipe.id)
                 listRecipeId.add(recipe.id)
-                RecipeEntity(
+                val recipeEntity = RecipeEntity(
                     recipe.id,
                     recipe.title,
                     recipe.description,
@@ -50,12 +56,26 @@ class RecipeRepository(
                     recipe.imgUrl,
                     isFavorite = isFavorite,
                     isRecommended = true,
+                    order = index,
                 )
+                listRecipeRoom.add(recipeEntity)
             }
-            recipeDao.resetRecommended()
-            recipeDao.deleteRecipes(listRecipeId)
-            recipeDao.insertRecipes(listRecipeRoom)
+
+            val existingRecipes = recipeDao.getRecipesByIds(listRecipeId)
+            for (recipeEntity in listRecipeRoom) {
+                val existingRecipe = existingRecipes.find { it.id == recipeEntity.id}
+                if (existingRecipe != null) {
+                    recipeDao.updateRecipe(recipeEntity)
+                } else {
+                    recipeDao.insertRecipe(recipeEntity)
+                }
+            }
+            val recipesToDelete = existingRecipes.filterNot { it.id in listRecipeId && !it.isFavorite}
+            recipeDao.deleteRecipes(recipesToDelete.map {it.id})
+
+            Log.d(TAG, "Success getRecommendedRecipes")
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
         val localData: LiveData<Result<List<RecipeEntity>>> =
@@ -67,8 +87,8 @@ class RecipeRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.getFavoriteRecipes(userId)
-            val response = dummyApiService.getFavoriteRecipes(userId)
+            val response = apiService.getFavoriteRecipes(userId)
+//            val response = dummyApiService.getFavoriteRecipes(userId)
 
             val listRecipe = response.listFavoriteRecipe
             val listRecipeRoom = listRecipe.map { recipe ->
@@ -86,7 +106,9 @@ class RecipeRepository(
             }
             recipeDao.resetFavorite()
             recipeDao.insertReplaceRecipes(listRecipeRoom)
+            Log.d(TAG, "Success getFavoriteRecipes")
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
         val localData: LiveData<Result<List<RecipeEntity>>> =
@@ -98,32 +120,36 @@ class RecipeRepository(
     = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.addFavoriteRecipe(userId, recipeId)
-            val response = dummyApiService.addFavoriteRecipe(userId, recipeId)
+            val response = apiService.addFavoriteRecipe(userId, recipeId)
+//            val response = dummyApiService.addFavoriteRecipe(userId, recipeId)
 
             val recipe = recipeDao.getRecipeById(recipeId)
             recipe.isFavorite = true
             recipeDao.updateRecipe(recipe)
 
+            Log.d(TAG, "Success addFavoriteRecipe")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
 
     fun deleteFavoriteRecipe(userId: Int, recipeId: Int) : LiveData<Result<GeneralResponse>>
-            = liveData {
+    = liveData {
         emit(Result.Loading)
         try {
-//            val response = apiService.deleteFavoriteRecipe(userId, recipeId)
-            val response = dummyApiService.deleteFavoriteRecipe(userId, recipeId)
+            val response = apiService.deleteFavoriteRecipe(userId, recipeId)
+//            val response = dummyApiService.deleteFavoriteRecipe(userId, recipeId)
 
             val recipe = recipeDao.getRecipeById(recipeId)
             recipe.isFavorite = false
             recipeDao.updateRecipe(recipe)
 
+            Log.d(TAG, "Success deleteFavoriteRecipe")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
@@ -137,6 +163,7 @@ class RecipeRepository(
 
 
     companion object {
+        private const val TAG = "RecipeRepositoryLoggg"
         @Volatile
         private var INSTANCE: RecipeRepository? = null
         fun getInstance(

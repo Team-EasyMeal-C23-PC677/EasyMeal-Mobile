@@ -26,8 +26,6 @@ class RecipeFragment : Fragment() {
     private val viewModel by viewModels<RecipeViewModel>{ ViewModelFactory.getInstance(requireContext()) }
 
     private lateinit var adapter: RecipeAdapter
-
-
     private var initPantryObserver: Observer<List<IngredientEntity>>? = null
 
     override fun onCreateView(
@@ -49,7 +47,6 @@ class RecipeFragment : Fragment() {
         initPantryObserver?.let {
             viewModel.getPantryIngredientsLocal().removeObservers(viewLifecycleOwner)
         }
-//        viewModel.getRecommendedRecipes(-1).removeObservers(viewLifecycleOwner)
     }
 
     private fun getUser() {
@@ -58,6 +55,20 @@ class RecipeFragment : Fragment() {
                 setupData(user.userId)
                 setupAction(user.userId)
             }
+        }
+    }
+
+    private fun setupData(userId: Int) {
+        getRecommendedRecipesLocal()
+        if (initPantryObserver == null) {
+            initPantryObserver = Observer { listIng ->
+                val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
+                val notEmpty = listIng.isNotEmpty()
+                handlePantryStatus(notEmpty)
+                if (notEmpty)
+                    getRecommendedRecipes(userId)
+            }
+            viewModel.getPantryIngredientsLocal().observeOnce(viewLifecycleOwner, initPantryObserver!!)
         }
     }
 
@@ -74,7 +85,7 @@ class RecipeFragment : Fragment() {
         }
         adapter.setOnItemClickCallback(object : RecipeAdapter.OnItemClickCallback {
             override fun onItemClicked(recipe: RecipeEntity) {
-                Toast.makeText(requireContext(), "Recipe -> RecipeDetail", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "Recipe -> RecipeDetail", Toast.LENGTH_SHORT).show()
                 val intent = Intent(requireContext(), RecipeDetailActivity::class.java)
                 intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.id)
                 startActivity(intent)
@@ -85,33 +96,8 @@ class RecipeFragment : Fragment() {
         })
     }
 
-    private fun setupData(userId: Int) {
-        if (initPantryObserver == null) {
-            initPantryObserver = Observer { listIng ->
-//                val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
-//                val notEmpty = listIng.isNotEmpty()
-//                handlePantryStatus(isPantryUpdated)
-//                if (notEmpty && isPantryUpdated)
-//                    getRecommendedRecipes(userId)
-                val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
-                val notEmpty = listIng.isNotEmpty()
-                handlePantryStatus(notEmpty)
-                if (notEmpty)
-                    getRecommendedRecipes(userId)
-            }
-            viewModel.getPantryIngredientsLocal().observeOnce(viewLifecycleOwner, initPantryObserver!!)
-        }
-//        val isPantryUpdated = arguments?.getBoolean(PantryFragment.EXTRA_IS_PANTRY_UPDATED) ?: false
-//        if (isPantryUpdated) {
-//            getRecommendedRecipes(userId)
-//        } else {
-//            getRecommendedRecipesLocal()
-//        }
-        getRecommendedRecipesLocal()
-    }
-
     private fun getRecommendedRecipesLocal() {
-        viewModel.getRecommendedRecipesLocal().observeOnce(viewLifecycleOwner) { listRecipe ->
+        viewModel.getRecommendedRecipesLocal().observe(viewLifecycleOwner) { listRecipe ->
             if (listRecipe != null) {
                 updateList(listRecipe)
             }
@@ -123,7 +109,7 @@ class RecipeFragment : Fragment() {
             when (result) {
                 is Result.Success -> {
                     showLoading(false)
-                    Toast.makeText(requireContext(), "Recommended Success", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Recommended Success", Toast.LENGTH_SHORT).show()
                     updateList(result.data)
                 }
                 is Result.Loading -> showLoading(true)

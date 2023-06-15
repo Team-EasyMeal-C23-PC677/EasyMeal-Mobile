@@ -29,11 +29,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setTheme(R.style.Theme_EasyMeal)
-
         hideSystemUI()
 
         setupData()
+        setupView()
     }
 
     override fun onDestroy() {
@@ -42,18 +41,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupData() {
-        setupView()
         viewModel.getLoginStatus().observeOnce(this) { isLogin ->
             if (!isLogin) {
                 goToLogin()
             }
         }
-        viewModel.getUser().observeOnce(this) { user ->
+        viewModel.getUser().observe(this) { user ->
             if (user.userEmail != "null") {
                 binding.tvUserEmail.text = user.userEmail
             }
         }
-        viewModel.getUserName().observeOnce(this) { name ->
+        viewModel.getUserName().observe(this) { name ->
             if (name != "null") {
                 binding.tvUserName.text = name
             }
@@ -61,8 +59,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-//        Toast.makeText(this, "Main setup view", Toast.LENGTH_SHORT).show()
-
         val navView: BottomNavigationView = binding.navView
         navView.background = null
         navView.menu.getItem(2).isEnabled = false

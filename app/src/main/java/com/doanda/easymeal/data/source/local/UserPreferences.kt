@@ -14,11 +14,7 @@ class UserPreferences private constructor(
         return dataStore.data.map  { preferences ->
             UserEntity(
                 preferences[USER_ID] ?: -1,
-//                preferences[USER_NAME] ?: "null",
                 preferences[USER_EMAIL] ?: "null",
-//                preferences[USER_PASSWORD] ?: "null",
-//                preferences[IS_LOGIN] ?: false,
-//                preferences[IS_FIRST_TIME] ?: true,
             )
         }
     }
@@ -26,11 +22,7 @@ class UserPreferences private constructor(
     suspend fun saveUser(user: UserEntity) {
         dataStore.edit {  preferences->
             preferences[USER_ID] = user.userId
-//            preferences[USER_NAME] = user.userName
             preferences[USER_EMAIL] = user.userEmail
-//            preferences[USER_PASSWORD] = user.userPassword
-//            preferences[IS_LOGIN] = user.isLogin
-//            preferences[IS_FIRST_TIME] = user.isFirstTime
         }
     }
 
@@ -72,7 +64,10 @@ class UserPreferences private constructor(
 
     suspend fun logout() {
         dataStore.edit { preferences ->
-            preferences.clear()
+            preferences.remove(USER_ID)
+            preferences.remove(USER_NAME)
+            preferences.remove(USER_EMAIL)
+            preferences.remove(IS_LOGIN)
         }
     }
 
@@ -80,7 +75,6 @@ class UserPreferences private constructor(
         private val USER_ID = intPreferencesKey("user_id")
         private val USER_NAME = stringPreferencesKey("user_name")
         private val USER_EMAIL = stringPreferencesKey("user_email")
-//        private val USER_PASSWORD = stringPreferencesKey("user_password")
         private val IS_LOGIN = booleanPreferencesKey("is_login")
         private val IS_FIRST_TIME = booleanPreferencesKey("is_first_time")
 

@@ -30,5 +30,8 @@ data class RecipeEntity(
 
     @field:ColumnInfo(name = "isRecommended")
     var isRecommended: Boolean,
+
+    @field:ColumnInfo(name = "order")
+    var order: Int? = null,
 )
 

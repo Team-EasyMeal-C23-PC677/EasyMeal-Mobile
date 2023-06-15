@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.EasyMeal" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.EasyMeal" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="android:fontFamily">@font/poppins</item>
         <item name="colorPrimary">@color/primary</item>
@@ -26,9 +26,6 @@
     </style>
 
     <!--    SEARCH BAR-->
-    <style name="SearchBar" parent="Widget.Material3.SearchBar">
-
-    </style>
 
     <!--    TEXT FIELD-->
     <style name="TextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -74,10 +71,6 @@
         <item name="backgroundTint">@color/secondary</item>
     </style>
 
-    <style name="Button.Secondary.Inactive">
-        <item name="backgroundTint">@color/secondary_lighter</item>
-    </style>
-
     <style name="Button.Primary">
         <item name="backgroundTint">@color/primary</item>
     </style>
@@ -105,22 +98,8 @@
         <item name="android:textSize">10sp</item>
     </style>
 
-    <style name="TextViewRecipe.Warning">
-        <item name="android:textColor">@color/red_theme</item>
-        <item name="android:drawableTint">@color/red_theme</item>
-    </style>
-
     <style name="TextViewRecipe.Favorite">
         <item name="android:textSize">10sp</item>
-    </style>
-
-    <style name="TextViewRecipe.Warning.Favorite">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="ButtonRecipe">
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="RoundedImageView" parent="">
@@ -131,24 +110,8 @@
     <!--    TYPOGRAPHY-->
 
     <!--    SHAPEABLE IMAGE VIEW-->
-    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
-        <item name="cornerSize">50%</item>
-    </style>
 
     <!--    CHIP-->
-    <style name="Colors_Widget.MaterialComponents.Chip.Choice"
-        parent="Widget.MaterialComponents.Chip.Choice"
-        >
-        <item name="chipBackgroundColor">@color/color_choice_chip_background_color</item>
-        <item name="chipStrokeColor">@color/color_choice_chip_strokecolor_selector</item>
-        <item name="chipStrokeWidth">1dp</item>
-        <item name="android:textColor">@color/color_choice_chip_text_color</item>
-
-        <!--        <item name="android:padding">0dp</item>-->
-        <!--        app:chipIconSize="32dp"-->
-        <!--        app:textStartPadding="0dp"-->
-        <!--        app:textEndPadding="0dp"-->
-    </style>
 
     <!--        parent="Widget.MaterialComponents.Chip.Choice"-->
     <style name="Chip"
@@ -189,9 +152,5 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-    <style name="Theme.EasyMeal.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.EasyMeal.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
