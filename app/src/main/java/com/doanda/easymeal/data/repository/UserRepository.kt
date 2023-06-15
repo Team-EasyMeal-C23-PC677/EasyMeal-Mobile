@@ -9,14 +9,11 @@ import com.doanda.easymeal.data.response.login.LoginResponse
 import com.doanda.easymeal.data.source.local.UserPreferences
 import com.doanda.easymeal.data.source.model.UserEntity
 import com.doanda.easymeal.data.source.remote.ApiService
-import com.doanda.easymeal.data.source.remote.DummyApiService
 import com.doanda.easymeal.utils.Result
-import kotlinx.coroutines.flow.distinctUntilChanged
 
 class UserRepository(
     private val apiService: ApiService,
     private val userPreferences: UserPreferences,
-    private val dummyApiService: DummyApiService,
 ) {
     fun register(
         name: String,
@@ -27,7 +24,6 @@ class UserRepository(
         emit(Result.Loading)
         try {
             val response = apiService.register(name, email, password)
-//            val response = dummyApiService.register(name, email, password)
             Log.d(TAG, "Success register")
             emit(Result.Success(response))
         } catch (e: Exception) {
@@ -44,7 +40,6 @@ class UserRepository(
         emit(Result.Loading)
         try {
             val response = apiService.login(email, password)
-//            val response = dummyApiService.login(email, password)
             Log.d(TAG, "Success login")
             emit(Result.Success(response))
         } catch (e: Exception) {
@@ -58,7 +53,6 @@ class UserRepository(
     = liveData {
         try {
             val response = apiService.updateName(userId, userName)
-//            val response = dummyApiService.updateName(userId, userName)
             Log.d(TAG, "Success updateName")
             emit(Result.Success(response))
         } catch (e: Exception) {
@@ -109,10 +103,9 @@ class UserRepository(
         fun getInstance(
             apiService: ApiService,
             userPreferences: UserPreferences,
-            dummyApiService: DummyApiService,
         ) : UserRepository =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: UserRepository(apiService, userPreferences, dummyApiService)
+                INSTANCE ?: UserRepository(apiService, userPreferences)
             }.also { INSTANCE = it }
     }
 }

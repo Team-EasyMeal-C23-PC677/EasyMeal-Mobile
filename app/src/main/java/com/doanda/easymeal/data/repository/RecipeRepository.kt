@@ -9,12 +9,10 @@ import com.doanda.easymeal.data.response.detailrecipe.DetailRecipeResponse
 import com.doanda.easymeal.data.source.database.RecipeDao
 import com.doanda.easymeal.data.source.model.RecipeEntity
 import com.doanda.easymeal.data.source.remote.ApiService
-import com.doanda.easymeal.data.source.remote.DummyApiService
 import com.doanda.easymeal.utils.Result
 
 class RecipeRepository(
     private val apiService: ApiService,
-    private val dummyApiService: DummyApiService,
     private val recipeDao: RecipeDao,
 ) {
 
@@ -23,7 +21,6 @@ class RecipeRepository(
         emit(Result.Loading)
         try {
             val response = apiService.getDetailRecipeById(recipeId)
-//            val response = dummyApiService.getDetailRecipeById(recipeId)
 
             Log.d(TAG, "Success getDetailRecipeById")
             emit(Result.Success(response))
@@ -38,7 +35,6 @@ class RecipeRepository(
         emit(Result.Loading)
         try {
             val response = apiService.getRecommendedRecipes(userId)
-//            val response = dummyApiService.getRecommendedRecipes(userId)
 
             val listRecipe = response.listRecipe
             val listRecipeId = mutableListOf<Int>()
@@ -158,11 +154,10 @@ class RecipeRepository(
         private var INSTANCE: RecipeRepository? = null
         fun getInstance(
             apiService: ApiService,
-            dummyApiService: DummyApiService,
             recipeDao: RecipeDao,
         ): RecipeRepository =
             INSTANCE?: synchronized(this) {
-                INSTANCE?: RecipeRepository(apiService, dummyApiService, recipeDao)
+                INSTANCE?: RecipeRepository(apiService, recipeDao)
             }.also { INSTANCE = it }
     }
 }

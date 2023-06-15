@@ -1,9 +1,9 @@
 package com.doanda.easymeal.ui.splashscreen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.doanda.easymeal.MainActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.doanda.easymeal.ui.main.MainActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
