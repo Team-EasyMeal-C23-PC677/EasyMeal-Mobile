@@ -43,7 +43,7 @@ class CameraActivity : AppCompatActivity() {
 
     private fun setupView() {
         binding.btnCapture.setOnClickListener {
-            Toast.makeText(this, "Capturing photo, please wait", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.detecting), Toast.LENGTH_SHORT).show()
             takePhoto()
         }
         binding.btnBack.setOnClickListener {

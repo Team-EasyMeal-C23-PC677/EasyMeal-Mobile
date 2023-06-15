@@ -83,4 +83,5 @@
     <string name="detection_failed">Sorry, could not detect any ingredient</string>
     <string name="email_already">Email already registered</string>
     <string name="cannot_be_empty">Fields cannot be empty!</string>
+    <string name="detecting">Detecting, please wait</string>
 </resources>

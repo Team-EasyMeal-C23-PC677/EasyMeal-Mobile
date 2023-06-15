@@ -83,4 +83,5 @@
     <string name="detection_failed">Maaf, tidak dapat mendeteksi bahan</string>
     <string name="email_already">Email sudah terdaftar</string>
     <string name="cannot_be_empty">Kolom tidak boleh kosong!</string>
+    <string name="detecting">Mendeteksi bahan...</string>
 </resources>

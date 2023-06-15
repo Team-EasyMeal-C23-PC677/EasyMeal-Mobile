@@ -42,7 +42,7 @@ class DetectionActivity : AppCompatActivity() {
     }
 
     private fun startCameraX() {
-        Toast.makeText(this@DetectionActivity, getString(R.string.opening_camera), Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this@DetectionActivity, getString(R.string.opening_camera), Toast.LENGTH_SHORT).show()
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this@DetectionActivity,
