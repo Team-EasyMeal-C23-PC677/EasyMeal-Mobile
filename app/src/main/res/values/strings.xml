@@ -94,4 +94,6 @@
     <string name="time_capital">Time</string>
     <string name="servings_capital">Servings</string>
     <string name="favorite_capital">Favorite</string>
+    <string name="search_recipes">Search recipes…</string>
+    <string name="name_changed_success">Name changed successfully!</string>
 </resources>

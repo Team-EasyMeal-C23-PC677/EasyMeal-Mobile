@@ -152,6 +152,7 @@
         <item name="chipIconTint">@color/color_choice_chip_icon_tint_secondary</item>
         <item name="chipBackgroundColor">@color/color_choice_chip_background_color_secondary</item>
         <item name="chipStrokeColor">@color/color_choice_chip_strokecolor_selector_secondary</item>
+        <item name="textStartPadding">4dp</item>
     </style>
 
     <style name="Theme.EasyMeal.NoActionBar">

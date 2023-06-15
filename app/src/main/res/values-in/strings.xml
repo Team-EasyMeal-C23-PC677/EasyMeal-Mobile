@@ -94,4 +94,7 @@
     <string name="time_capital">Waktu</string>
     <string name="servings_capital">Porsi</string>
     <string name="favorite_capital">Favorit</string>
+    <string name="search_recipes">Cari resep…</string>
+    <string name="name_changed_success">Berhasil mengupdate nama</string>
+
 </resources>
