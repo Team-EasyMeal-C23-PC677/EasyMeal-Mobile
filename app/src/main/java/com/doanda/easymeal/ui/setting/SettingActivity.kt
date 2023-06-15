@@ -1,13 +1,13 @@
 package com.doanda.easymeal.ui.setting
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.doanda.easymeal.R
 import com.doanda.easymeal.data.source.model.UserEntity
 import com.doanda.easymeal.databinding.ActivitySettingBinding

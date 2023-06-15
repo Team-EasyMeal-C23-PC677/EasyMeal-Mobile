@@ -1,4 +1,4 @@
-package com.doanda.easymeal.di
+package com.doanda.easymeal.data.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -13,7 +13,6 @@ import com.doanda.easymeal.data.source.database.RecipeDatabase
 import com.doanda.easymeal.data.source.database.ShoppingDatabase
 import com.doanda.easymeal.data.source.local.UserPreferences
 import com.doanda.easymeal.data.source.remote.ApiConfig
-import com.doanda.easymeal.data.source.remote.DummyApiService
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore("user")
 object Injection {
@@ -21,12 +20,10 @@ object Injection {
     fun provideUserRepository(context: Context): UserRepository {
         val userPreferences = UserPreferences.getInstance(context.dataStore)
         val apiService = ApiConfig.getApiService()
-        val dummyApiService = DummyApiService()
 
         return UserRepository.getInstance(
             userPreferences = userPreferences,
             apiService = apiService,
-            dummyApiService = dummyApiService,
         )
     }
 
@@ -34,11 +31,9 @@ object Injection {
         val recipeDatabase = RecipeDatabase.getInstance(context)
         val recipeDao = recipeDatabase.recipeDao()
         val apiService = ApiConfig.getApiService()
-        val dummyApiService = DummyApiService()
 
         return RecipeRepository.getInstance(
             apiService = apiService,
-            dummyApiService = dummyApiService,
             recipeDao = recipeDao
         )
     }
@@ -48,11 +43,9 @@ object Injection {
         val shoppingDatabase = ShoppingDatabase.getInstance(context)
         val shoppingDao = shoppingDatabase.shoppingDao()
         val apiService = ApiConfig.getApiService()
-        val dummyApiService = DummyApiService()
 
         return IngredientRepository.getInstance(
             apiService = apiService,
-            dummyApiService = dummyApiService,
             ingredientDao = ingredientDao,
             shoppingDao = shoppingDao,
         )
@@ -61,11 +54,9 @@ object Injection {
         val shoppingDatabase = ShoppingDatabase.getInstance(context)
         val shoppingDao = shoppingDatabase.shoppingDao()
         val apiService = ApiConfig.getApiService()
-        val dummyApiService = DummyApiService()
 
         return ShoppingRepository.getInstance(
             apiService = apiService,
-            dummyApiService = dummyApiService,
             shoppingDao = shoppingDao
         )
     }}

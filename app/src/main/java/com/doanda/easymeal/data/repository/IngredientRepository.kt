@@ -10,12 +10,10 @@ import com.doanda.easymeal.data.source.database.ShoppingDao
 import com.doanda.easymeal.data.source.model.IngredientEntity
 import com.doanda.easymeal.data.source.model.ShoppingItemEntity
 import com.doanda.easymeal.data.source.remote.ApiService
-import com.doanda.easymeal.data.source.remote.DummyApiService
 import com.doanda.easymeal.utils.Result
 
 class IngredientRepository(
     private val apiService: ApiService,
-    private val dummyApiService: DummyApiService,
     private val ingredientDao: IngredientDao,
     private val shoppingDao: ShoppingDao,
 ) {
@@ -25,7 +23,6 @@ class IngredientRepository(
         emit(Result.Loading)
         try {
             val response = apiService.getAllIngredients()
-//            val response = dummyApiService.getAllIngredients()
 
             val listIng = response.listIngredient
             val listIngRoom = listIng.map { ing ->
@@ -67,7 +64,6 @@ class IngredientRepository(
         emit(Result.Loading)
         try {
             val response = apiService.getPantryIngredients(userId)
-//            val response = dummyApiService.getPantryIngredients(userId)
 
             val listIng = response.listIngredient
             val listIngRoom = listIng.map { ing ->
@@ -95,7 +91,6 @@ class IngredientRepository(
         emit(Result.Loading)
         try {
             val response = apiService.addPantryIngredient(userId, ingId)
-//            val response = dummyApiService.addPantryIngredient(userId, ingId)
 
             val ing = ingredientDao.getIngredientById(ingId)
             ing.isHave = true
@@ -113,7 +108,6 @@ class IngredientRepository(
         emit(Result.Loading)
         try {
             val response = apiService.deletePantryIngredient(userId, ingId)
-//            val response = dummyApiService.deletePantryIngredient(userId, ingId)
 
             val ing = ingredientDao.getIngredientById(ingId)
             ing.isHave = false
@@ -128,7 +122,6 @@ class IngredientRepository(
     }
 
     fun isPantryNotEmpty() = ingredientDao.isPantryNotEmpty()
-    suspend fun isHaveIngredient(ingId: Int) = ingredientDao.isHaveIngredient(ingId)
 
     fun getAllIngredientsLocal() = ingredientDao.getAllIngredients()
 
@@ -149,12 +142,11 @@ class IngredientRepository(
         private var INSTANCE: IngredientRepository? = null
         fun getInstance(
             apiService: ApiService,
-            dummyApiService: DummyApiService,
             ingredientDao: IngredientDao,
             shoppingDao: ShoppingDao,
         ) : IngredientRepository =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: IngredientRepository(apiService, dummyApiService, ingredientDao, shoppingDao)
+                INSTANCE ?: IngredientRepository(apiService, ingredientDao, shoppingDao)
             }.also { INSTANCE = it }
     }
 }

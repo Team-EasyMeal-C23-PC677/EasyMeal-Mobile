@@ -1,6 +1,5 @@
 package com.doanda.easymeal.data.source.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.doanda.easymeal.data.source.model.DetectionEntity
 

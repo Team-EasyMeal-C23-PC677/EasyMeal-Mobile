@@ -1,4 +1,4 @@
-package com.doanda.easymeal
+package com.doanda.easymeal.ui.main
 
 import androidx.lifecycle.ViewModel
 import com.doanda.easymeal.data.repository.UserRepository
