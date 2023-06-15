@@ -69,7 +69,6 @@
             android:id="@+id/tv_most_likely"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/most_likely"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textAlignment="center"
