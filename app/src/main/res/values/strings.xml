@@ -92,4 +92,5 @@
     <string name="ingredient_not_recognized_desc">Take a picture and detect it immediately!</string>
     <string name="detection_failed">Sorry, could not detect any ingredient</string>
     <string name="email_already">Email already registered</string>
+    <string name="cannot_be_empty">Fields cannot be empty!</string>
 </resources>

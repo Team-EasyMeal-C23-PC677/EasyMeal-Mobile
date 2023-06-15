@@ -64,6 +64,11 @@ class LoginActivity : AppCompatActivity() {
         val email = binding.etLoginEmail.text.toString()
         val password = binding.etLoginPassword.text.toString()
 
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, getString(R.string.cannot_be_empty), Toast.LENGTH_SHORT).show()
+            return
+        }
+
         viewModel.login(email, password).observe(this) { result ->
             when(result) {
                 is Result.Success -> {
@@ -81,12 +86,18 @@ class LoginActivity : AppCompatActivity() {
                 }
                 is Result.Loading -> showLoading(true)
             }
-
         }
     }
 
     private fun loadUserData(userData: User) {
         val userId = userData.userId
+        val user = UserEntity(
+            userId = userData.userId,
+            userEmail = userData.userEmail,
+        )
+        viewModel.saveUser(user)
+        viewModel.setLoginStatus(true)
+        viewModel.setUserName(userData.userName)
 
         viewModel.getPantryIngredients(userId).observe(this) { result ->
             when (result) {
@@ -99,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Loading -> showLoading(true)
                 is Result.Error -> {
                     showLoading(false)
-                    pantryLoaded = false
+                    setAllChecks(false)
                     val message = "Failed to load Pantry"
                     Log.e(TAG, result.error + message)
                     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -117,7 +128,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Loading -> showLoading(true)
                 is Result.Error -> {
                     showLoading(false)
-                    favoriteLoaded = false
+                    setAllChecks(false)
                     val message = "Failed to load favorite"
                     Log.e(TAG, result.error + message)
                     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -135,7 +146,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Loading -> showLoading(true)
                 is Result.Error -> {
                     showLoading(false)
-                    shoppingLoaded = false
+                    setAllChecks(false)
                     val message = "Failed to load Shopping List"
                     Log.e(TAG, result.error + message)
                     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -144,27 +155,19 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun setAllChecks(isLoaded: Boolean) {
+        pantryLoaded = isLoaded
+        favoriteLoaded = isLoaded
+        shoppingLoaded = isLoaded
+    }
+
     private fun proceed(userData: User) {
         if (pantryLoaded && favoriteLoaded && shoppingLoaded) {
-
-            Toast.makeText(this, "All loaded!!!!", Toast.LENGTH_SHORT).show()
-            val user = UserEntity(
-                userId = userData.userId,
-//                userName = userData.userName,
-                userEmail = userData.userEmail,
-//                userPassword = userData.userPassword,
-//                isLogin = true,
-//                isFirstTime = false
-            )
-            viewModel.saveUser(user)
-            viewModel.setLoginStatus(true)
-            viewModel.setUserName(userData.userName)
-
-            Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
-            goToMain()
             pantryLoaded = false
             favoriteLoaded = false
             shoppingLoaded = false
+            Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
+            goToMain()
         }
     }
 
@@ -180,7 +183,6 @@ class LoginActivity : AppCompatActivity() {
 //        Toast.makeText(this, "Login -> Welcome", Toast.LENGTH_SHORT).show()
         val intentToWelcome = Intent(this@LoginActivity, WelcomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//        intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
         finish()
         startActivity(intentToWelcome)
     }

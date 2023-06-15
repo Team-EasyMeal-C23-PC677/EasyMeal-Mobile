@@ -44,6 +44,11 @@ class RegisterActivity : AppCompatActivity() {
         val email = binding.etRegisterEmail.text.toString()
         val password = binding.etRegisterPassword.text.toString()
         val confirmPassword = binding.etRegisterConfirm.text.toString()
+
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty())  {
+            Toast.makeText(this, getString(R.string.cannot_be_empty), Toast.LENGTH_SHORT).show()
+            return
+        }
         if (password != confirmPassword) {
             Toast.makeText(this, getString(R.string.response_register_confirm_fail), Toast.LENGTH_SHORT).show()
             return
