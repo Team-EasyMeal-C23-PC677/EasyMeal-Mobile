@@ -1,5 +1,6 @@
 package com.doanda.easymeal.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
@@ -27,10 +28,12 @@ class UserRepository(
         try {
             val response = apiService.register(name, email, password)
 //            val response = dummyApiService.register(name, email, password)
+            Log.d(TAG, "Success register")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
-        } // TODO handle 400 email exists!!
+        }
     }
 
     fun login(
@@ -42,8 +45,10 @@ class UserRepository(
         try {
             val response = apiService.login(email, password)
 //            val response = dummyApiService.login(email, password)
+            Log.d(TAG, "Success login")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
@@ -54,8 +59,10 @@ class UserRepository(
         try {
             val response = apiService.updateName(userId, userName)
 //            val response = dummyApiService.updateName(userId, userName)
+            Log.d(TAG, "Success updateName")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }

@@ -108,7 +108,6 @@ class IngredientRepository(
         }
     }
 
-    // TODO handle fail
     fun deletePantryIngredient(userId: Int, ingId: Int) : LiveData<Result<GeneralResponse>>
     = liveData {
         emit(Result.Loading)

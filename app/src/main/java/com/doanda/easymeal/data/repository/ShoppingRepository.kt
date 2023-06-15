@@ -1,5 +1,6 @@
 package com.doanda.easymeal.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
@@ -34,7 +35,10 @@ class ShoppingRepository(
             }
             shoppingDao.resetHave()
             shoppingDao.insertReplaceShoppingListItem(listRoom)
+
+            Log.d(TAG, "Success getShoppingList")
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
         val localData: LiveData<Result<List<ShoppingItemEntity>>> =
@@ -62,14 +66,16 @@ class ShoppingRepository(
                 shoppingDao.updateShoppingListItem(item)
             }
 
+            Log.d(TAG, "Success addShoppingListItem")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
 
     fun deleteShoppingListItem(userId: Int, ingId: Int) : LiveData<Result<GeneralResponse>>
-            = liveData {
+    = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.deleteShoppingListItem(userId, ingId)
@@ -81,8 +87,10 @@ class ShoppingRepository(
                 shoppingDao.updateShoppingListItem(item)
             }
 
+            Log.d(TAG, "Success deleteShoppingListItem")
             emit(Result.Success(response))
         } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
             emit(Result.Error(e.message.toString()))
         }
     }
