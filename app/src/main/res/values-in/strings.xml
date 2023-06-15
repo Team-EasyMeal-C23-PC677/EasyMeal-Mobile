@@ -40,15 +40,15 @@
     <string name="cd_recipe_instructions">Instruksi resep</string>
     <string name="cd_back_button">Tombol kembali</string>
     <string name="update">Update</string>
-    <string name="placeholder_email">ddoanda@gmail.com</string>
+    <string name="placeholder_email">" "</string>
     <string name="setting_change_name">Ubah nama</string>
-    <string name="placeholder_name">Doanda Dresta Rahma</string>
+    <string name="placeholder_name">" "</string>
     <string name="logout">Keluar</string>
     <string name="welcome_text">Selamat datang di EasyMeal</string>
     <string name="placeholder_percentage">80%</string>
     <string name="empty_pantry_desc">Masukkan bahan ke kulkasmu dan dapatkan rekomendasi resep terbaik!</string>
     <string name="empty_pantry">Kulkasmu kosong</string>
-    <string name="placeholder_category">Rempah-rempah</string>
+    <string name="placeholder_category">" "</string>
     <string name="opening_camera">Membuka kamera</string>
     <string name="import_gallery">Ambil Galeri</string>
     <string name="permission_camera_not_granted">Izin tidak diberikan</string>
@@ -83,5 +83,15 @@
     <string name="detection_failed">Maaf, tidak dapat mendeteksi bahan</string>
     <string name="email_already">Email sudah terdaftar</string>
     <string name="cannot_be_empty">Kolom tidak boleh kosong!</string>
-    <string name="detecting">Mendeteksi bahan...</string>
+    <string name="detecting">Mendeteksi bahan…</string>
+    <string name="maximum_time">Waktu maksimal</string>
+    <string name="minutes">menit</string>
+    <string name="hour">jam</string>
+    <string name="hours">jam</string>
+    <string name="number_of_servings">Porsi</string>
+    <string name="servings">porsi</string>
+    <string name="serving">porsi</string>
+    <string name="time_capital">Waktu</string>
+    <string name="servings_capital">Porsi</string>
+    <string name="favorite_capital">Favorit</string>
 </resources>

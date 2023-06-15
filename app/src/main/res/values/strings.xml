@@ -74,7 +74,7 @@
     <string name="what_in_pantry">What is in your pantry?</string>
     <string name="what_in_pantry_desc">Add ingredients that you have</string>
     <string name="recipe_recommended">Here are the best recipes for you</string>
-    <string name="what_to_buy">What you need</string>
+    <string name="what_to_buy">What you need to get</string>
     <string name="setting">Setting</string>
     <string name="take_photo">Take Photo</string>
     <string name="import_from_gallery">Import From Gallery</string>
@@ -84,4 +84,14 @@
     <string name="email_already">Email already registered</string>
     <string name="cannot_be_empty">Fields cannot be empty!</string>
     <string name="detecting">Detecting, please wait</string>
+    <string name="maximum_time">Maximum time</string>
+    <string name="minutes">minutes</string>
+    <string name="hour">hour</string>
+    <string name="hours">hours</string>
+    <string name="number_of_servings">Number of servings</string>
+    <string name="servings">servings</string>
+    <string name="serving">serving</string>
+    <string name="time_capital">Time</string>
+    <string name="servings_capital">Servings</string>
+    <string name="favorite_capital">Favorite</string>
 </resources>
