@@ -33,7 +33,7 @@ class WelcomeActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     if (result.data.isNotEmpty())
-                        Toast.makeText(this, "Ingredients Loaded", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, "Ingredients Loaded", Toast.LENGTH_SHORT).show()
                     setupView()
                 }
                 is Result.Loading -> showLoading(true)

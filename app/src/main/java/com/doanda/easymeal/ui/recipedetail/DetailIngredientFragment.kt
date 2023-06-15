@@ -56,13 +56,13 @@ class DetailIngredientFragment : Fragment() {
                 }
             val userId : Int = it.getInt(USER_ID)
             if (recipe != null) {
-                setupObservers(userId, recipe)
+                setupObservers(recipe)
                 setupAction(userId)
             }
         }
     }
 
-    private fun setupObservers(userId: Int, recipe: Recipe) {
+    private fun setupObservers(recipe: Recipe) {
         val listIngId = recipe.listIngredient.map { it.id }
         viewModel.getIngredientsByIds(listIngId).observe(viewLifecycleOwner) { listIng ->
             if (listIng.isNotEmpty()) {
@@ -131,7 +131,7 @@ class DetailIngredientFragment : Fragment() {
                 when (result) {
                     is Result.Success -> {
                         showLoading(false)
-                        Toast.makeText(requireContext(), "Ingredient removed!", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(), "Ingredient removed!", Toast.LENGTH_SHORT).show()
                     }
                     is Result.Loading -> showLoading(true)
                     is Result.Error -> {
@@ -147,7 +147,7 @@ class DetailIngredientFragment : Fragment() {
                 when (result) {
                     is Result.Success -> {
                         showLoading(false)
-                        Toast.makeText(requireContext(), "Ingredient added!", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(), "Ingredient added!", Toast.LENGTH_SHORT).show()
                     }
                     is Result.Loading -> showLoading(true)
                     is Result.Error -> {
@@ -167,7 +167,7 @@ class DetailIngredientFragment : Fragment() {
                 when (result) {
                     is Result.Success -> {
                         showLoading(false)
-                        Toast.makeText(requireContext(), "Shopping item removed!", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(), "Shopping item removed!", Toast.LENGTH_SHORT).show()
                     }
                     is Result.Loading -> showLoading(true)
                     is Result.Error -> {
@@ -183,7 +183,7 @@ class DetailIngredientFragment : Fragment() {
                 when (result) {
                     is Result.Success -> {
                         showLoading(false)
-                        Toast.makeText(requireContext(), "Shopping item added!", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(), "Shopping item added!", Toast.LENGTH_SHORT).show()
                     }
                     is Result.Loading -> showLoading(true)
                     is Result.Error -> {

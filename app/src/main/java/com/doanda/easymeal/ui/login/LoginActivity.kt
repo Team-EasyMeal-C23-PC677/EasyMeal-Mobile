@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     val userData = result.data.user
-                        Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, getString(R.string.response_login_success), Toast.LENGTH_SHORT).show()
                     loadUserData(userData)
                 }
                 is Result.Error -> {
@@ -103,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
             when (result) {
                 is Result.Success -> {
                     showLoading(false)
-                    Toast.makeText(this, "Pantry Loaded", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Pantry Loaded", Toast.LENGTH_SHORT).show()
                     pantryLoaded = true
                     proceed(userData)
                 }
@@ -121,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
             when (result) {
                 is Result.Success -> {
                     showLoading(false)
-                    Toast.makeText(this, "Favorite Loaded", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Favorite Loaded", Toast.LENGTH_SHORT).show()
                     favoriteLoaded = true
                     proceed(userData)
                 }
@@ -139,7 +139,7 @@ class LoginActivity : AppCompatActivity() {
             when (result) {
                 is Result.Success -> {
                     showLoading(false)
-                    Toast.makeText(this, "Shopping List Loaded", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Shopping List Loaded", Toast.LENGTH_SHORT).show()
                     shoppingLoaded = true
                     proceed(userData)
                 }
