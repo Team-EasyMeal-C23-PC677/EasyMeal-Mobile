@@ -99,4 +99,6 @@
     <string name="recipe_in_favorite">Resep favoritmu</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
+    <string name="not_sure">Maaf, tidak bisa benar-benar yakin</string>
+    <string name="alternative_detection">Kemungkinan %1$s\%% %2$s</string>
 </resources>

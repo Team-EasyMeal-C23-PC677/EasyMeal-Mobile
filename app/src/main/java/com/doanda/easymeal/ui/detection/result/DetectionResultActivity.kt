@@ -156,28 +156,24 @@ class DetectionResultActivity : AppCompatActivity() {
                 }
             }
 
-            if (maxConfidence > 0.8f) {
-                viewModel.searchIngredientByName(detectedIng).observe(this) { listResult ->
-                    if (listResult.isNotEmpty()) {
-                        val result = listResult.first()
-                        val data = DetectionEntity(
-                            result.ingId,
-                            result.categoryName,
-                            result.ingName,
-                            result.isHave,
-                            confidence = maxConfidence
-                        )
-                        viewModel.getUser().observe(this) { user ->
-                            if (user != null) {
-                                setupView(user.userId, listDetection, data)
-                            }
+            viewModel.searchIngredientByName(detectedIng).observe(this) { listResult ->
+                if (listResult.isNotEmpty()) {
+                    val result = listResult.first()
+                    val data = DetectionEntity(
+                        result.ingId,
+                        result.categoryName,
+                        result.ingName,
+                        result.isHave,
+                        confidence = maxConfidence
+                    )
+                    viewModel.getUser().observe(this) { user ->
+                        if (user != null) {
+                            setupView(user.userId, listDetection, data, maxConfidence)
                         }
-                    } else {
-                        handleNotDetected()
                     }
+                } else {
+                    handleNotDetected()
                 }
-            } else {
-                handleNotDetected()
             }
         }
 
@@ -191,11 +187,15 @@ class DetectionResultActivity : AppCompatActivity() {
         binding.btnAddPantry.visibility = View.GONE
     }
 
-    private fun setupView(userId: Int, listDetection: MutableList<DetectionEntity>, bestMatch: DetectionEntity) {
-        binding.tvMostLikely.text = getString(R.string.most_likely).format(bestMatch.ingName)
+    private fun setupView(userId: Int, listDetection: MutableList<DetectionEntity>, bestMatch: DetectionEntity, confidence: Float) {
+        if (confidence > 0.75f) {
+            binding.tvMostLikely.text = getString(R.string.most_likely).format(bestMatch.ingName)
+        }  else {
+            binding.tvMostLikely.text = getString(R.string.not_sure)
+            binding.tvNotConfident.text = getString(R.string.alternative_detection).format((confidence * 100).toInt().toString(), bestMatch.ingName)
+        }
 
-
-        if (bestMatch.isHave == true) {
+        if (bestMatch.isHave == true && confidence > 0.75f) {
             binding.tvMostLikely.text = getString(R.string.already_in_pantry).format(bestMatch.ingName)
             binding.btnAddPantry.visibility = View.GONE
         } else {

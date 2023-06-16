@@ -99,4 +99,6 @@
     <string name="recipe_in_favorite">Recipe in your favorites</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="not_sure">Sorry, we could not be very sure</string>
+    <string name="alternative_detection">We are %1$s\%% sure it is %2$s</string>
 </resources>
