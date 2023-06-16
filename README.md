@@ -18,7 +18,10 @@ Here are the technologies and libraries used to create this project:
 - Glide
 - CameraX
 
-
-
-
-
+## Feature
+- Login and register
+- Recipe recommendation based on ingredients available
+- Favorite recipes
+- Search and filter recipes
+- Shopping list
+- Ingredient image recognition
