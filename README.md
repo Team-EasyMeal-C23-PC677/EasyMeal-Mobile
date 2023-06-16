@@ -9,14 +9,14 @@ This repository is for EasyMeal Mobile App for our project in capstone Bangkit A
 
 ## Built with
 Here are the technologies and libraries used to create this project:
-- Android Studio
-- MVVM Architecture
-- Room 
-- Datastore
-- Retrofit2
-- TensorFlow Lite
-- Glide
-- CameraX
+- Android Studio ver. Electric Eel | 2022.1.1 (Jan 2023)
+- MVVM Architecture v2.6.1
+- Room v2.5.1
+- Datastore v1.0.0
+- Retrofit2 v2.9.0
+- TensorFlow Lite v0.1.0
+- Glide v4.15.1
+- CameraX v1.2.2
 
 ## Feature
 - Login and register
