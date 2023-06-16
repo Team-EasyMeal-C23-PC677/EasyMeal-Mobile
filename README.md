@@ -8,3 +8,17 @@ This repository is for EasyMeal Mobile App for our project in capstone Bangkit A
 [Doanda Dresta Rahma - A038DSX2261 - Mobile Development Path](github.com/doandadr)
 
 ## Built with
+Here are the technologies and libraries used to create this project:
+- Android Studio
+- MVVM Architecture
+- Room 
+- Datastore
+- Retrofit2
+- TensorFlow Lite
+- Glide
+- CameraX
+
+
+
+
+
