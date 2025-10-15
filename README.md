@@ -1,4 +1,6 @@
 # EasyMeal-Mobile
+🍽 EasyMeal is an AI-powered cooking assistant and recipe recommendation app designed to help users by giving recipe recommendations based on ingredients they have. This application also helps users find out ingredients they don't know simply by uploading image(s) of the ingredient(s).
+
 # C23-PC677
 Watch the demo video here: https://bit.ly/esymeal
 
@@ -7,14 +9,14 @@ Watch the demo video here: https://bit.ly/esymeal
 
 
 ## About this Repository
-This repository is for EasyMeal Mobile App for our project in capstone Bangkit Academy 2022. This project is a graduation requirement in the Bangkit Academy 2022 program as a Mobile Developer Learning Path
+This repository is for EasyMeal Mobile App for our project in capstone Bangkit Academy 2023. This project is a graduation requirement in the Bangkit Academy 2023 program as a Mobile Developer Learning Path
 
 ## Contributor
 [Doanda Dresta Rahma - A038DSX2261 - Mobile Development Path](https://github.com/doandadr)
 
 ## Built with
 Here are the technologies and libraries used to create this project:
-- Android Studio ver. Electric Eel | 2022.1.1 (Jan 2023)
+- Android Studio ver. Electric Eel | 2023.1.1 (Jan 2023)
 - MVVM Architecture v2.6.1
 - Room v2.5.1
 - Datastore v1.0.0
